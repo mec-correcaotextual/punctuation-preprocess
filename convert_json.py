@@ -10,6 +10,25 @@ import re
 nlp = spacy.blank('pt')
 
 
+def get_gold_token(text, start_char, tokens_delimiters=None):
+    if tokens_delimiters is None:
+        tokens_delimiters = [' ', '\n', '\t']
+
+    limit_chars = text[:start_char]
+    gold_token = []
+    end_char = start_char
+    for char in reversed(limit_chars):
+
+        if char in tokens_delimiters and start_char != end_char:
+            break
+        else:
+            start_char -= 1
+            gold_token.append(char)
+
+    gold_token = ''.join(reversed(gold_token))
+    return start_char, end_char, gold_token
+
+
 def convert_annotations(
         path: str = 'data',
         token_alignment: Literal['contract', 'expand'] = 'expand'
@@ -20,10 +39,10 @@ def convert_annotations(
 
     annotator_entities = []
     student_entities = []
+
     for week_path in result:
         print(week_path)
-        week = int(re.search(r'(?<=Semana)\d+', str(week_path)).group())
-
+        overlaps = 0
         # paths -> json generators -> list[json]
         jsonls = list(week_path.glob('anot*'))
         jsonls.sort()
@@ -42,7 +61,7 @@ def convert_annotations(
             # doc.user_data = {'student': '...'} # é possível adicionar informações dos alunos ao dataset
             text = zipped_anot_data[0]['text'].replace('\n', ' ').replace('\t', ' ')
 
-            starts = []
+            end_chars = []
             student_entity = {
                 'text': text,
                 'sentence_id': text_id,
@@ -61,10 +80,15 @@ def convert_annotations(
                 for s in annotation['label']:
 
                     if len(annotation['label']) > 2 and s[2] in errors_filter:
-
                         new_span = doc.char_span(*s, alignment_mode=token_alignment)
-                        if new_span and all(start < new_span.start_char for start in starts):
-                            starts.append(new_span.end_char)
+
+                        if new_span is None or new_span.start_char == new_span.end_char:
+                            start_char, end_char, gold_token = get_gold_token(text, s[1])
+                            new_span = doc.char_span(*(start_char, end_char), alignment_mode=token_alignment)
+
+                        if all(start < new_span.start_char for start in end_chars):
+                            end_chars.append(new_span.end_char)
+
                             if text[s[0]:s[1]] == '.':
                                 student_entity['ents'].append(
                                     {"start": new_span.start_char, "end": new_span.end_char, "label": "PERIOD"})
@@ -83,9 +107,12 @@ def convert_annotations(
                                 else:
                                     student_entity['ents'].append(
                                         {"start": new_span.start_char, "end": new_span.end_char, "label": "I-COMMA"})
+                        else:
 
+                            overlaps += 1
             student_entities.append(student_entity)
             annotator_entities.append(annotator_entity)
+        print("overlaps: ", overlaps)
     return student_entities, annotator_entities
 
 
