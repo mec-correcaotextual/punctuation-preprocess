@@ -42,14 +42,15 @@ def get_gold_token(text, start_char, end_char, tokens_delimiters=None, token_ali
 pattern = re.compile(r'(?<=[a-z|A-z])[.,!?]')
 
 
-def find_token_span(text):
+def find_token_span(text, token_alignment='expand'):
     ents = []
     matches = re.finditer(pattern, text)
     for match in matches:
         span_start, span_end = match.span()
 
         non_puncted_text = re.sub('[.,!?]', ' ', text)
-        start_char, end_char = get_gold_token(non_puncted_text, span_start, span_end, tokens_delimiters=None)
+        start_char, end_char = get_gold_token(non_puncted_text, span_start, span_end,
+                                              tokens_delimiters=None, token_alignment=token_alignment)
         if text[span_start:span_end] in ['.', '?', '!']:
             ents.append((start_char, end_char, "PERIOD"))
         elif text[span_start:span_end] in [',']:
@@ -127,7 +128,7 @@ def convert_annotations(
             doc = nlp.make_doc(zipped_anot_data[0]['text'])
             # Procura pela pontuação do aluno no texto
 
-            student_entity["ents"] = find_token_span(text)
+            student_entity["ents"] = find_token_span(text, token_alignment=token_alignment)
             student_entities.append(student_entity)
 
             for annotator_id, annotation in enumerate(zipped_anot_data, start=1):
@@ -175,10 +176,7 @@ if __name__ == '__main__':
     sts_entities, annot_entities = convert_annotations('Anotation/')
     annotator1 = list(map(lambda dict_annot: dict_annot[1], annot_entities))
     annotator2 = list(map(lambda dict_annot: dict_annot[2], annot_entities))
-    print(len(annotator1), len(annotator2), len(sts_entities))
-    # annotator1 = drop_duplicates(annotator1)
-    # annotator2 = drop_duplicates(annotator2)
-    print(len(annotator1), len(annotator2), len(sts_entities))
+
     json.dump(obj=sts_entities, fp=open('student_entities.json', 'w'), indent=4)
     json.dump(obj=annotator1, fp=open('annotator1_entities.json', 'w'), indent=4)
     json.dump(obj=annotator2, fp=open('annotator2_entities.json', 'w'), indent=4)
