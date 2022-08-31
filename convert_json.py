@@ -177,6 +177,6 @@ if __name__ == '__main__':
     annotator1 = list(map(lambda dict_annot: dict_annot[1], annot_entities))
     annotator2 = list(map(lambda dict_annot: dict_annot[2], annot_entities))
 
-    json.dump(obj=sts_entities, fp=open('student_entities.json', 'w'), indent=4)
-    json.dump(obj=annotator1, fp=open('annotator1_entities.json', 'w'), indent=4)
-    json.dump(obj=annotator2, fp=open('annotator2_entities.json', 'w'), indent=4)
+    json.dump(obj=sts_entities, fp=open('annotations/student_entities.json', 'w'), indent=4)
+    json.dump(obj=annotator1, fp=open('annotations/annotator1_entities.json', 'w'), indent=4)
+    json.dump(obj=annotator2, fp=open('annotations/annotator2_entities.json', 'w'), indent=4)
