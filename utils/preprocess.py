@@ -37,8 +37,12 @@ def split_paragraphs(text):
     :return:
     """
     text = join_split_words(text)
-    title = re.search(r'\[T\].*\n+', text).group(0)
-    text = re.sub(title, '', text)
+    title = re.search(r'\[T\].*\n+', text)
+    if title:
+        title = title.group(0)
+        text = text.replace(title, '')
+    else:
+        title = ''
 
     return title, text.split('[P]')
 
