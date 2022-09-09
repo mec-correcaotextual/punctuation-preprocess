@@ -61,7 +61,7 @@ def preprocess_text(text):
 
 
 def main():
-    json_list = open("../Anotation/Semana2/Anotações/anotador1.jsonl", "r", encoding="utf-8").readlines()
+    json_list = open("../annotations/Semana2/Anotações/anotador1.jsonl", "r", encoding="utf-8").readlines()
     nlp = spacy.blank("pt")
     for json_str in json_list:
 
