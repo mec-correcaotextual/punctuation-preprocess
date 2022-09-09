@@ -44,6 +44,8 @@ def split_paragraphs(text):
     if title:
         title = title.group(0)
         text = text.replace(title, '')
+        title = title.replace('[T]', '').replace('\n', '')
+        title = ' '.join(title.split())
     else:
         title = ''
 
