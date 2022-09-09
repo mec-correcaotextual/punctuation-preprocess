@@ -1,6 +1,8 @@
 import json
 import re
 
+import spacy
+
 special_pattern = r'\s+|\n+|/n|\t+'
 marks = r'\[\w{0,3}|\W{0,3}\]|\}'
 
@@ -58,6 +60,7 @@ def preprocess_text(text):
 
 def main():
     json_list = open("../Anotation/Semana2/Anotações/anotador1.jsonl", "r", encoding="utf-8").readlines()
+    nlp = spacy.blank("pt")
     for json_str in json_list:
 
         result = json.loads(json_str)
@@ -68,7 +71,25 @@ def main():
             paragraphs = [clean_text(p) for p in paragraphs]
             paragraphs = list(filter(lambda x: x != '', paragraphs))
             print(paragraphs[:1])
-            print()
+            shifts = 0
+            for s in result['label']:
+                start_char, end_char, label = s[0], s[1], s[2]
+                if label == 'Erro de Pontuação' or label == 'Erro de vírgula':
+                    doc = nlp.make_doc(text)
+                    new_span = doc.char_span(*(start_char, end_char), alignment_mode='expand')
+                    if new_span:
+                        print('Texto: ', new_span.text)
+                    print(label, new_span)
+                    print(text[end_char-1:end_char])
+                    if text[end_char-1:end_char] != ',':
+                        for i in range((end_char-1) + shifts - 1, end_char + shifts + 1):
+                            print(text[i], end='\t')
+
+                    print('-------------------')
+
+
+            break
+
 
 
 
