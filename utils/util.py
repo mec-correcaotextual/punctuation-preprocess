@@ -7,12 +7,12 @@ def text2labels(sentence):
     labels = []
     for i, token in enumerate(tokens):
         try:
-            if token not in ['.', ',', '?', '!']:
+            if token not in ['.', ',', '?', '!', ';']:
                 labels.append('O')
-            elif token in ['.', '?', '!']:
-                labels[-1] = 'PERIOD'
+            elif token in ['.', '?', '!', ';']:
+                labels[-1] = 'I-PERIOD'
             elif token == ',':
-                labels[-1] = 'COMMA'
+                labels[-1] = 'I-COMMA'
 
         except IndexError:
             raise ValueError(f"Sentence can't start with punctuation {token}")
