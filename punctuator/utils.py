@@ -1,3 +1,5 @@
+import string
+
 from nltk.tokenize import regexp
 from simpletransformers.ner import NERModel, NERArgs
 import torch
@@ -11,7 +13,7 @@ def replace(sentence):
     labels = []
     for i, token in enumerate(tokens):
         try:
-            if token not in ['.', ',', '?']:
+            if token not in string.punctuation:
                 # sent_data.append([sent_id,'O',token])
                 labels.append('O')
             elif token in ['.', '?']:
