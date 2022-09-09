@@ -27,6 +27,7 @@ def clean_text(text):
     text = re.sub(special_pattern, ' ', text)
     text = re.sub(marks, '', text)
     text = ' '.join(text.split()).replace('<i>', '').replace('</i>', '').replace('<i/>', '')
+    text = re.sub(r'\.+', '.', text)
     return text
 
 
@@ -36,7 +37,7 @@ def split_paragraphs(text):
     :param text:
     :return:
     """
-    text = join_split_words(text)
+
     title = re.search(r'\[T\].*\n+', text)
     if title:
         title = title.group(0)
@@ -56,19 +57,20 @@ def preprocess_text(text):
 
 
 def main():
-    json_list = open("../Anotation/Semana1/Anotações/anotador1.jsonl", "r", encoding="utf-8").readlines()
+    json_list = open("../Anotation/Semana2/Anotações/anotador1.jsonl", "r", encoding="utf-8").readlines()
     for json_str in json_list:
-        result = json.loads(json_str)
-        text = result["text"]
-        title, paragraphs = split_paragraphs(text)
-        print(paragraphs[:1])
-        paragraphs = [clean_text(p) for p in paragraphs]
-        paragraphs = list(filter(lambda x: x != '', paragraphs))
-        print(paragraphs[:1])
-        print()
 
-        if result['id'] > 310:
-            break
+        result = json.loads(json_str)
+        if result['id'] == 161:
+            text = result["text"]
+            title, paragraphs = split_paragraphs(text)
+            print(paragraphs[:1])
+            paragraphs = [clean_text(p) for p in paragraphs]
+            paragraphs = list(filter(lambda x: x != '', paragraphs))
+            print(paragraphs[:1])
+            print()
+
+
 
 
 if __name__ == '__main__':
