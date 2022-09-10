@@ -85,7 +85,7 @@ def convert_annotations(
 
     annotator_entities = []
     student_entities = []
-    print(result)
+
     for week_path in result:
         print(week_path)
         overlaps = 0
