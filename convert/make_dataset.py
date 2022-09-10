@@ -1,4 +1,5 @@
 import json
+import os
 import pathlib
 import string
 from collections import defaultdict
@@ -78,12 +79,13 @@ def convert_annotations(
         token_alignment: Literal['contract', 'expand'] = 'expand'
 ):
     """Converte jsonl do doccano para o estilo de anotação do SpaCy e retorna um docbin com todos dos docs"""
+
     result = [p for p in pathlib.Path(path).glob('./**/Anotações')]
     result.sort()
 
     annotator_entities = []
     student_entities = []
-
+    print(result)
     for week_path in result:
         print(week_path)
         overlaps = 0
