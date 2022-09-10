@@ -1,4 +1,5 @@
 import re
+import string
 
 from nltk.tokenize import word_tokenize
 import spacy
@@ -90,7 +91,7 @@ def text2labels(sentence):
     labels = []
     for i, token in enumerate(tokens):
         try:
-            if token not in ['.', ',', '?', '!', ';']:
+            if token not in string.punctuation:
                 labels.append('O')
             elif token in ['.', '?', '!', ';']:
                 labels[-1] = 'I-PERIOD'

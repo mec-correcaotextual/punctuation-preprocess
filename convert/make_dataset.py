@@ -1,6 +1,5 @@
 import json
 import pathlib
-import re
 from collections import defaultdict
 from typing import Literal
 
@@ -11,12 +10,6 @@ from utils import text2labels, find_token_span
 from utils.preprocess import preprocess_text
 
 tokenizer = regexp.RegexpTokenizer(r'\w+|[.,?!]')
-
-
-def clean_text(text):
-    text = re.sub(r'\s+|\n+|/n|\t+|\[T\]|\[P\]|\[X\]|\[\?\]|\[S\]|\[LT\]|\[LC\]|\[MI\]|\[TOI\]', ' ', text)
-
-    return ' '.join(text.split()).replace('<i>', '').replace('</i>', '').replace('<i/>', '')
 
 
 def fix_punctuation(sts_text_list, ann_text_list, start_char, end_char, punct):
@@ -130,10 +123,10 @@ def convert_annotations(
 
 
 if __name__ == '__main__':
-    sts_entities, annot_entities = convert_annotations('./annotations/')
+    sts_entities, annot_entities = convert_annotations('../annotations/')
     annotator1 = list(map(lambda dict_annot: dict_annot[1], annot_entities))
     annotator2 = list(map(lambda dict_annot: dict_annot[2], annot_entities))
 
-    json.dump(obj=sts_entities, fp=open('./dataset/student_entities.json', 'w'), indent=4)
-    json.dump(obj=annotator1, fp=open('./dataset/annotator1_entities.json', 'w'), indent=4)
-    json.dump(obj=annotator2, fp=open('./dataset/annotator2_entities.json', 'w'), indent=4)
+    json.dump(obj=sts_entities, fp=open('../dataset/student_entities.json', 'w'), indent=4)
+    json.dump(obj=annotator1, fp=open('../dataset/annotator1_entities.json', 'w'), indent=4)
+    json.dump(obj=annotator2, fp=open('../dataset/annotator2_entities.json', 'w'), indent=4)

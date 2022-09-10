@@ -23,7 +23,6 @@ tokenizer = regexp.RegexpTokenizer(r'\w+|[.,?!]')
 tokenizer_words = regexp.RegexpTokenizer(r'\w+')
 bert_tokenizer = BertTokenizer.from_pretrained(MODEL_PATH)
 
-
 def text2labels(sentence):
     tokens = word_tokenize(sentence.lower())
 
@@ -40,7 +39,6 @@ def text2labels(sentence):
         except IndexError:
             raise ValueError(f"Sentence can't start with punctuation {token}")
     return labels
-
 
 def merge_dicts(dict_args):
     """

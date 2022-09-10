@@ -12,7 +12,11 @@ def join_split_words(text):
     Junta palavras que foram separadas por um \n
     """
 
-    splited = re.search(r'(\w+)-\n(\w+)', text)
+    splited = re.search(re.compile(r'(\w+)-\n(\w+)'), text)
+    if splited:
+        text = text.replace(splited.group(0), splited.group(1) + splited.group(2))
+        return join_split_words(text)
+    splited = re.search(re.compile(r'(\w+)_\n(\w+)'), text)
     if splited:
         text = text.replace(splited.group(0), splited.group(1) + splited.group(2))
         return join_split_words(text)
@@ -66,13 +70,14 @@ def main():
     for json_str in json_list:
 
         result = json.loads(json_str)
-        if result['id'] == 161:
+        if result['id'] == 184:
             text = result["text"]
             title, paragraphs = split_paragraphs(text)
             print(paragraphs[:1])
-            paragraphs = [clean_text(p) for p in paragraphs]
+            paragraphs = [join_split_words(p) for p in paragraphs]
             paragraphs = list(filter(lambda x: x != '', paragraphs))
             print(paragraphs[:1])
+            breakpoint()
             shifts = 0
             for s in result['label']:
                 start_char, end_char, label = s[0], s[1], s[2]
