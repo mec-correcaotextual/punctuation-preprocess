@@ -152,6 +152,6 @@ if __name__ == '__main__':
     annotator1 = list(map(lambda dict_annot: dict_annot[1], annot_entities))
     annotator2 = list(map(lambda dict_annot: dict_annot[2], annot_entities))
 
-    json.dump(obj=sts_entities, fp=open('../dataset/student_entities.json', 'w'), indent=4)
-    json.dump(obj=annotator1, fp=open('../dataset/annotator1_entities.json', 'w'), indent=4)
-    json.dump(obj=annotator2, fp=open('../dataset/annotator2_entities.json', 'w'), indent=4)
+    json.dump(obj=sts_entities, fp=open('../dataset/student.json', 'w'), indent=4)
+    json.dump(obj=annotator1, fp=open('../dataset/annotator1.json', 'w'), indent=4)
+    json.dump(obj=annotator2, fp=open('../dataset/annotator2.json', 'w'), indent=4)
