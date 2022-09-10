@@ -11,6 +11,7 @@ from nltk.tokenize import regexp, word_tokenize
 from seqeval import metrics
 from silence_tensorflow import silence_tensorflow
 import os
+from nltk.tokenize import wordpunct_tokenize
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 silence_tensorflow()
@@ -22,6 +23,7 @@ MODEL_PATH = "../models/bert-portuguese-tedtalk2012"
 tokenizer = regexp.RegexpTokenizer(r'\w+|[.,?!]')
 tokenizer_words = regexp.RegexpTokenizer(r'\w+')
 bert_tokenizer = BertTokenizer.from_pretrained(MODEL_PATH)
+
 
 def text2labels(sentence):
     tokens = word_tokenize(sentence.lower())
@@ -39,6 +41,7 @@ def text2labels(sentence):
         except IndexError:
             raise ValueError(f"Sentence can't start with punctuation {token}")
     return labels
+
 
 def merge_dicts(dict_args):
     """
@@ -140,11 +143,12 @@ if __name__ == '__main__':
 
     for item in annotator_entities:
 
-        # TODO Separar o texto em parágrafos com \n
         text_id = item["text_id"]
-        print(text_id)
+
         text = item["text"]
-        words = [re.sub(r'[.,;:!?]', '', word) for word in word_tokenize(text) if word not in string.punctuation]
+
+        words = [word for word in word_tokenize(text) if word not in string.punctuation]
+
         test_text = ' '.join(words).lower()
         predictions = predict(test_text, model, 512)
         true_label = text2labels(item["text"])
