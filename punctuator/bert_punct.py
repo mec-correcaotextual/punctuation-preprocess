@@ -20,12 +20,16 @@ from transformers import BertTokenizer
 
 nlp = spacy.blank('pt')
 MODEL_PATH = "../models/bert-portuguese-tedtalk2012"
-tokenizer = regexp.RegexpTokenizer(r'\w+|[.,?!]')
-tokenizer_words = regexp.RegexpTokenizer(r'\w+')
+
 bert_tokenizer = BertTokenizer.from_pretrained(MODEL_PATH)
 
 
 def text2labels(sentence):
+    """
+    Convert text to labels
+    :param sentence: text to convert
+    :return:  list of labels
+    """
     tokens = word_tokenize(sentence.lower())
 
     labels = []
@@ -105,19 +109,35 @@ def split_paragraphs(text):
 
 
 def remove_punctuation(text):
+    """
+    Remove punctuation from text
+    :param text: text to remove punctuation from
+    :return:  text without punctuation
+    """
     text = ' '.join(word for word in word_tokenize(text)
                     if word not in string.punctuation)
     return text
 
 
-def preprocess_text(text, max_seq_length):
+def preprocess_text(text):
+    """
+    Preprocess text for prediction
+    :param text: text to preprocess
+    :return:  list of preprocessed text
+    """
     paragraphs = split_paragraphs(text)
 
     return list(map(lambda x: remove_punctuation(x), paragraphs))
 
 
-def predict(test_text: str, model, max_seq_length):
-    texts = preprocess_text(test_text, max_seq_length)
+def predict(test_text: str, model):
+    """
+    Predict punctuation for text
+    :param test_text:   text to predict punctuation for
+    :param model:  model to use for prediction
+    :return:  list of predicted labels
+    """
+    texts = preprocess_text(test_text)
     prediction_list, raw_outputs = model.predict(texts)
     pred_dict = merge_dicts(list(chain(*prediction_list)))
 
@@ -158,20 +178,9 @@ if __name__ == '__main__':
     for item in annotator_entities:
 
         text_id = item["text_id"]
-
         ann_text = item["text"]
-
-        bert_label = predict(ann_text, model, 512)
+        bert_label = predict(ann_text, model)
         true_label = text2labels(item["text"])
-        print(text_id)
-        if len(bert_label) != len(true_label):
-            print("Tamanho diferente")
-
-            print(len(bert_label), len(true_label), len(item["labels"]))
-            print(bert_label)
-            print(true_label)
-
-            breakpoint()
         true_labels.append(true_label)
         bert_labels.append(bert_label)
 
