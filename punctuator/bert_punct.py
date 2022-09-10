@@ -74,11 +74,9 @@ def get_model(model_path,
     )
 
 
-def preprocess_text(text, max_seq_length):
+def truncate_sentences(text, max_seq_length):
     texts = []
-
-    clean_text = ' '.join(tokenizer_words.tokenize(text))
-    tokens = bert_tokenizer.tokenize(clean_text)
+    tokens = bert_tokenizer.tokenize(text)
 
     if len(tokens) > max_seq_length:
         if len(tokens) % max_seq_length == 0:
@@ -100,14 +98,30 @@ def preprocess_text(text, max_seq_length):
     else:
         texts.append(text)
 
-    return texts
+
+def split_paragraphs(text):
+    paragraphs = text.split('\n')
+    return paragraphs
 
 
-def predict(text, model, max_seq_length):
-    texts = preprocess_text(text, max_seq_length)
+def remove_punctuation(text):
+    text = ' '.join(word for word in word_tokenize(text)
+                    if word not in string.punctuation)
+    return text
+
+
+def preprocess_text(text, max_seq_length):
+    paragraphs = split_paragraphs(text)
+
+    return list(map(lambda x: remove_punctuation(x), paragraphs))
+
+
+def predict(test_text: str, model, max_seq_length):
+    texts = preprocess_text(test_text, max_seq_length)
     prediction_list, raw_outputs = model.predict(texts)
     pred_dict = merge_dicts(list(chain(*prediction_list)))
-    return pred_dict
+
+    return get_labels(test_text, pred_dict)
 
 
 def get_labels(text, pred_dict):
@@ -145,24 +159,18 @@ if __name__ == '__main__':
 
         text_id = item["text_id"]
 
-        text = item["text"]
+        ann_text = item["text"]
 
-        words = [word for word in word_tokenize(text) if word not in string.punctuation]
-
-        test_text = ' '.join(words).lower()
-        predictions = predict(test_text, model, 512)
+        bert_label = predict(ann_text, model, 512)
         true_label = text2labels(item["text"])
-        bert_label = get_labels(test_text, predictions)
-
+        print(text_id)
         if len(bert_label) != len(true_label):
             print("Tamanho diferente")
-            print(len(words))
-            print(words)
 
             print(len(bert_label), len(true_label), len(item["labels"]))
             print(bert_label)
             print(true_label)
-            print(test_text)
+
             breakpoint()
         true_labels.append(true_label)
         bert_labels.append(bert_label)

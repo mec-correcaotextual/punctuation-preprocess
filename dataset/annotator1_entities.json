@@ -577,7 +577,7 @@
         ]
     },
     {
-        "text": "Aquele dia chovia muito, estava tendo muitos trov\u00f5es alto e muitos perigosos, eu estava com meus amigos e eles ja estava ficando com medo,. Depois que chegamos em casa e a chuva parou exatamente quando chegamos,. Quando saimos vimos muitas coisas no ch\u00e3o que foram levadas pelos vento, e la tinha uma pedra muito brilhante que parecia at\u00e9 diamante.",
+        "text": "Aquele dia chovia muito, estava tendo muitos trov\u00f5es alto e muitos perigosos, eu estava com meus amigos e eles ja estava ficando com medo,. Depois que chegamos em casa e a chuva parou exatamente quando chegamos. quando saimos vimos muitas coisas no ch\u00e3o que foram levadas pelos vento, e la tinha uma pedra muito brilhante que parecia at\u00e9 diamante.",
         "title": "",
         "text_id": 7,
         "ents": [
@@ -599,16 +599,16 @@
             [
                 202,
                 210,
+                "PERIOD"
+            ],
+            [
+                278,
+                283,
                 "COMMA"
             ],
             [
-                279,
-                284,
-                "COMMA"
-            ],
-            [
-                339,
-                347,
+                338,
+                346,
                 "PERIOD"
             ]
         ],
@@ -980,7 +980,7 @@
         ]
     },
     {
-        "text": "Chovia muito naquele dia, com trov\u00f5es muito altos, vindo do ceu. E depois que a chuva passou, encontrei no quintal da minha casa uma pedra muito brilhante. Quando me aproximei um pouco mais era um diamante, quando eu fui pegar passou um bicho e pegou, era um rato muito grande e feio, eu fiquei muito triste pois eu ia dar essa pedra brilhante para minha m\u00e3e. No dia seguinte comprei ratoeiras e cola para rato, e espalhei pela casa toda e sai para ir pra casa da minha v\u00f3. Quando cheguei em casa tinha pego o rato grande e feio mais a pedra nnao, ent\u00e3o tive que comprar outro presente para minha m\u00e3e,. Comprei um anel e ela ficou muito feliz, nunca mais eu vi aquela pedra preciosa, mas sonhava com ela todo dia.",
+        "text": "Chovia muito naquele dia, com trov\u00f5es muito altos, vindo do ceu. E depois que a chuva passou, encontrei no quintal da minha casa uma pedra muito brilhante. Quando me aproximei um pouco mais era um diamante, quando eu fui pegar passou um bicho e pegou, era um rato muito grande e feio, eu fiquei muito triste pois eu ia dar essa pedra brilhante para minha m\u00e3e. No dia seguinte comprei ratoeiras e cola para rato, e espalhei pela casa toda e sai para ir pra casa da minha v\u00f3. Quando cheguei em casa tinha pego o rato grande e feio mais a pedra nnao, ent\u00e3o tive que comprar outro presente para minha m\u00e3e. comprei um anel e ela ficou muito feliz, nunca mais eu vi aquela pedra preciosa, mas sonhava com ela todo dia.",
         "title": "",
         "text_id": 12,
         "ents": [
@@ -1042,21 +1042,21 @@
             [
                 597,
                 600,
+                "PERIOD"
+            ],
+            [
+                636,
+                641,
                 "COMMA"
             ],
             [
-                637,
-                642,
+                673,
+                681,
                 "COMMA"
             ],
             [
-                674,
-                682,
-                "COMMA"
-            ],
-            [
-                709,
-                712,
+                708,
+                711,
                 "PERIOD"
             ]
         ],
@@ -1798,7 +1798,7 @@
         ]
     },
     {
-        "text": "Chovia muito naquele dia, com trov\u00f5es muito altos vindo do c\u00e9u. E depois que a chuva passou encontrei no quintal de casa uma pedra muito brilhante. Essa pedra era um diamante muito valioso. Peguei a pedra, Lavei, Deichei limpa,. No outro dia fui em uma loja que compra pedras valiosas e fui fazer um orsamento de quanto que ela valia ent\u00e3o o dono da loja avalio essa pedra em 5 milh\u00f5es de reais mas eu n\u00e3o queria vende ent\u00e3o eu peguei e guardei dentro de uma maleta.",
+        "text": "Chovia muito naquele dia, com trov\u00f5es muito altos vindo do c\u00e9u. E depois que a chuva passou encontrei no quintal de casa uma pedra muito brilhante. Essa pedra era um diamante muito valioso. Peguei a pedra, Lavei, Deichei limpa. no outro dia fui em uma loja que compra pedras valiosas e fui fazer um orsamento de quanto que ela valia ent\u00e3o o dono da loja avalio essa pedra em 5 milh\u00f5es de reais mas eu n\u00e3o queria vende ent\u00e3o eu peguei e guardei dentro de uma maleta.",
         "title": "",
         "text_id": 18,
         "ents": [
@@ -1835,11 +1835,11 @@
             [
                 221,
                 226,
-                "COMMA"
+                "PERIOD"
             ],
             [
-                459,
-                465,
+                458,
+                464,
                 "PERIOD"
             ]
         ],
@@ -2097,7 +2097,7 @@
         ]
     },
     {
-        "text": "Certo dia, em um dia chuvoso com trov\u00f5es e rel\u00e3mpangos, um menino chamado zeca estava em casa quando escutou um barulho no telhado como se fosse algo que caiu, zeca ficou super curioso, e ent\u00e3o ele decidiu que quando acabasse a chuva ele iria sair para ver o que era. quando a chuva parou ele disse: \u2014 Vou ir l\u00e1 fora para ver o que era aquele barulho. Ele disse sozinho, e ent\u00e3o ele foi, ele estava procurando e procurando e nada, e ent\u00e3o ele sentou no banco que tinha no jardim, e ent\u00e3o ele ficou imaginando o que era, quando de repente ele ver algo brilhando. E ent\u00e3o ele foi ver o que era, e l\u00e1 estava um diamante lindo. Zeca olhava incr\u00e9dulo, ele admirava o diamate lindo, e ent\u00e3o ele disse para si mesmo: \u2014 Vou ir em uma loja aqui perto para ver se \u00e9 verdadeiro. E ent\u00e3o ele foi, chegando l\u00e1 ele foi falou com o mo\u00e7o que se chamava Elias, ele mostrou o diamante para Elias e Elias disse: \u2014 Isso s\u00f3 pode ser falso! Zeca explicou tudo pra ele e ent\u00e3o Elias falou que iria fazer um teste para ver se \u00e9 verdadeiro. Quando ele terminou o teste Elias disse: \u2014 N\u00e3o \u00e9 falso, voc\u00ea pode vende-lo. Mas Zeca disse que n\u00e3o queria, e ent\u00e3o ele comprou uma caixinha transparente e colocou o diamante dentro, ele se despediu de Elias e voltou todo contente com seu diamante. Ele ficou umaginando quem jogou o diamante no telhado, mas de ficou pensando, n\u00e3o faria sentido algu\u00e9m jogar um diamante, e ent\u00e3o de checkou a uma conclus\u00e3o que Deus enviou para ele, na cabe\u00e7a de fazia sentido. E Zeca coocou o diamante do lado de sua cama, assim todas as vezes que ele acordava ele via o diamante e ele fazia tudo com esse diamante, ele estava doido, ou obsecado pelo diamante. E ele viveu feliz ao lado de seu querido diamante.",
+        "text": "Certo dia, em um dia chuvoso com trov\u00f5es e rel\u00e3mpangos, um menino chamado zeca estava em casa quando escutou um barulho no telhado como se fosse algo que caiu, zeca ficou super curioso, e ent\u00e3o ele decidiu que quando acabasse a chuva ele iria sair para ver o que era. quando a chuva parou ele disse: \u2014 Vou ir l\u00e1 fora para ver o que era aquele barulho. Ele disse sozinho, e ent\u00e3o ele foi, ele estava procurando e procurando e nada, e ent\u00e3o ele sentou no banco que tinha no jardim, e ent\u00e3o ele ficou imaginando o que era, quando de repente ele ver algo brilhando. E ent\u00e3o ele foi ver o que era, e l\u00e1 estava um diamante lindo. Zeca olhava incr\u00e9dulo, ele admirava o diamate lindo, e ent\u00e3o ele disse para si mesmo: \u2014 Vou ir em uma loja aqui perto para ver se \u00e9 verdadeiro. E ent\u00e3o ele foi, chegando l\u00e1 ele foi falou com o mo\u00e7o que se chamava Elias, ele mostrou o diamante para Elias e Elias disse: \u2014 Isso s\u00f3 pode ser falso! Zeca explicou tudo pra ele e ent\u00e3o Elias falou que iria fazer um teste para ver se \u00e9 verdadeiro. Quando ele terminou o teste Elias disse: \u2014 N\u00e3o \u00e9 falso, voc\u00ea pode vende-lo. Mas Zeca disse que n\u00e3o queria, e ent\u00e3o ele comprou uma caixinha transparente e colocou o diamante dentro, ele se despediu de Elias e voltou todo contente com seu diamante. Ele ficou umaginando quem jogou o diamante no telhado, mas de ficou pensando, n\u00e3o faria sentido algu\u00e9m jogar um diamante, e ent\u00e3o de checkou a uma conclus\u00e3o que Deus enviou para ele, na cabe\u00e7a de fazia sentido. E Zeca coocou o diamante do lado de sua cama, assim todas as vezes que ele acordava ele via o diamante e ele fazia tudo com esse diamante,  ele estava doido, ou obsecado pelo diamante. E ele viveu feliz ao lado de seu querido diamante.",
         "title": "",
         "text_id": 20,
         "ents": [
@@ -2267,18 +2267,18 @@
                 "COMMA"
             ],
             [
-                1625,
-                1630,
+                1626,
+                1631,
                 "COMMA"
             ],
             [
-                1649,
-                1657,
+                1650,
+                1658,
                 "PERIOD"
             ],
             [
-                1700,
-                1708,
+                1701,
+                1709,
                 "PERIOD"
             ]
         ],
@@ -2673,7 +2673,7 @@
         ]
     },
     {
-        "text": "Nesse dia eu estava com Meu primo, e quando nois estavamos No quintal de casa brincando Na chuva, jogando bola. Meu primo jogou a bola Na rua, e Nois formos pegar a bola quando Nois estava voltando para casa, ele encontrou uma pedra muito brilhante. Quando Nois fomos pegar a pedra era de diamante, nos pegamos a pedra, E levamos para casa e mostramos para meu pai ele pegou gardou. E no outro dia ele levou para uma joalheria e viu que tinha muito valor e vendeu para mulher.",
+        "text": "Nesse dia eu estava com Meu primo, e quando nois estavamos No quintal de casa brincando Na chuva, jogando bola. Meu primo jogou a bola Na rua, e Nois formos pegar a bola quando Nois estava voltando para casa, ele encontrou uma pedra muito brilhante. Quando Nois fomos pegar a pedra era de diamante, nos pegamos a pedra e levamos para casa e mostramos para meu pai ele pegou gardou. E no outro dia ele levou para uma joalheria e viu que tinha muito valor e vendeu para mulher.",
         "title": "",
         "text_id": 22,
         "ents": [
@@ -2713,18 +2713,13 @@
                 "COMMA"
             ],
             [
-                313,
-                318,
-                "COMMA"
-            ],
-            [
-                375,
-                381,
+                374,
+                380,
                 "PERIOD"
             ],
             [
-                469,
-                475,
+                468,
+                474,
                 "PERIOD"
             ]
         ],
@@ -2786,7 +2781,7 @@
             "O",
             "O",
             "O",
-            "I-COMMA",
+            "O",
             "O",
             "O",
             "O",
@@ -2939,7 +2934,7 @@
         ]
     },
     {
-        "text": "Oi. Eu sou Diego. Hoje vou conto sobre a hist\u00f3rio do av\u00f3 que ficou rico em um dia de chuva,. Tudo isso aconteceu no quintal em um dia chuvoso ilo viu um brilho lindo vinda terra e por olho era um diamante que valio 2.000.000 milhoes de reais. Ent\u00e3o ela foi vender em umaloja de joias. Ent\u00e3o ela comprou uma fazendo de puder de vistar, e fez uma mas\u00e3o pra ela e at\u00e9 hoje morar l\u00e1 rico porque soube gastar dinheiro. Ela falo que foi o melhor dia do vido delo E voc\u00ea o que faria com esse dinheiro todo.",
+        "text": "Oi. Eu sou Diego. Hoje vou conto sobre a hist\u00f3rio do av\u00f3 que ficou rico em um dia de chuva. Tudo isso aconteceu no quintal em um dia chuvoso ilo viu um brilho lindo vinda terra e por olho era um diamante que valio 2.000.000 milhoes de reais. Ent\u00e3o ela foi vender em umaloja de joias. Ent\u00e3o ela comprou uma fazendo de puder de vistar, e fez uma mas\u00e3o pra ela e at\u00e9 hoje morar l\u00e1 rico porque soube gastar dinheiro. Ela falo que foi o melhor dia do vido delo E voc\u00ea o que faria com esse dinheiro todo",
         "title": "",
         "text_id": 24,
         "ents": [
@@ -2956,31 +2951,26 @@
             [
                 85,
                 90,
+                "PERIOD"
+            ],
+            [
+                235,
+                240,
+                "PERIOD"
+            ],
+            [
+                277,
+                282,
+                "PERIOD"
+            ],
+            [
+                326,
+                332,
                 "COMMA"
             ],
             [
-                236,
-                241,
-                "PERIOD"
-            ],
-            [
-                278,
-                283,
-                "PERIOD"
-            ],
-            [
-                327,
-                333,
-                "COMMA"
-            ],
-            [
-                404,
-                412,
-                "PERIOD"
-            ],
-            [
-                494,
-                498,
+                403,
+                411,
                 "PERIOD"
             ]
         ],
@@ -3084,7 +3074,7 @@
             "O",
             "O",
             "O",
-            "I-PERIOD"
+            "O"
         ]
     },
     {
@@ -3323,7 +3313,7 @@
         ]
     },
     {
-        "text": "Ele achou essa pedra, mas antes dele pegar ele ligou para um amigo \u2014 \u00c1lo \u2014 Eu achei uma coisa no meu quintal depois da chuva. \u2014 Como \u00e9 essa coisa \u2014 Ela parece uma pedra mas brilhante. \u2014 J\u00e1 j\u00e1 tou indo para ir. O amigo chegou rapido e ele vio a pedra e falou. \u2014 devimos levar naquela loja que ver coissas brilhantes. \u2014 Sim. vamos l\u00e1. Ent\u00e3o chegando l\u00e1, eles vir\u00e3o aquele velho e perguntar\u00e3o. \u2014 Ol\u00e1, e aqui que ver pedras brilhantes. O velhor respondeu calmo: \u2014 Sim, Meu jovem. Eles entregar\u00e3o a pedra \u00e9 o velho vio e olhou para a cara dos dois \u00e9 olhou de novo e mais uma vez repetiu, e respondeu. \u2014 Vo\u00e7\u00eas s\u00e3o muitos sortudos achar\u00e3o uma pedra muito rara de achar para voc\u00eas saberem essa pedra como vec\u00eas disse e l\u00e1 e um (Diamante). Eles ficar\u00e3o assustados. Eles voutar\u00e3o e ficar\u00e3o com o diamante at\u00e9 os utimos dias da suas vidas.",
+        "text": "Ele achou essa pedra, mas antes dele pegar ele ligou para um amigo \u2014 \u00c1lo \u2014 Eu achei uma coisa no meu quintal depois da chuva. \u2014 Como \u00e9 essa coisa \u2014 Ela parece uma pedra mas brilhante. \u2014 J\u00e1 j\u00e1 tou indo para ir. O amigo chegou rapido e ele vio a pedra e falou. \u2014 devimos levar naquela loja que ver coissas brilhantes. \u2014 Sim. vamos l\u00e1. Ent\u00e3o chegando l\u00e1, eles vir\u00e3o aquele velho e perguntar\u00e3o. \u2014 Ol\u00e1, e aqui que ver pedras brilhantes O velhor respondeu calmo: \u2014 Sim, Meu jovem. Eles entregar\u00e3o a pedra \u00e9 o velho vio e olhou para a cara dos dois \u00e9 olhou de novo e mais uma vez repetiu, e respondeu. \u2014 Vo\u00e7\u00eas s\u00e3o muitos sortudos achar\u00e3o uma pedra muito rara de achar para voc\u00eas saberem essa pedra como vec\u00eas disse e l\u00e1 e um (Diamante). Eles ficar\u00e3o assustados. Eles voutar\u00e3o e ficar\u00e3o com o diamante at\u00e9 os utimos dias da suas vidas.",
         "title": "",
         "text_id": 26,
         "ents": [
@@ -3368,38 +3358,33 @@
                 "PERIOD"
             ],
             [
-                420,
-                430,
-                "PERIOD"
-            ],
-            [
-                460,
-                463,
+                459,
+                462,
                 "COMMA"
             ],
             [
-                469,
-                474,
+                468,
+                473,
                 "PERIOD"
             ],
             [
-                574,
-                581,
+                573,
+                580,
                 "COMMA"
             ],
             [
-                585,
-                594,
+                584,
+                593,
                 "PERIOD"
             ],
             [
-                744,
-                754,
+                743,
+                753,
                 "PERIOD"
             ],
             [
-                822,
-                827,
+                821,
+                826,
                 "PERIOD"
             ]
         ],
@@ -3489,7 +3474,7 @@
             "O",
             "O",
             "O",
-            "I-PERIOD",
+            "O",
             "O",
             "O",
             "O",
@@ -4067,7 +4052,7 @@
         ]
     },
     {
-        "text": "Naquele dia chuvoso eu encontrei uma pedra brilhante. no momento eu n\u00e3o sabia a que era, ent\u00e3o<t> a casar quando sei que era um diamante fiquei muito feliz, logo limpei ele e levei en um lugar para ver se era verda--deira. pois achava que era falso. Mas eu n\u00e3o a vendi, pois tive a ideia que o diamante daria um lindo anel de casamento para minha esposa.",
+        "text": "Naquele dia chuvoso eu encontrei uma pedra brilhante. no momento eu n\u00e3o sabia a que era, ent\u00e3o <t> a casar quando sei que era um diamante fiquei muito feliz, logo limpei ele e levei en um lugar para ver se era verda- -deira pois achava que era falso. Mas eu n\u00e3o a vendi, pois tive a ideia que o diamante daria um lindo anel de casamento para minha esposa.",
         "title": "",
         "text_id": 31,
         "ents": [
@@ -4082,28 +4067,23 @@
                 "COMMA"
             ],
             [
-                150,
-                155,
+                151,
+                156,
                 "COMMA"
             ],
             [
-                209,
-                221,
+                244,
+                249,
                 "PERIOD"
             ],
             [
-                243,
-                248,
-                "PERIOD"
-            ],
-            [
-                263,
-                268,
+                264,
+                269,
                 "COMMA"
             ],
             [
-                347,
-                353,
+                348,
+                354,
                 "PERIOD"
             ]
         ],
@@ -4151,7 +4131,6 @@
             "O",
             "O",
             "O",
-            "I-PERIOD",
             "O",
             "O",
             "O",
@@ -4959,7 +4938,7 @@
         ]
     },
     {
-        "text": "Era um dia muito chuvoso quando eu achei aquela pedra Preciosa. Quando eu vi a quela coisa, brilhosa, eu achei que era vidro mas quando eu peguei eu vi que era um diamante fiquei muito feliz. e levei para ver se era real, quando che gueila, era real mas o cara queria comprar, De mim de qual quer jeito mas n\u00e3o, Vendir afinal n\u00e3o e todo dia que acho um diamante verdadeiro.",
+        "text": "Era um dia muito chuvoso quando eu achei aquela pedra Preciosa. Quando eu vi a quela coisa, brilhosa, eu achei que era vidro mas quando eu peguei eu vi que era um diamante fiquei muito feliz. e levei para ver se era real, quando che gueila, era real mas o cara queria comprar de mim de qual quer jeito mas n\u00e3o vendir afinal n\u00e3o e todo dia que acho um diamante verdadeiro.",
         "title": "",
         "text_id": 38,
         "ents": [
@@ -4994,18 +4973,8 @@
                 "COMMA"
             ],
             [
-                268,
-                275,
-                "COMMA"
-            ],
-            [
-                307,
-                310,
-                "COMMA"
-            ],
-            [
-                362,
-                372,
+                360,
+                370,
                 "PERIOD"
             ]
         ],
@@ -5062,7 +5031,6 @@
             "O",
             "O",
             "O",
-            "I-COMMA",
             "O",
             "O",
             "O",
@@ -5070,7 +5038,8 @@
             "O",
             "O",
             "O",
-            "I-COMMA",
+            "O",
+            "O",
             "O",
             "O",
             "O",
@@ -6400,7 +6369,7 @@
         ]
     },
     {
-        "text": "Ent\u00e3o eu fui catando todas as roupas e achei uma tinta linda e quis pintar mais animais, era uma tinta rosa muito bonita ent\u00e3o come\u00e7ei a pintar e quando vi pintei tudo, bom mais foi muito legal mais tinha que guardar tudo at\u00e9 que minha m\u00e3e apareceu e me deu uma bronca daquelas, ai eu fui guardei tudo correndo, e fui para escola. Na hora que cheguei encontrei meus amigos e n\u00f3s fizemos pinturas. Eu adorei porque adoro pintura e meus amigos tamb\u00e9m. Depois fui para minha casa e encontrei um presente para mim. Era um quadro lindo, agradeci meus av\u00f3s e fui botar no meu quarto. Era t\u00e3o bonito e eu tenho at\u00e9 hoje, eu tenho uma prima igual a mim. Ela adora arte, para mim arte me explica muita coisa eu pinto todos os dias porque \u00e9 incrivel pintar muito bonito, eu sempre falei que um dia viraria pintora e eu virei porque \u00e9 bom demais, Bom eu sei que ja falei isso mais de 50 vezes mais eu sou assim!",
+        "text": "Ent\u00e3o eu fui catando todas as roupas e achei uma tinta linda e quis pintar mais animais, era uma tinta rosa muito bonita ent\u00e3o come\u00e7ei a pintar e quando vi pintei tudo, bom mais foi muito legal mais tinha que guardar tudo at\u00e9 que minha m\u00e3e apareceu e me deu uma bronca daquelas, ai eu fui guardei tudo correndo, e fui para escola. Na hora que cheguei encontrei meus amigos e n\u00f3s fizemos pinturas. Eu adorei porque adoro pintura e meus amigos tamb\u00e9m. Depois fui para minha casa e encontrei um presente para mim. Era um quadro lindo, agradeci meus av\u00f3s e fui botar no meu quarto. Era t\u00e3o bonito e eu tenho at\u00e9 hoje, eu tenho uma prima igual a mim. Ela adora arte, para mim arte me explica muita coisa eu pinto todos os dias porque \u00e9 incrivel pintar muito bonito, eu sempre falei que um dia viraria pintora e eu virei porque \u00e9 bom demais bom eu sei que ja falei isso mais de 50 vezes mais eu sou assim!",
         "title": "",
         "text_id": 139,
         "ents": [
@@ -6475,13 +6444,8 @@
                 "COMMA"
             ],
             [
-                828,
-                834,
-                "COMMA"
-            ],
-            [
-                894,
-                899,
+                893,
+                898,
                 "PERIOD"
             ]
         ],
@@ -6643,7 +6607,7 @@
             "O",
             "O",
             "O",
-            "I-COMMA",
+            "O",
             "O",
             "O",
             "O",
@@ -9147,7 +9111,7 @@
         ]
     },
     {
-        "text": "A historia de maria Era uma vez uma menina muito linda que se chamaria maria. Ela morava em uma fazenda que \u00e9 a fazenda do seu av\u00f3. Uma fazenda muita grande que morava maria \u00e9 seu av\u00f3 e sua av\u00f3. Seu av\u00f3 faleceu e s\u00f3 ficou maria e sua avo cassou \u00e9 maria fez 18 anos \u00e9 sua av\u00f3 91 anos e com 101 anos sua avo faleceu e s\u00f3 ficou maria, Com uns messes maria comeco\u00e7ou a namora \u00e9 c\u00ea passou um ano passou um ano. maria c\u00ea caso. Passou uns meses maria teve uma menina muito bonita ingual a ela, c\u00ea casou. Passou uns messes maria fez um aninho \u00e9 maria teve um menino, \u00e9 seu marido ficou muito feliz \u00e9 eles foram felizem para sempre, em fim.",
+        "text": "A historia de maria Era uma vez uma menina muito linda que se chamaria maria. Ela morava em uma fazenda que \u00e9 a fazenda do seu av\u00f3. Uma fazenda muita grande que morava maria \u00e9 seu av\u00f3 e sua av\u00f3. Seu av\u00f3 faleceu e s\u00f3 ficou maria e sua avo cassou \u00e9 maria fez 18 anos \u00e9 sua av\u00f3 91 anos e com 101 anos sua avo faleceu e s\u00f3 ficou maria com uns messes maria comeco\u00e7ou a namora \u00e9 c\u00ea passou um ano passou um ano. maria c\u00ea caso. Passou uns meses maria teve uma menina muito bonita ingual a ela, c\u00ea casou. Passou uns messes maria fez um aninho \u00e9 maria teve um menino, \u00e9 seu marido ficou muito feliz \u00e9 eles foram felizem para sempre, em fim.",
         "title": "",
         "text_id": 150,
         "ents": [
@@ -9157,43 +9121,38 @@
                 "PERIOD"
             ],
             [
-                325,
-                330,
-                "COMMA"
-            ],
-            [
-                401,
-                404,
+                400,
+                403,
                 "PERIOD"
             ],
             [
-                415,
-                419,
+                414,
+                418,
                 "PERIOD"
             ],
             [
-                482,
-                485,
+                481,
+                484,
                 "COMMA"
             ],
             [
-                490,
-                495,
+                489,
+                494,
                 "PERIOD"
             ],
             [
-                551,
-                557,
+                550,
+                556,
                 "COMMA"
             ],
             [
-                616,
-                622,
+                615,
+                621,
                 "COMMA"
             ],
             [
-                627,
-                630,
+                626,
+                629,
                 "PERIOD"
             ]
         ],
@@ -9269,7 +9228,7 @@
             "O",
             "O",
             "O",
-            "I-COMMA",
+            "O",
             "O",
             "O",
             "O",
@@ -9932,7 +9891,7 @@
         ]
     },
     {
-        "text": "eu fiz un paseio Na floresta e vir una arvares cheios de pasaros gue Nunca tinha vista e un caelho vi tanbn un macaca, vi tanbn un coelho vi tanben un macaco ben Banito e fuila para perto da arvare e sentar No galha e figuei olha Ndo a Natureza bn Banita e figuei inpresionada Na Natu reza cheia de arvores de animais, cavalo, vaca, cacharo, gata, caelho e etc, mais N\u00e3o tenho medo de Nenhum e Nessa flaresta era cheia de aninais eu gosto de tados as aninais mais menos cavalo, un bixo bruto e muito malvado e uns bonzinhos fala tanbn vou falar do dias gue eu fui passear No sitio fai muita bon eu vi muitos aninais diferente tipo macaca, elefante, Sapo, Ran, papagaio tados tipo de pasaros inpopolano, Girafa, e etc e derrepente O papagaio gue abriu o lico direpente auvi algu inpresiona -n te ela abriu o bico ben grande direpente auvi algu ipresianante ela viu un lico e interonpen Nassa canversa e fica con o bico aberto e fica muita muito e enteronpen Nassa canvesa",
+        "text": "eu fiz un paseio Na floresta e vir una arvares cheios de pasaros gue Nunca tinha vista e un caelho vi tanbn un macaca, vi tanbn un coelho vi tanben un macaco ben Banito e fuila para perto da arvare e sentar No galha e figuei olha Ndo a Natureza bn Banita e figuei inpresionada Na Natu reza cheia de arvores de animais, cavalo, vaca, cacharo, gata, caelho e etc, mais N\u00e3o tenho medo de Nenhum e Nessa flaresta era cheia de aninais eu gosto de tados as aninais mais menos, Cavalo, un bixo bruto e muito malvado e uns bonzinhos fala tanbn vou falar do dias gue eu fui passear No sitio fai muita bon eu vi muitos aninais diferente tipo macaca, elefante, Sapo, Ran, papagaio tados tipo de pasaros inpopolano, Girafa, e etc e derrepente O papagaio gue abriu o lico direpente auvi algu inpresiona -n te ela abriu o bico ben grande direpente auvi algu ipresianante ela viu un lico e interonpen Nassa canversa e fica con o bico aberto e fica muita muito e enteronpen Nassa canvesa",
         "title": "[X]",
         "text_id": 155,
         "ents": [
@@ -9972,38 +9931,43 @@
                 "COMMA"
             ],
             [
-                470,
-                476,
+                464,
+                469,
                 "COMMA"
             ],
             [
-                631,
-                637,
+                471,
+                477,
                 "COMMA"
             ],
             [
-                639,
-                647,
+                632,
+                638,
                 "COMMA"
             ],
             [
-                649,
-                653,
+                640,
+                648,
                 "COMMA"
             ],
             [
-                655,
-                658,
+                650,
+                654,
                 "COMMA"
             ],
             [
-                691,
-                701,
+                656,
+                659,
                 "COMMA"
             ],
             [
-                703,
-                709,
+                692,
+                702,
+                "COMMA"
+            ],
+            [
+                704,
+                710,
                 "COMMA"
             ]
         ],
@@ -10098,7 +10062,7 @@
             "O",
             "O",
             "O",
-            "O",
+            "I-COMMA",
             "I-COMMA",
             "O",
             "O",
@@ -11504,22 +11468,23 @@
         ]
     },
     {
-        "text": "achou alguns Potes de tinta guache e teve uma genial ideia de Pintar as Paredes do seu quarto\nEnt\u00e3o come\u00e7ou a Pintar o seu quarto passou 6 horas Para conseguir desenhar e logo foi dormir. logo ela acorda e vai Para a sua escola chamada\nEscola Municipal: Jos\u00e9 Alves de oliveira no interior de S\u00e3o Paulo ela desenhou no Quarto~ dela um cavalo e um Sato muito grande e valente e ela foi a escola e disse ao seus amigos que tinha desenhado alguns animais e logo bate a campa Para o recreio e ela diz a toda as turmas ela merenda e volta Para Sala faz sua Prova e logo volta Para sua casa chega em seu quarto ela v\u00ea a destrui\u00e7\u00e3o e ela fica desconfia da e logo lembra que na casa dela tem camera de Seguran\u00e7a e logo vai revisar e o ineseperado ela v\u00ea ela v\u00ea que os animais que ela desenhou se tornou realidade e eles tiveram uma grande briga esse foi o motivo da destrui\u00e7\u00e3o.",
+        "text": "certo dia uma menina chamada Isabela achou alguns Potes de tinta guache e teve uma genial ideia de Pintar as Paredes do seu quarto\nEnt\u00e3o come\u00e7ou a Pintar o seu quarto passou 6 horas Para conseguir desenhar e logo foi dormir. logo ela acorda e vai Para a sua escola chamada\nEscola Municipal: Jos\u00e9 Alves de oliveira no interior de S\u00e3o Paulo ela desenhou no Quarto ~ dela um cavalo e um Sato muito grande e valente e ela foi a escola e disse ao seus amigos que tinha desenhado alguns animais e logo bate a campa Para o recreio e ela diz a toda as turmas ela merenda e volta Para Sala faz sua Prova e logo volta Para sua casa chega em seu quarto ela v\u00ea a destrui\u00e7\u00e3o e ela fica desconfia da e logo lembra que na casa dela tem camera de Seguran\u00e7a e logo vai revisar e o ineseperado ela v\u00ea ela v\u00ea que os animais que ela desenhou se tornou realidade e eles tiveram uma grande briga esse foi o motivo da destrui\u00e7\u00e3o",
         "title": "A Parede magica",
         "text_id": 162,
         "ents": [
             [
-                180,
-                186,
-                "PERIOD"
-            ],
-            [
-                857,
-                867,
+                217,
+                223,
                 "PERIOD"
             ]
         ],
         "labels": [
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
             "O",
             "O",
             "O",
@@ -11690,7 +11655,7 @@
             "O",
             "O",
             "O",
-            "I-PERIOD"
+            "O"
         ]
     },
     {
@@ -11877,7 +11842,7 @@
         ]
     },
     {
-        "text": "Umas ves eu fui em uma pra\u00e7a com a minha m\u00e3e e eu levei meu cachorro tot\u00f3 correu atras de um esquilo la. Na pra\u00e7a tinham arvores, folhas, esquilos, bancos,. A minha m\u00e3e mandou eu pear a boussa dela. Depois\ndisso eu subi em uma arvore. Minha m\u00e3e falou para eu desse para nois i, Comer. Ela preparou um deli cioso sanbuixe e o tot\u00f3 tava comendo ra\u00e7\u00e3o tinha uma grande arvore na prassa e tinha um galho podre. Eu perguntei a minha m\u00e3e porque aquele galo esta podre?, ela respondeu porque esa arvore e muito antiga e dai e fui andar de bicicleta so que a corente caiu! e eu,pedi ajuda para minha m\u00e3e e ela arrumou para mim e eu fiquei passiando e eu vi folhas, carros, motos, passarihos e pegar uma forpara minha mae e o toto junto e ele pegou uma que caiu da arvore e dai eu voutei\nA andar de bicicleta so que um tronco de arvore quase caiu na minha cabe\u00e7a e eu cai de bicicleta e depois eu fui pa casa e dormi.",
+        "text": "Umas ves eu fui em uma pra\u00e7a com a minha m\u00e3e e eu levei meu cachorro tot\u00f3 correu atras de um esquilo la. Na pra\u00e7a tinham arvores, folhas, esquilos, bancos. A minha m\u00e3e mandou eu pear a boussa dela. Depois\ndisso eu subi em uma arvore. Minha m\u00e3e falou para eu desse para nois i, Comer. Ela preparou um deli cioso sanbuixe e o tot\u00f3 tava comendo ra\u00e7\u00e3o tinha uma grande arvore na prassa e tinha um galho podre. Eu perguntei a minha m\u00e3e porque aquele galo esta podre?, ela respondeu porque esa arvore e muito antiga e dai e fui andar de bicicleta so que a corente caiu! e eu pedi ajuda para minha m\u00e3e e ela arrumou para mim e eu fiquei passiando e eu vi folhas, carros, motos, passarihos e pegar uma forpara minha mae e o toto junto e ele pegou uma que caiu da arvore e dai eu voutei\nA andar de bicicleta so que um tronco de arvore quase caiu na minha cabe\u00e7a e eu cai de bicicleta e depois eu fui pa casa e dormi.",
         "title": "A Praca da arvore",
         "text_id": 164,
         "ents": [
@@ -11904,66 +11869,61 @@
             [
                 148,
                 154,
-                "COMMA"
-            ],
-            [
-                193,
-                197,
                 "PERIOD"
             ],
             [
-                227,
-                233,
+                192,
+                196,
                 "PERIOD"
             ],
             [
+                226,
+                232,
+                "PERIOD"
+            ],
+            [
+                274,
                 275,
-                276,
                 "COMMA"
             ],
             [
-                278,
-                283,
+                277,
+                282,
                 "PERIOD"
             ],
             [
-                400,
-                405,
+                399,
+                404,
                 "PERIOD"
             ],
             [
-                456,
-                461,
+                455,
+                460,
                 "PERIOD"
             ],
             [
-                559,
-                563,
+                558,
+                562,
                 "PERIOD"
             ],
             [
-                567,
-                569,
+                648,
+                654,
                 "COMMA"
             ],
             [
-                649,
-                655,
+                656,
+                662,
                 "COMMA"
             ],
             [
-                657,
-                663,
+                664,
+                669,
                 "COMMA"
             ],
             [
-                665,
-                670,
-                "COMMA"
-            ],
-            [
-                902,
-                907,
+                901,
+                906,
                 "PERIOD"
             ]
         ],
@@ -12078,7 +12038,7 @@
             "O",
             "I-PERIOD",
             "O",
-            "I-COMMA",
+            "O",
             "O",
             "O",
             "O",
@@ -13762,33 +13722,28 @@
         ]
     },
     {
-        "text": "cedo para que pegase o \u00f4nibus na frente de sua casa. quando o \u00f4nibus chegou a subiu a ladeira de areia, o motorista saiu pra ver o que tinha acontecido com o \u00f3nibus que estava fuma\u00e7ando:\nO motorista vio muitas pegadas de sapatos de pessoas que estava andando do outro Lado do \u00f3nibus ele foi v\u00ea quem estava L\u00e1 viu um homem esquesito.\nO homem mandou que todos descessem pois, Ele ia ajeita o peneu.",
+        "text": "Um dia Uma mulher arcordou cedo para que pegase o \u00f4nibus na frente de sua casa. quando o \u00f4nibus chegou a subiu a ladeira de areia, o motorista saiu pra ver o que tinha acontecido com o \u00f3nibus que estava fuma\u00e7ando:\nO motorista vio muitas pegadas de sapatos de pessoas que estava andando do outro Lado do \u00f3nibus ele foi v\u00ea quem estava L\u00e1 viu um homem esquesito.\nO homem mandou que todos descessem pois ele ia ajeita o peneu.",
         "title": "O \u00f4nibus da aventura",
         "text_id": 175,
         "ents": [
             [
-                47,
-                51,
+                74,
+                78,
                 "PERIOD"
             ],
             [
-                97,
-                102,
+                124,
+                129,
                 "COMMA"
             ],
             [
-                322,
-                331,
+                349,
+                358,
                 "PERIOD"
             ],
             [
-                368,
-                372,
-                "COMMA"
-            ],
-            [
-                390,
-                395,
+                416,
+                421,
                 "PERIOD"
             ]
         ],
@@ -13803,6 +13758,11 @@
             "O",
             "O",
             "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
             "I-PERIOD",
             "O",
             "O",
@@ -13862,7 +13822,7 @@
             "O",
             "O",
             "O",
-            "I-COMMA",
+            "O",
             "O",
             "O",
             "O",
@@ -14762,7 +14722,7 @@
         ]
     },
     {
-        "text": "Certo dia uma menina encontrou v\u00e1rios potes de tinta em cima do arm\u00e1rio, decidiu pintar as paredes do seu quarto desenhando a figura de varios animais. A menina foi beber ' agua, quando voltou viu que os desenhos n\u00e3o estavam mais na parede. A m\u00e3e dela tinha apagado porque n\u00e3o podia riscar a parede. a menina ficou muito triste com a atitude da m\u00e3e, A m\u00e3e foi na rua e comprou l\u00e1pis de cor, papel e tinta para a menina poder pintar no seu caderno. Quando a m\u00e3e chegou em casa entregau os presentes para a menina, ela ficou muito feliz. O cachorro derrubou as tintas na menina a deu banho na me ni na para que ela pudesse finalmente pintar.",
+        "text": "Certo dia uma menina encontrou v\u00e1rios potes de tinta em cima do arm\u00e1rio, decidiu pintar as paredes do seu quarto desenhando a figura de varios animais. A menina foi beber ' agua, quando voltou viu que os desenhos n\u00e3o estavam mais na parede. A m\u00e3e dela tinha apagado porque n\u00e3o podia riscar a parede. a menina ficou muito triste com a atitude da m\u00e3e A m\u00e3e foi na rua e comprou l\u00e1pis de cor, papel e tinta para a menina poder pintar no seu caderno. Quando a m\u00e3e chegou em casa entregau os presentes para a menina, ela ficou muito feliz. O cachorro derrubou as tintas na menina a deu banho na me ni na para que ela pudesse finalmente pintar.",
         "title": "A menina que encontrou tintas",
         "text_id": 180,
         "ents": [
@@ -14792,33 +14752,28 @@
                 "PERIOD"
             ],
             [
-                345,
-                348,
+                385,
+                388,
                 "COMMA"
             ],
             [
-                386,
-                389,
-                "COMMA"
-            ],
-            [
-                439,
-                446,
+                438,
+                445,
                 "PERIOD"
             ],
             [
-                505,
-                511,
+                504,
+                510,
                 "COMMA"
             ],
             [
-                529,
-                534,
+                528,
+                533,
                 "PERIOD"
             ],
             [
-                632,
-                638,
+                631,
+                637,
                 "PERIOD"
             ]
         ],
@@ -14885,7 +14840,7 @@
             "O",
             "O",
             "O",
-            "I-COMMA",
+            "O",
             "O",
             "O",
             "O",
@@ -15100,7 +15055,7 @@
         ]
     },
     {
-        "text": "erauma ves uma menina que gos tava de tinta ea m\u00e3e dela dechol os potes de tinta emcima do armario ates de colocar encima ela dese filha voe decha os potes de tintaem sima doar mario ai dechol mais macisa dela tei o montede armario ela n\u00e3o sabia cal era armario queta a tinta ai ela casol casol mais n\u00e3o achol mais ela em sua mai dese prasua m\u00e3i que ia pra escola mais navedade ela tinta ai a mai dela de a tinta pra ela lai tava perto ela e deroboe toda a tinta nela ai ela dese mai core a qui m\u00e3i tenta pega a tinta em sima da mia reta nova la porque vose des cupa mai por que eu gosto de pinta mais mai n\u00e3o de cha eu pin ta poroso quel em ganei mai mais filha eso pidir mais mai eu pedir mais osior, Desse mae que pra escola eu em tai voe colpra mas tabol m\u00e3i iai a mai dela vio e dese que lindo pintado bei queta desse que gosta muito de pinta ai ela anos fica pentado lai a filha teminoe e foi tama banho lai ela teminoe ifoi chanta lai quando ela foi pramesa lai a mai dela goto filha das tinta gostei mai pai a filha que dia vose vai mida as mias tintas nova em nas sei filha ai a menina foi dormi e quando acordo teve uma sur presa era sel anivesario aiquando ela foi escova osdete a mai e um pai dela o pai dela dese parabes filha de anai mai ese filha mai posso tizoto uma casa meu anivesario pode ser de tinta filha ta pai eufoi chamar bia. Sofia, Biaca e mirele vivele calani e raeli.",
+        "text": "erauma ves uma menina que gos tava de tinta ea m\u00e3e dela dechol os potes de tinta emcima do armario ates de colocar encima ela dese filha voe decha os potes de tintaem sima doar mario ai dechol mais macisa dela tei o montede armario ela n\u00e3o sabia cal era armario queta a tinta ai ela casol casol mais n\u00e3o achol mais ela em sua mai dese prasua m\u00e3i que ia pra escola mais navedade ela tinta ai a mai dela de a tinta pra ela lai tava perto ela e deroboe toda a tinta nela ai ela dese mai core a qui m\u00e3i tenta pega a tinta em sima da mia reta nova la porque vose des cupa mai por que eu gosto de pinta mais mai n\u00e3o de cha eu pin ta poroso quel em ganei mai mais filha eso pidir mais mai eu pedir mais osior, Desse mae que pra escola eu em tai voe colpra mas tabol m\u00e3i iai a mai dela vio e dese que lindo pintado bei queta desse que gosta muito de pinta ai ela anos fica pentado lai a filha teminoe e foi tama banho lai ela teminoe ifoi chanta lai quando ela foi pramesa lai a mai dela goto filha das tinta gostei mai pai a filha que dia vose vai mida as mias tintas nova em nas sei filha ai a menina foi dormi e quando acordo teve uma sur presa era sel anivesario aiquando ela foi escova osdete a mai e um pai dela o pai dela dese parabes filha de anai mai ese filha mai posso tizoto uma casa meu anivesario pode ser de tinta filha ta pai eufoi chamar bia sofia, Biaca e mirele vivele calani e raeli.",
         "title": "Muitos pontes de tinta",
         "text_id": 182,
         "ents": [
@@ -15110,18 +15065,13 @@
                 "COMMA"
             ],
             [
-                1347,
-                1350,
-                "PERIOD"
-            ],
-            [
-                1352,
-                1357,
+                1351,
+                1356,
                 "COMMA"
             ],
             [
-                1390,
-                1395,
+                1389,
+                1394,
                 "PERIOD"
             ]
         ],
@@ -15408,7 +15358,7 @@
             "O",
             "O",
             "O",
-            "I-PERIOD",
+            "O",
             "I-COMMA",
             "O",
             "O",
@@ -15696,87 +15646,85 @@
         ]
     },
     {
-        "text": "Um belo dia Maria decidiu que ia pintar seu quarto bem colorida. Maria foi no mercado e comprou todas as cores possiveis de tinta. quando chegou em casa come\u00e7ou a pinta seu quarto bem colorido. Dai em diante ela percebeu que amava pintar e que ia seguir a carrera de pintora. Dai em diante ela come\u00e7ou a pintar quadros e at\u00e9 obras primas. Esta l\u00e1 Maria pintando um quadro quando ouviu bater na porta. Quando Maria abriu a porta era uma atriz mais famosa da cidade que se chamava Nana, ela queria que Maria pintasse um quadro bem colorido e com bastante cor e vida. E l\u00e1 estava Maria pintando o quadro de Nana Quando sem querer ela derramou tinta laranja no quadro. Maria ficou muito triste pois tinha demorado muito para fazer o quadro ai Maria pensou ela. Disse que queria um quadro bem colorido. Ai Maria misturou todas as tinta e fez um quadro lindo. Nana amou o quadro. Maria ficou reconhecida na cidade. S\u00f3 de ela pensar que tudo isso come\u00e7ou com uma brincadeira!.",
+        "text": "obras com tintas Um belo dia Maria decidiu que ia pintar seu quarto bem colorida. Maria foi no mercado e comprou todas as cores possiveis de tinta. quando chegou em casa come\u00e7ou a pinta seu quarto bem colorido. Dai em diante ela percebeu que amava pintar e que ia seguir a carrera de pintora. Dai em diante ela come\u00e7ou a pintar quadros e at\u00e9 obras primas. Esta l\u00e1 Maria pintando um quadro quando ouviu bater na porta. Quando Maria abriu a porta era uma atriz mais famosa da cidade que se chamava Nana, ela queria que Maria pintasse um quadro bem colorido e com bastante cor e vida. E l\u00e1 estava Maria pintando o quadro de Nana Quando sem querer ela derramou tinta laranja no quadro. Maria ficou muito triste pois tinha demorado muito para fazer o quadro ai Maria pensou ela disse que queria um quadro bem colorido. Ai Maria misturou todas as tinta e fez um quadro lindo. Nana amou o quadro. Maria ficou reconhecida na cidade. S\u00f3 de ela pensar que tudo isso come\u00e7ou com uma brincadeira!",
         "title": "Maria e suas",
         "text_id": 185,
         "ents": [
             [
-                55,
-                63,
+                72,
+                80,
                 "PERIOD"
             ],
             [
-                124,
-                129,
+                141,
+                146,
                 "PERIOD"
             ],
             [
-                184,
-                192,
+                201,
+                209,
                 "PERIOD"
             ],
             [
-                267,
-                274,
+                284,
+                291,
                 "PERIOD"
             ],
             [
-                331,
-                337,
+                348,
+                354,
                 "PERIOD"
             ],
             [
-                394,
-                399,
+                411,
+                416,
                 "PERIOD"
             ],
             [
-                479,
-                483,
+                496,
+                500,
                 "COMMA"
             ],
             [
-                559,
-                563,
+                576,
+                580,
                 "PERIOD"
             ],
             [
-                657,
-                663,
+                674,
+                680,
                 "PERIOD"
             ],
             [
-                752,
-                755,
+                804,
+                812,
                 "PERIOD"
             ],
             [
-                788,
-                796,
+                863,
+                868,
                 "PERIOD"
             ],
             [
-                847,
-                852,
+                882,
+                888,
                 "PERIOD"
             ],
             [
-                866,
-                872,
+                917,
+                923,
                 "PERIOD"
             ],
             [
-                901,
-                907,
-                "PERIOD"
-            ],
-            [
-                956,
-                967,
+                972,
+                983,
                 "PERIOD"
             ]
         ],
         "labels": [
+            "O",
+            "O",
+            "O",
             "O",
             "O",
             "O",
@@ -15915,7 +15863,7 @@
             "O",
             "O",
             "O",
-            "I-PERIOD",
+            "O",
             "O",
             "O",
             "O",
@@ -21065,7 +21013,7 @@
         ]
     },
     {
-        "text": "Numa tarde uma menina viu ao tintas no Balc\u00e3o, e pegou as tintas e foi Brincar e ela descoBriu que as cores S\u00e3o maravilhosas e se encantou com elas e, Ent\u00e3o essas cores S\u00e3o lindas, ela falou e a m\u00e3e dela que ficou encatado com o amor com as cores. Depois ela Brincou, Brincou e ficou cansada, Nesse dia era domindo. Na Segunda a professora falou Sobre a tinta. e ela amou mais ainda e. o Para casa foi Sobre as tintas e ela fez certo e ganhou um 10 no Para casa. ela contou Pra m\u00e3e dela e ela ficou feliz de SaBer. De noit eles foram Pra orla e ent\u00e3o tomaram sorvete e comeram Pizza, ela ficou feliz demais. as cores e vida Para nosso mundo Sem cores ele n\u00e3o era T\u00e3o Bonito. ent\u00e3o. Voltaram Para Casa. L\u00e1 ela Brincou com as tintas e ficou Tarde e ela foi gardar as tintas e foi durmir. de m\u00e3nha ela Brincou novamente com as tintas e ela ficou Sem Parar de Brincar Todos os dias com as tintas ela n\u00e3o Parava de Brincar com as Tintas",
+        "text": "Numa tarde uma menina viu ao tintas no Balc\u00e3o, e pegou as tintas e foi Brincar e ela descoBriu que as cores S\u00e3o maravilhosas e se encantou com elas e ent\u00e3o essas cores S\u00e3o lindas, ela falou e a m\u00e3e dela que ficou encatado com o amor com as cores. Depois ela Brincou, Brincou e ficou cansada, Nesse dia era domindo. Na Segunda a professora falou Sobre a tinta. e ela amou mais ainda e. o Para casa foi Sobre as tintas e ela fez certo e ganhou um 10 no Para casa. ela contou Pra m\u00e3e dela e ela ficou feliz de SaBer. De noit eles foram Pra orla e ent\u00e3o tomaram sorvete, E comeram Pizza, ela ficou feliz demais. as cores e vida Para nosso mundo Sem cores ele n\u00e3o era T\u00e3o Bonito. ent\u00e3o. Voltaram Para Casa. L\u00e1 ela Brincou com as tintas e ficou Tarde e ela foi gardar as tintas e foi durmir. de m\u00e3nha ela Brincou novamente com as tintas e ela ficou Sem Parar de Brincar Todos os dias com as tintas ela n\u00e3o Parava de Brincar com as Tintas",
         "title": "As Lindas cores",
         "text_id": 325,
         "ents": [
@@ -21075,54 +21023,54 @@
                 "COMMA"
             ],
             [
-                148,
-                149,
+                172,
+                178,
                 "COMMA"
             ],
             [
-                173,
-                179,
-                "COMMA"
-            ],
-            [
-                241,
-                246,
+                240,
+                245,
                 "PERIOD"
             ],
             [
-                259,
-                266,
+                258,
+                265,
                 "COMMA"
             ],
             [
-                284,
-                291,
+                283,
+                290,
                 "COMMA"
             ],
             [
-                307,
-                314,
+                306,
+                313,
                 "PERIOD"
             ],
             [
-                354,
-                359,
+                353,
+                358,
                 "PERIOD"
             ],
             [
+                382,
                 383,
-                384,
                 "PERIOD"
             ],
             [
-                457,
-                461,
+                456,
+                460,
                 "PERIOD"
             ],
             [
-                508,
-                513,
+                507,
+                512,
                 "PERIOD"
+            ],
+            [
+                558,
+                565,
+                "COMMA"
             ],
             [
                 577,
@@ -21185,30 +21133,8 @@
             "O",
             "O",
             "O",
-            "I-COMMA",
             "O",
             "O",
-            "O",
-            "O",
-            "I-COMMA",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "I-PERIOD",
-            "O",
-            "O",
-            "I-COMMA",
             "O",
             "O",
             "O",
@@ -21216,6 +21142,28 @@
             "O",
             "O",
             "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "I-PERIOD",
+            "O",
+            "O",
+            "I-COMMA",
+            "O",
+            "O",
+            "O",
+            "I-COMMA",
+            "O",
+            "O",
+            "O",
             "I-PERIOD",
             "O",
             "O",
@@ -21269,7 +21217,7 @@
             "O",
             "O",
             "O",
-            "O",
+            "I-COMMA",
             "O",
             "O",
             "I-COMMA",
@@ -21785,7 +21733,7 @@
         ]
     },
     {
-        "text": "Era uma vez um Time. Certo dia marcou um jogo com o Palmeiras na Ter\u00e7a Feira. Na Segunda Feira o Palmeiras j\u00e1 Estava Se Preparando para o jogo contra, o Flamengo Falou que v\u00e3o ganha o jogo mais o Palmeiras n\u00e3o vai Deichar o. Flamengo o jogo Por que o Palmeiras Vence o Flamengo Por 3Ao",
+        "text": "Era uma vez um Time. Certo dia marcou um jogo com o Palmeiras na Ter\u00e7a Feira. Na Segunda Feira o Palmeiras j\u00e1 Estava Se Preparando para o jogo contra, o Flamengo Falou que v\u00e3o ganha o jogo mais o Palmeiras n\u00e3o vai Deichar o Flamengo o jogo Por que o Palmeiras Vence o Flamengo Por 3Ao",
         "title": "o Time de FutEBOL",
         "text_id": 328,
         "ents": [
@@ -21803,11 +21751,6 @@
                 143,
                 149,
                 "COMMA"
-            ],
-            [
-                222,
-                223,
-                "PERIOD"
             ]
         ],
         "labels": [
@@ -23603,28 +23546,23 @@
         ]
     },
     {
-        "text": "Ese menino e ele amava estudar mas um dia ele teve que er embora da (cidade) ele n\u00e3o queria ir, Embora,\nO ) Dese menino e Biel escola os, Dele chamo ele pra ir com eles jogar Bola ele aceitava o pedido e hoje recuso o Pedido os amigos Dele falou para e Porque voce n\u00e3o quer. O Biel respondeu os Dele ja , voce tem motivo para n\u00e3o joga Bola o Biel sesponde assim ja falei que quero os amigo Del sesponde",
+        "text": "Ese menino e ele amava estudar mas um dia ele teve que er embora da (cidade) ele n\u00e3o queria ir embora,\nO ) Dese menino e Biel escola os, Dele chamo ele pra ir com eles jogar Bola ele aceitava o pedido e hoje recuso o Pedido os amigos Dele falou para e Porque voce n\u00e3o quer. O Biel respondeu os Dele ja , voce tem motivo para n\u00e3o joga Bola o Biel sesponde assim ja falei que quero os amigo Del sesponde",
         "title": "Um [X] [X]",
         "text_id": 341,
         "ents": [
             [
-                92,
-                94,
+                95,
+                101,
                 "COMMA"
             ],
             [
-                96,
-                102,
+                133,
+                135,
                 "COMMA"
             ],
             [
-                134,
-                136,
-                "COMMA"
-            ],
-            [
-                269,
-                273,
+                268,
+                272,
                 "PERIOD"
             ]
         ],
@@ -23648,7 +23586,7 @@
             "O",
             "O",
             "O",
-            "I-COMMA",
+            "O",
             "I-COMMA",
             "O",
             "O",
@@ -24244,7 +24182,7 @@
         ]
     },
     {
-        "text": "Um belo dia Mariana achou uma lata de tinta,. Mariana decidiu Pegar para pintar o quarto dela. Mariana dece - vou pintar minha parede para ficar bonita. Mas tarde o pai de mari ana decidio ver o que Mariana tava aprontando mas quando ele colocou a cabessa na porta, Pai de Mariana disse. -A! uque que voc\u00ea ta fazendo, Mariana,. Mariana desse - Ue, Pai to decorando minha parede para ficar bonita. Pai de mariana disse. - Mas voc\u00ea vai limpar issa bagun\u00e7a. Mariana desse - Vou Papai\nE Mariana continuou pintando. Em quanto isso a m\u00e3e de mariana lavando lou\u00e7a. E pai de Mariana esta assistindo o jogo de futibou. E enq uanto a irm\u00e3o de mariana esta se arrumando para ir para a praca. uma bela hora ela acabou de pintar uma parte da parede. Mas uma vez ela decedio pintar a porta do quarto dela e ja estava acabando a tinta e enquanto isso a irm\u00e3o da maria esta estudando na faculdade mas mariana acabou de desenha tudo\nE mariana saio para brincar com as colegas de boneca ela ficou 2 hora fora brincando com as meninas. Quando ela entrou no quarto ela desse\nQuem fez isso!. Minha roupas t\u00e3o toda melada de tinta mariana olhou para o lado vio a data tico ela ficol com raiva e mariana disse. - Mas nunca eu desena com tinta",
+        "text": "Um belo dia Mariana achou uma lata de tinta,. Mariana decidiu Pegar para pintar o quarto dela. Mariana dece - vou pintar minha parede para ficar bonita. Mas tarde o pai de mari ana decidio ver o que Mariana tava aprontando mas quando ele colocou a cabessa na porta, Pai de Mariana disse. -A! uque que voc\u00ea ta fazendo, Mariana. Mariana desse - Ue, Pai to decorando minha parede para ficar bonita. Pai de mariana disse. - Mas voc\u00ea vai limpar issa bagun\u00e7a. Mariana desse - Vou Papai\nE Mariana continuou pintando. Em quanto isso a m\u00e3e de mariana lavando lou\u00e7a. E pai de Mariana esta assistindo o jogo de futibou. E enq uanto a irm\u00e3o de mariana esta se arrumando para ir para a praca. uma bela hora ela acabou de pintar uma parte da parede. Mas uma vez ela decedio pintar a porta do quarto dela e ja estava acabando a tinta e enquanto isso a irm\u00e3o da maria esta estudando na faculdade mas mariana acabou de desenha tudo\nE mariana saio para brincar com as colegas de boneca ela ficou 2 hora fora brincando com as meninas. Quando ela entrou no quarto ela desse\nQuem fez isso!. minha roupas t\u00e3o toda melada de tinta mariana olhou para o lado vio a data tico ela ficol com raiva e mariana disse. - Mas nunca eu desena com tinta",
         "title": "A menina e a tinta",
         "text_id": 343,
         "ents": [
@@ -24286,66 +24224,66 @@
             [
                 318,
                 325,
+                "PERIOD"
+            ],
+            [
+                343,
+                345,
                 "COMMA"
             ],
             [
-                344,
-                346,
-                "COMMA"
-            ],
-            [
-                389,
-                395,
+                388,
+                394,
                 "PERIOD"
             ],
             [
-                412,
-                417,
+                411,
+                416,
                 "PERIOD"
             ],
             [
-                446,
-                453,
+                445,
+                452,
                 "PERIOD"
             ],
             [
-                501,
-                509,
+                500,
+                508,
                 "PERIOD"
             ],
             [
-                551,
-                556,
+                550,
+                555,
                 "PERIOD"
             ],
             [
-                601,
-                608,
+                600,
+                607,
                 "PERIOD"
             ],
             [
-                674,
-                679,
+                673,
+                678,
                 "PERIOD"
             ],
             [
-                729,
-                735,
+                728,
+                734,
                 "PERIOD"
             ],
             [
-                1008,
-                1015,
+                1007,
+                1014,
                 "PERIOD"
             ],
             [
-                1064,
-                1068,
+                1063,
+                1067,
                 "PERIOD"
             ],
             [
-                1181,
-                1186,
+                1180,
+                1185,
                 "PERIOD"
             ]
         ],

@@ -10,19 +10,7 @@ from utils import text2labels, find_token_span
 from utils.preprocess import preprocess_text
 
 
-def remove_space_before_punct(text_list):
-    """
-    Remove espaços antes de pontuação
-    :param text_list: Lista de caracteres do texto
-    :return:
-    """
-    shift = 0
-    for i in range(len(text_list)):
-        if text_list[i] in string.punctuation:
-            if text_list[i-1] in [' ', '\n', '\t']:
-                text_list.pop(i-1)
-                shift -= 1
-    return text_list, shift
+
 
 
 def remove_repeated_punctuation(text_list, start_char, ref_punct):
@@ -39,47 +27,49 @@ def remove_repeated_punctuation(text_list, start_char, ref_punct):
 
 
 def fix_punctuation(sts_text_list, ann_text_list, start_char, end_char, punct):
-    opposite = '.' if punct == ',' else ','
+    other_punctuations = string.punctuation.replace(punct, '')
     shift = 0
     try:
-        text_span = sts_text_list[start_char:end_char][0]
-
-        if text_span != punct:
-
-            if text_span == opposite:
-                for i in range(start_char, len(sts_text_list)):
-                    if ann_text_list[i] == opposite:
-                        ann_text_list[i] = punct
-                        break
-
-                ann_text_list, shift = remove_space_before_punct(ann_text_list)
-
-            else:
-                try:
-                    for i in range(start_char - 1, end_char + 1):
-                        old_char = ann_text_list[i]
-                        if old_char in [' ', '\n', '\t']:
-                            ann_text_list[i] = punct
-
-                            ann_text_list.insert(i + 1, old_char)
-
-                            ann_text_list[i + 2] = ann_text_list[
-                                i + 2].upper()  # Coloca aprimeira letra em maiúsculo
-                            shift += 1
-                            break
-                except IndexError:
-                    ann_text_list.append(punct)
-
-        else:
-            for i in range(start_char - 1, end_char + 1):
-                if ann_text_list[i] in string.punctuation:
-                    ann_text_list.pop(i)  # Remove pontuação extra
-            shift -= 1
+        text_span = ann_text_list[start_char:end_char][0]
     except IndexError:
         # Não há matches com o caracter do texto e então significa que o aluno esqueceu ponto final.
         if punct == '.':
             ann_text_list.append('.')
             shift += 1
+        return ann_text_list, shift
+
+    if text_span != punct:
+
+        if text_span in other_punctuations:
+            for i in range(start_char, len(ann_text_list)):
+                if ann_text_list[i] in other_punctuations:
+                    ann_text_list[i] = punct
+                    break
+        else:
+            try:
+                for i in range(start_char - 1, end_char + 1):
+                    old_char = ann_text_list[i]
+                    if old_char in [' ', '\n', '\t']:
+                        ann_text_list[i] = punct
+
+                        ann_text_list.insert(i + 1, old_char)
+
+                        ann_text_list[i + 2] = ann_text_list[
+                            i + 2].upper()  # Coloca aprimeira letra em maiúsculo
+                        shift += 1
+                        break
+            except IndexError:
+                ann_text_list.append(punct)
+                shift += 1
+
+    else:
+
+        for i in range(start_char - 1, end_char + 1):
+            if ann_text_list[i] == punct:
+                ann_text_list.pop(i)  # Remove pontuação extra
+                break
+        shift -= 1
+
     return ann_text_list, shift
 
 
