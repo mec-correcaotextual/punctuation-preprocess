@@ -134,7 +134,7 @@ def get_labels(text, pred_dict):
 
 if __name__ == '__main__':
 
-    annotator_entities = json.load(open("../dataset/annotator1_entities.json", "r"))
+    annotator_entities = json.load(open("../dataset/annotator2_entities.json", "r"))
 
     model = get_model(MODEL_PATH, model_type="bert", max_seq_length=512)
     bert_labels = []
@@ -144,8 +144,9 @@ if __name__ == '__main__':
 
         # TODO Separar o texto em parágrafos com \n
         text_id = item["text_id"]
-
-        words = [word for word in word_tokenize(item["text"]) if word not in string.punctuation]
+        print(text_id)
+        text = item["text"]
+        words = [re.sub(r'[.,;:!?]', '', word) for word in word_tokenize(text) if word not in string.punctuation]
         test_text = ' '.join(words).lower()
         predictions = predict(test_text, model, 512)
         true_label = text2labels(item["text"])
