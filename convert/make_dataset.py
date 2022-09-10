@@ -109,7 +109,8 @@ def convert_annotations(
 
             # Procura pela pontuação do aluno no texto
 
-            student_entity["ents"] = find_token_span('\n'.join(new_sts_text), token_alignment=token_alignment)
+            student_entity["ents"] = find_token_span(new_sts_text, token_alignment=token_alignment)
+            student_entity["labels"] = text2labels(student_entity["text"])
             student_entities.append(student_entity)
 
             sts_text_list = list(text)  # Lista de caracteres do texto do aluno
