@@ -1,5 +1,5 @@
 import json
-import re
+import os
 import string
 import traceback
 from itertools import chain
@@ -7,12 +7,10 @@ from itertools import chain
 import pandas as pd
 import spacy
 import torch
-from nltk.tokenize import regexp, word_tokenize
+from nltk.tokenize import wordpunct_tokenize
 from seqeval import metrics
 from silence_tensorflow import silence_tensorflow
-import os
-from nltk.tokenize import wordpunct_tokenize
-
+from sklearn.metrics import cohen_kappa_score
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 silence_tensorflow()
 from simpletransformers.ner import NERModel, NERArgs
@@ -148,7 +146,7 @@ def get_labels(text, pred_dict):
     labels = []
     try:
         ## Tokenização do BERT tá diferente daque é feita aqui
-        for word in word_tokenize(remove_punctuation(text)):
+        for word in wordpunct_tokenize(text):
             if word not in string.punctuation:
                 if pred_dict[word] == "QUESTION":
                     label = "I-PERIOD"
@@ -175,7 +173,7 @@ if __name__ == '__main__':
     model = get_model(MODEL_PATH, model_type="bert", max_seq_length=512)
     bert_labels = []
     true_labels = []
-
+    kappa = []
     for item in annotator_entities:
 
         text_id = item["text_id"]
@@ -186,6 +184,9 @@ if __name__ == '__main__':
         true_label = text2labels(ann_text)
         true_labels.append(true_label)
         bert_labels.append(bert_label)
+        kappa_score = cohen_kappa_score(true_label, bert_label, labels=["O", "I-COMMA", "I-PERIOD"])
+        kappa.append(kappa_score)
+        print("Kappa score: ", kappa_score)
 
     report = metrics.classification_report(true_labels, bert_labels, output_dict=True)
     pd.DataFrame.from_dict(report, orient='index').to_csv(f"results.csv")

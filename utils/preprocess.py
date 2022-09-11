@@ -36,7 +36,7 @@ def clean_text(text):
     """
     text = re.sub(special_pattern, ' ', text)
     text = re.sub(marks, '', text)
-    text = ' '.join(text.split()).replace('<i>', '').replace('</i>', '').replace('<i/>', '')
+    text = re.sub(r'<.*?>', '', text)
     text = re.sub(r'\.+', '.', text)
     return fix_break_lines(text)
 
