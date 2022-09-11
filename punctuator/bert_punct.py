@@ -174,10 +174,11 @@ if __name__ == '__main__':
     bert_labels = []
     true_labels = []
     kappa = []
+    bert_annotator = []
     for item in annotator_entities:
 
         text_id = item["text_id"]
-        print(text_id)
+
         ann_text = item["text"].lower()
 
         bert_label = predict(ann_text, model)
@@ -187,7 +188,13 @@ if __name__ == '__main__':
         kappa_score = cohen_kappa_score(true_label, bert_label, labels=["O", "I-COMMA", "I-PERIOD"])
         kappa.append(kappa_score)
         print("Kappa score: ", kappa_score)
-
+        print("Text ID: ", text_id)
+        item.pop("ents")
+        item.pop("labels")
+        bert_annotation = item
+        bert_annotation["labels"] = bert_label
+        bert_annotation["cohen_kappa"] = kappa_score
+        bert_annotator.append(bert_annotation)
     report = metrics.classification_report(true_labels, bert_labels, output_dict=True)
     pd.DataFrame.from_dict(report, orient='index').to_csv(f"results.csv")
     print(report)

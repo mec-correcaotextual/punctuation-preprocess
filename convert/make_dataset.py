@@ -108,7 +108,7 @@ def convert_annotations(
 
             student_entity["ents"] = find_token_span(new_sts_text, token_alignment=token_alignment)
             student_entity["labels"] = text2labels(student_entity["text"])
-            student_entities.append(student_entity)
+
 
             for annotator_id, annotation in enumerate(zipped_anot_data, start=1):
                 shifts = 0
@@ -140,12 +140,18 @@ def convert_annotations(
                 atitle, new_ann_textp = preprocess_text(''.join(ann_text_list))
                 new_ann_text = '\n'.join(new_ann_textp)
                 after_labels = text2labels(new_ann_text)
-                if len(after_labels) != len(student_entity["labels"]):
-                    breakpoint()
+
+                # Se o texto não foi pontuado e
+                # nem a pontuação foi corrigida, então não há anotações
+                if len(list(set(after_labels))) == 1:
+                    print('Sem labels, skipping', text_id, annotator_id)
+
+                    continue
                 annotator_entity[annotator_id]["text"] = new_ann_text
                 annotator_entity[annotator_id]["title"] = title
                 annotator_entity[annotator_id]["ents"] = find_token_span(new_ann_text, token_alignment=token_alignment)
                 annotator_entity[annotator_id]["labels"] = after_labels
+                student_entities.append(student_entity)
             annotator_entities.append(annotator_entity)
 
     return student_entities, annotator_entities
