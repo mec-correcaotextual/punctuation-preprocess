@@ -3,7 +3,7 @@ import re
 
 import spacy
 
-special_pattern = r'\s+|\n+|/n|\t+'
+special_pattern = r'\s+|\n+|/n|\t+|-'
 marks = r'\[\w{0,3}|\W{0,3}\]|\}'
 
 
@@ -12,14 +12,18 @@ def join_split_words(text):
     Junta palavras que foram separadas por um \n
     """
 
-    splited = re.search(re.compile(r'(\w+)-\n(\w+)'), text)
-    if splited:
-        text = text.replace(splited.group(0), splited.group(1) + splited.group(2))
-        return join_split_words(text)
-    splited = re.search(re.compile(r'(\w+)_\n(\w+)'), text)
-    if splited:
-        text = text.replace(splited.group(0), splited.group(1) + splited.group(2))
-        return join_split_words(text)
+    text = re.sub(r'(\w+)-\n(\w+)', r'\1\2', text)
+    text = re.sub(r'(\w+)_\n(\w+)', r'\1\2', text)
+    return text
+
+
+def fix_break_lines(text):
+    text = re.sub(r'/n', '\n', text)
+    return text
+
+
+def separate_punctuation(text):
+    text = re.sub(r'([.,?!;:])\w', r'\1 ', text)
     return text
 
 
@@ -34,10 +38,10 @@ def clean_text(text):
     text = re.sub(marks, '', text)
     text = ' '.join(text.split()).replace('<i>', '').replace('</i>', '').replace('<i/>', '')
     text = re.sub(r'\.+', '.', text)
-    return text
+    return fix_break_lines(text)
 
 
-def split_paragraphs(text):
+def split_lines(text):
     """
     Separa o texto em parágrafos
     :param text:
@@ -53,7 +57,7 @@ def split_paragraphs(text):
     else:
         title = ''
 
-    return title, text.split('[P]')
+    return title, text.split('\n')
 
 
 def remove_space_before_punctuation(text):
@@ -70,11 +74,12 @@ def preprocess_text(text):
     text = join_split_words(text)
     text = remove_space_before_punctuation(text)
     text = remove_extra_punctuation(text)
-    title, paragraphs = split_paragraphs(text)
-    paragraphs = [clean_text(p) for p in paragraphs]
-    paragraphs = list(filter(lambda x: x != '', paragraphs))
+    text = separate_punctuation(text)
+    title, lines = split_lines(text)
+    lines = [clean_text(p) for p in lines]
+    lines = list(filter(lambda x: x != '', lines))
 
-    return title, paragraphs
+    return title, lines
 
 
 def main():

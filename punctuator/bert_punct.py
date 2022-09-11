@@ -30,7 +30,7 @@ def text2labels(sentence):
     :param sentence: text to convert
     :return:  list of labels
     """
-    tokens = word_tokenize(sentence.lower())
+    tokens = wordpunct_tokenize(sentence.lower())
 
     labels = []
     for i, token in enumerate(tokens):
@@ -103,7 +103,7 @@ def truncate_sentences(text, max_seq_length):
         texts.append(text)
 
 
-def split_paragraphs(text):
+def split_lines(text):
     paragraphs = text.split('\n')
     return paragraphs
 
@@ -114,7 +114,7 @@ def remove_punctuation(text):
     :param text: text to remove punctuation from
     :return:  text without punctuation
     """
-    text = ' '.join(word for word in word_tokenize(text)
+    text = ' '.join(word for word in wordpunct_tokenize(text)
                     if word not in string.punctuation)
     return text
 
@@ -125,7 +125,7 @@ def preprocess_text(text):
     :param text: text to preprocess
     :return:  list of preprocessed text
     """
-    paragraphs = split_paragraphs(text)
+    paragraphs = split_lines(text)
 
     return list(map(lambda x: remove_punctuation(x), paragraphs))
 
@@ -148,7 +148,7 @@ def get_labels(text, pred_dict):
     labels = []
     try:
         ## Tokenização do BERT tá diferente daque é feita aqui
-        for word in word_tokenize(text):
+        for word in word_tokenize(remove_punctuation(text)):
             if word not in string.punctuation:
                 if pred_dict[word] == "QUESTION":
                     label = "I-PERIOD"
@@ -162,6 +162,7 @@ def get_labels(text, pred_dict):
     except KeyError:
         print("KeyError", pred_dict)
         print(traceback.format_exc())
+        print(len(bert_tokenizer.tokenize(text)))
         print(text)
         breakpoint()
     return labels
@@ -169,7 +170,7 @@ def get_labels(text, pred_dict):
 
 if __name__ == '__main__':
 
-    annotator_entities = json.load(open("../dataset/annotator2_entities.json", "r"))
+    annotator_entities = json.load(open("../dataset/annotator2.json", "r"))
 
     model = get_model(MODEL_PATH, model_type="bert", max_seq_length=512)
     bert_labels = []
@@ -178,9 +179,11 @@ if __name__ == '__main__':
     for item in annotator_entities:
 
         text_id = item["text_id"]
-        ann_text = item["text"]
+        print(text_id)
+        ann_text = item["text"].lower()
+
         bert_label = predict(ann_text, model)
-        true_label = text2labels(item["text"])
+        true_label = text2labels(ann_text)
         true_labels.append(true_label)
         bert_labels.append(bert_label)
 

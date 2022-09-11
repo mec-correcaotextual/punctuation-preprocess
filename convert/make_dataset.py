@@ -8,10 +8,7 @@ from typing import Literal
 import srsly
 
 from utils import text2labels, find_token_span
-from utils.preprocess import preprocess_text
-
-
-
+from utils.preprocess import preprocess_text, fix_break_lines
 
 
 def remove_repeated_punctuation(text_list, start_char, ref_punct):
@@ -27,7 +24,7 @@ def remove_repeated_punctuation(text_list, start_char, ref_punct):
     return text_list, shift
 
 
-def fix_punctuation(sts_text_list, ann_text_list, start_char, end_char, punct):
+def fix_punctuation(ann_text_list, start_char, end_char, punct):
     other_punctuations = string.punctuation.replace(punct, '')
     shift = 0
     try:
@@ -48,7 +45,7 @@ def fix_punctuation(sts_text_list, ann_text_list, start_char, end_char, punct):
                     break
         else:
             try:
-                for i in range(start_char - 1, end_char + 1):
+                for i in range(start_char - 3, end_char + 3):
                     old_char = ann_text_list[i]
                     if old_char in [' ', '\n', '\t']:
                         ann_text_list[i] = punct
@@ -113,12 +110,16 @@ def convert_annotations(
             student_entity["labels"] = text2labels(student_entity["text"])
             student_entities.append(student_entity)
 
-            sts_text_list = list(text)  # Lista de caracteres do texto do aluno
-
             for annotator_id, annotation in enumerate(zipped_anot_data, start=1):
                 shifts = 0
+                text = annotation['text']
+                len_b = len(list(text))
+                text = fix_break_lines(text)
 
-                ann_text_list = list(annotation['text'])
+                ann_text_list = list(text)
+                len_a = len(ann_text_list)
+                if len_a != len_b:
+                    shifts = len_a - len_b
 
                 for s in annotation['label']:
                     shift = 0
@@ -127,21 +128,24 @@ def convert_annotations(
 
                     if label == 'Erro de Pontuação':
 
-                        ann_text_list, shift = fix_punctuation(sts_text_list, ann_text_list, start_char, end_char,
+                        ann_text_list, shift = fix_punctuation(ann_text_list, start_char, end_char,
                                                                punct='.')
 
                     elif label == 'Erro de vírgula':
 
-                        ann_text_list, shift = fix_punctuation(sts_text_list, ann_text_list, start_char, end_char,
+                        ann_text_list, shift = fix_punctuation(ann_text_list, start_char, end_char,
                                                                punct=',')
                     shifts += shift
 
                 atitle, new_ann_textp = preprocess_text(''.join(ann_text_list))
                 new_ann_text = '\n'.join(new_ann_textp)
+                after_labels = text2labels(new_ann_text)
+                if len(after_labels) != len(student_entity["labels"]):
+                    breakpoint()
                 annotator_entity[annotator_id]["text"] = new_ann_text
                 annotator_entity[annotator_id]["title"] = title
                 annotator_entity[annotator_id]["ents"] = find_token_span(new_ann_text, token_alignment=token_alignment)
-                annotator_entity[annotator_id]["labels"] = text2labels(new_ann_text)
+                annotator_entity[annotator_id]["labels"] = after_labels
             annotator_entities.append(annotator_entity)
 
     return student_entities, annotator_entities
