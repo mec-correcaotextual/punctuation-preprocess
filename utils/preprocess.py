@@ -9,7 +9,7 @@ marks = r'\[\w{0,3}|\W{0,3}\]|\}'
 
 def join_split_words(text):
     """
-    Junta palavras que foram separadas por um \n
+    Junta palavras separadas por um \n
     """
 
     text = re.sub(r'(\w+)-\n(\w+)', r'\1\2', text)

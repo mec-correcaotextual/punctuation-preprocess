@@ -1,5 +1,4 @@
 import json
-import os
 import pathlib
 import string
 from collections import defaultdict
@@ -47,6 +46,9 @@ def fix_punctuation(ann_text_list, start_char, end_char, punct):
             try:
                 for i in range(start_char - 3, end_char + 3):
                     old_char = ann_text_list[i]
+                    if old_char in other_punctuations:
+                        ann_text_list[i] = punct
+                        break
                     if old_char in [' ', '\n', '\t']:
                         ann_text_list[i] = punct
 
@@ -85,7 +87,7 @@ def convert_annotations(
 
     for week_path in result:
         print(week_path)
-        overlaps = 0
+
         # paths -> json generators -> list[json]
         jsonls = list(week_path.glob('anot*'))
         jsonls.sort()
@@ -127,7 +129,6 @@ def convert_annotations(
                     start_char, end_char, label = s[1] - 1 + shifts, s[1] + shifts, s[2]
 
                     if label == 'Erro de Pontuação':
-
                         ann_text_list, shift = fix_punctuation(ann_text_list, start_char, end_char,
                                                                punct='.')
 
@@ -141,12 +142,6 @@ def convert_annotations(
                 new_ann_text = '\n'.join(new_ann_textp)
                 after_labels = text2labels(new_ann_text)
 
-                # Se o texto não foi pontuado e
-                # nem a pontuação foi corrigida, então não há anotações
-                if len(list(set(after_labels))) == 1:
-                    print('Sem labels, skipping', text_id, annotator_id)
-
-                    continue
                 annotator_entity[annotator_id]["text"] = new_ann_text
                 annotator_entity[annotator_id]["title"] = title
                 annotator_entity[annotator_id]["ents"] = find_token_span(new_ann_text, token_alignment=token_alignment)
