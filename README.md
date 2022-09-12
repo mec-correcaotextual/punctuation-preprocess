@@ -138,3 +138,5 @@ Em muitos casos os textos são demaseadamente grandes o que não é comportato p
 Solução:
 
 Existem alunos que não escrevem parágrafos então solução foi quebrar o texto em quebras de linha.
+
+
