@@ -3,12 +3,11 @@ import os
 import string
 import traceback
 from itertools import chain
+
 import numpy as np
-import pandas as pd
 import spacy
 import torch
 from nltk.tokenize import wordpunct_tokenize
-from seqeval import metrics
 from seqeval.metrics import classification_report
 from silence_tensorflow import silence_tensorflow
 from sklearn.metrics import cohen_kappa_score
@@ -149,7 +148,7 @@ def get_labels(text, pred_dict):
     labels = []
     try:
         ## Tokenização do BERT tá diferente daque é feita aqui
-        text = remove_punctuation(text)
+
         tokens = wordpunct_tokenize(text.lower())
         for word in tokens:
             if word not in string.punctuation:
