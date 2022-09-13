@@ -23,6 +23,26 @@ def remove_repeated_punctuation(text_list, start_char, ref_punct):
     return text_list, shift
 
 
+def remove_extra_punctuation(ann_text_list, start_char):
+    """Remove pontuação extra
+    :param ann_text_list: lista de caracteres do texto
+    :param start_char: índice do caracter a partir do qual a busca será feita
+    :return: lista de caracteres do texto
+    """
+    shift = 0
+    i = start_char
+    char = ann_text_list[start_char]
+
+    while char in [' ', '\n', '\t', '.', ',', ';', ':', '!', '?']:
+        print("char", char)
+        ann_text_list.pop(i)
+        shift -= 1
+        i += 1
+        char = ann_text_list[i]
+
+    return ann_text_list, shift
+
+
 def fix_punctuation(ann_text_list, start_char, end_char, punct):
     other_punctuations = string.punctuation.replace(punct, '')
     shift = 0
@@ -53,11 +73,14 @@ def fix_punctuation(ann_text_list, start_char, end_char, punct):
                         ann_text_list[i] = punct
 
                         ann_text_list.insert(i + 1, old_char)
-
+                        shift += 1
+                        ann_text_list, shift_removed = remove_extra_punctuation(ann_text_list, i + 2)
                         ann_text_list[i + 2] = ann_text_list[
                             i + 2].upper()  # Coloca aprimeira letra em maiúsculo
-                        shift += 1
+
+                        shift += shift_removed
                         break
+
             except IndexError:
                 ann_text_list.append(punct)
                 shift += 1
@@ -111,7 +134,6 @@ def convert_annotations(
             student_entity["ents"] = find_token_span(new_sts_text, token_alignment=token_alignment)
             student_entity["labels"] = text2labels(student_entity["text"])
 
-
             for annotator_id, annotation in enumerate(zipped_anot_data, start=1):
                 shifts = 0
                 text = annotation['text']
@@ -122,13 +144,14 @@ def convert_annotations(
                 len_a = len(ann_text_list)
                 if len_a != len_b:
                     shifts = len_a - len_b
-
+                before = ann_text_list[0]
                 for s in annotation['label']:
                     shift = 0
 
                     start_char, end_char, label = s[1] - 1 + shifts, s[1] + shifts, s[2]
-
+                    # Descobrir o porquê há multiplas pontuações no texto do aluno e corrigir isso 'esta podre.?,
                     if label == 'Erro de Pontuação':
+
                         ann_text_list, shift = fix_punctuation(ann_text_list, start_char, end_char,
                                                                punct='.')
 

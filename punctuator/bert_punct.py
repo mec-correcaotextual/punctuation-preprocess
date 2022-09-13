@@ -3,14 +3,16 @@ import os
 import string
 import traceback
 from itertools import chain
-
+import numpy as np
 import pandas as pd
 import spacy
 import torch
 from nltk.tokenize import wordpunct_tokenize
 from seqeval import metrics
+from seqeval.metrics import classification_report
 from silence_tensorflow import silence_tensorflow
 from sklearn.metrics import cohen_kappa_score
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 silence_tensorflow()
 from simpletransformers.ner import NERModel, NERArgs
@@ -166,36 +168,54 @@ def get_labels(text, pred_dict):
     return labels
 
 
+class NpEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        if isinstance(obj, np.floating):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return json.JSONEncoder.default(self, obj)
+
+
 if __name__ == '__main__':
 
-    annotator_entities = json.load(open("../dataset/annotator2.json", "r"))
-
     model = get_model(MODEL_PATH, model_type="bert", max_seq_length=512)
-    bert_labels = []
-    true_labels = []
-    kappa = []
-    bert_annotator = []
-    for item in annotator_entities:
 
-        text_id = item["text_id"]
+    DATA_PATH = "../dataset/"
+    for filename in os.listdir(DATA_PATH):
+        bert_labels = []
+        true_labels = []
+        kappa = []
+        bert_annotator = []
+        annotator_entities = json.load(open(os.path.join(DATA_PATH, filename), "r"))
+        for item in annotator_entities:
+            text_id = item["text_id"]
 
-        ann_text = item["text"].lower()
+            ann_text = item["text"].lower()
 
-        bert_label = predict(ann_text, model)
-        true_label = text2labels(ann_text)
-        true_labels.append(true_label)
-        bert_labels.append(bert_label)
-        kappa_score = cohen_kappa_score(true_label, bert_label, labels=["O", "I-COMMA", "I-PERIOD"])
-        kappa.append(kappa_score)
-        print("Kappa score: ", kappa_score)
-        print("Text ID: ", text_id)
-        item.pop("ents")
-        item.pop("labels")
-        bert_annotation = item
-        bert_annotation["labels"] = bert_label
-        bert_annotation["cohen_kappa"] = kappa_score
-        bert_annotator.append(bert_annotation)
-    report = metrics.classification_report(true_labels, bert_labels, output_dict=True)
-    pd.DataFrame.from_dict(report, orient='index').to_csv(f"results.csv")
-    print(report)
+            bert_label = predict(ann_text, model)
+            true_label = text2labels(ann_text)
+            true_labels.append(true_label)
+            bert_labels.append(bert_label)
+            kappa_score = cohen_kappa_score(true_label, bert_label, labels=["O", "I-COMMA", "I-PERIOD"])
+            kappa.append(kappa_score)
+            print("Kappa score: ", kappa_score)
+            print("Text ID: ", text_id)
+            item.pop("ents")
+            item.pop("labels")
+            bert_annotation = item
+            bert_annotation["labels"] = bert_label
+            bert_annotation["cohen_kappa"] = kappa_score
+            bert_annotator.append(bert_annotation)
+        bert_annotator.append({
+            "cohen_kappa": float(np.mean(kappa)),
+            "cohen_kappa_std": float(np.std(kappa)),
+            "report": classification_report(true_labels, bert_labels, output_dict=True)
+        })
+        print("Mean Kappa score: ", np.mean(kappa))
+        with open(os.path.join(DATA_PATH, "bert_" + filename), "w") as f:
+            json.dump(bert_annotator, f, indent=4, cls=NpEncoder)
+
     breakpoint()

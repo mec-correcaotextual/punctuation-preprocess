@@ -66,7 +66,7 @@ def remove_space_before_punctuation(text):
 
 
 def remove_extra_punctuation(text):
-    text = re.sub(r'([.,?!;:]+)\1+', r'\1', text)
+    text = re.sub(r'([.,?!;:])+', r'\1', text)
     return text
 
 
@@ -85,15 +85,13 @@ def preprocess_text(text):
 def main():
     json_list = open("../annotations/Semana2/Anotações/anotador1.jsonl", "r", encoding="utf-8").readlines()
     nlp = spacy.blank("pt")
+    print(preprocess_text('esta podre.?, ela respondeu com um sorriso.'))
+    breakpoint()
     for json_str in json_list:
-        print(preprocess_text('Olá , tudo bem ???'))
+
         result = json.loads(json_str)
         if result['id'] == 162:
             text = result["text"]
-            title, paragraphs = preprocess_text(text)
-
-            paragraphs = [join_split_words(p) for p in paragraphs]
-            paragraphs = list(filter(lambda x: x != '', paragraphs))
 
             shifts = 0
             for s in result['label']:
