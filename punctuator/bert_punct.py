@@ -215,7 +215,8 @@ if __name__ == '__main__':
             "report": classification_report(true_labels, bert_labels, output_dict=True)
         })
         print("Mean Kappa score: ", np.mean(kappa))
-        with open(os.path.join(DATA_PATH, "bert_" + filename), "w") as f:
+        os.makedirs("bert_annotations", exist_ok=True)
+        with open(os.path.join("bert_annotations", "bert_" + filename), "w") as f:
             json.dump(bert_annotator, f, indent=4, cls=NpEncoder)
 
     breakpoint()
