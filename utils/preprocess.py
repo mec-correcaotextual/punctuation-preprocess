@@ -57,7 +57,7 @@ def split_lines(text):
     else:
         title = ''
 
-    return title, text.split('\n')
+    return title, ' '.join(text.split()).capitalize().split('\n')
 
 
 def remove_space_before_punctuation(text):

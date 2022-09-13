@@ -34,7 +34,7 @@ def remove_extra_punctuation(ann_text_list, start_char):
     char = ann_text_list[start_char]
 
     while char in [' ', '\n', '\t', '.', ',', ';', ':', '!', '?']:
-        print("char", char)
+
         ann_text_list.pop(i)
         shift -= 1
         i += 1
@@ -75,8 +75,12 @@ def fix_punctuation(ann_text_list, start_char, end_char, punct):
                         ann_text_list.insert(i + 1, old_char)
                         shift += 1
                         ann_text_list, shift_removed = remove_extra_punctuation(ann_text_list, i + 2)
-                        ann_text_list[i + 2] = ann_text_list[
-                            i + 2].upper()  # Coloca aprimeira letra em maiúsculo
+                        if punct == '.':
+                            ann_text_list[i + 2] = ann_text_list[
+                                i + 2].upper()  # Coloca aprimeira letra em maiúsculo
+                        elif punct == ',':
+                            ann_text_list[i + 2] = ann_text_list[i + 2].lower()
+                            # Coloca a primeira letra em minúsculo
 
                         shift += shift_removed
                         break
