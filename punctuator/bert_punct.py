@@ -78,29 +78,28 @@ def get_model(model_path,
     )
 
 
-def truncate_sentences(text, max_seq_length):
+def truncate_sentences(text, max_seq_length=512, overlap=20):
     texts = []
     tokens = bert_tokenizer.tokenize(text)
 
     if len(tokens) > max_seq_length:
-        if len(tokens) % max_seq_length == 0:
-            for i in range(0, len(tokens), max_seq_length):
-                truncated_tokens = tokens[i:i + max_seq_length]
-                new_text = bert_tokenizer.convert_tokens_to_string(truncated_tokens)
-
-                texts.append(new_text)
-        else:
+        if len(tokens) % max_seq_length != 0:
             max_seq_length //= 2
 
-            for i in range(0, len(tokens), max_seq_length):
-                truncated_tokens = tokens[i:i + max_seq_length]
-                new_text = bert_tokenizer.convert_tokens_to_string(truncated_tokens)
+        for i in range(0, len(tokens), max_seq_length):
+            slide = 0 if i == 0 else overlap
+            truncated_tokens = tokens[i - slide:i + max_seq_length]
+            new_text = bert_tokenizer.convert_tokens_to_string(truncated_tokens)
 
-                texts.append(new_text)
-            texts[-1] = texts[-1] + ' ' + texts.pop(-2)
+            texts.append(new_text)
+
+        if len(bert_tokenizer.tokenize(texts[-1])) + len(bert_tokenizer.tokenize(texts[-2])) < max_seq_length:
+            texts[-2] = texts[-2] + texts[-1]
+            texts.pop()
 
     else:
         texts.append(text)
+    return texts
 
 
 def split_lines(text):
@@ -125,7 +124,8 @@ def preprocess_text(text):
     :param text: text to preprocess
     :return:  list of preprocessed text
     """
-    paragraphs = split_lines(text)
+
+    paragraphs = truncate_sentences(text, 256)
 
     return list(map(lambda x: remove_punctuation(x), paragraphs))
 
@@ -138,6 +138,7 @@ def predict(test_text: str, model):
     :return:  list of predicted labels
     """
     texts = preprocess_text(test_text)
+
     prediction_list, raw_outputs = model.predict(texts)
     pred_dict = merge_dicts(list(chain(*prediction_list)))
 
@@ -148,7 +149,9 @@ def get_labels(text, pred_dict):
     labels = []
     try:
         ## Tokenização do BERT tá diferente daque é feita aqui
-        for word in wordpunct_tokenize(text):
+        text = remove_punctuation(text)
+        tokens = wordpunct_tokenize(text.lower())
+        for word in tokens:
             if word not in string.punctuation:
                 if pred_dict[word] == "QUESTION":
                     label = "I-PERIOD"
@@ -192,7 +195,7 @@ if __name__ == '__main__':
         annotator_entities = json.load(open(os.path.join(DATA_PATH, filename), "r"))
         for item in annotator_entities:
             text_id = item["text_id"]
-
+            print("Processing Text ID: ", text_id)
             ann_text = item["text"].lower()
 
             bert_label = predict(ann_text, model)
@@ -202,7 +205,8 @@ if __name__ == '__main__':
             kappa_score = cohen_kappa_score(true_label, bert_label, labels=["O", "I-COMMA", "I-PERIOD"])
             kappa.append(kappa_score)
             print("Kappa score: ", kappa_score)
-            print("Text ID: ", text_id)
+            print("-" * 150)
+
             item.pop("ents")
             item.pop("labels")
             bert_annotation = item
