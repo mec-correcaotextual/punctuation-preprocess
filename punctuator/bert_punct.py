@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import string
 import traceback
 from itertools import chain
@@ -11,11 +12,11 @@ from nltk.tokenize import wordpunct_tokenize
 from seqeval.metrics import classification_report
 from silence_tensorflow import silence_tensorflow
 from sklearn.metrics import cohen_kappa_score
-
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-silence_tensorflow()
 from simpletransformers.ner import NERModel, NERArgs
 from transformers import BertTokenizer
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+silence_tensorflow()
+
 
 nlp = spacy.blank('pt')
 MODEL_PATH = "../models/bert-portuguese-tedtalk2012"
@@ -123,10 +124,10 @@ def preprocess_text(text):
     :param text: text to preprocess
     :return:  list of preprocessed text
     """
-
+    text = remove_punctuation(text)
     paragraphs = truncate_sentences(text, 256)
 
-    return list(map(lambda x: remove_punctuation(x), paragraphs))
+    return paragraphs
 
 
 def predict(test_text: str, model):
@@ -147,9 +148,9 @@ def predict(test_text: str, model):
 def get_labels(text, pred_dict):
     labels = []
     try:
-        ## Tokenização do BERT tá diferente daque é feita aqui
+        # Tokenização do BERT tá diferente daque é feita aqui
 
-        tokens = wordpunct_tokenize(text.lower())
+        tokens = wordpunct_tokenize( text.lower())
         for word in tokens:
             if word not in string.punctuation:
                 if pred_dict[word] == "QUESTION":
@@ -196,7 +197,8 @@ if __name__ == '__main__':
             text_id = item["text_id"]
             print("Processing Text ID: ", text_id)
             ann_text = item["text"].lower()
-
+            if text_id != 156:
+                continue
             bert_label = predict(ann_text, model)
             true_label = text2labels(ann_text)
             true_labels.append(true_label)

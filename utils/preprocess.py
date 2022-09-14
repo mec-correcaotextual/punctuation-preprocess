@@ -38,6 +38,7 @@ def clean_text(text):
     text = re.sub(marks, '', text)
     text = re.sub(r'<.*?>', '', text)
     text = re.sub(r'\.+', '.', text)
+    text = re.sub(r'\"', '', text).strip()
     return fix_break_lines(text)
 
 
@@ -57,7 +58,7 @@ def split_lines(text):
     else:
         title = ''
 
-    return title, ' '.join(text.split()).split('\n')
+    return title, ' '.join(text.split()).strip().split('\n')
 
 
 def remove_space_before_punctuation(text):
@@ -85,7 +86,8 @@ def preprocess_text(text):
 def main():
     json_list = open("../annotations/Semana2/Anotações/anotador1.jsonl", "r", encoding="utf-8").readlines()
     nlp = spacy.blank("pt")
-    print(preprocess_text('esta podre.?, ela respondeu com um sorriso.'))
+    print("  oi  olá mundo".strip())
+    print(preprocess_text('chuva ta muito forte e não vai cabe nigem\" e começou a venta muito e '))
     breakpoint()
     for json_str in json_list:
 
