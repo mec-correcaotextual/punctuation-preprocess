@@ -4,7 +4,7 @@ import re
 import string
 import traceback
 from itertools import chain
-
+import click
 import numpy as np
 import spacy
 import torch
@@ -14,9 +14,9 @@ from silence_tensorflow import silence_tensorflow
 from sklearn.metrics import cohen_kappa_score
 from simpletransformers.ner import NERModel, NERArgs
 from transformers import BertTokenizer
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 silence_tensorflow()
-
 
 nlp = spacy.blank('pt')
 MODEL_PATH = "../models/bert-portuguese-tedtalk2012"
@@ -79,7 +79,6 @@ def get_model(model_path,
 
 
 def truncate_sentences(text, max_seq_length=512, overlap=20):
-
     """
     Truncate sentences to fit into BERT's max_seq_length
     :param text:  text to truncate
@@ -157,7 +156,7 @@ def get_labels(text, pred_dict):
     try:
         # Tokenização do BERT tá diferente daque é feita aqui
 
-        tokens = wordpunct_tokenize( text.lower())
+        tokens = wordpunct_tokenize(text.lower())
         for word in tokens:
             if word not in string.punctuation:
                 if pred_dict[word] == "QUESTION":
@@ -187,6 +186,15 @@ class NpEncoder(json.JSONEncoder):
         if isinstance(obj, np.ndarray):
             return obj.tolist()
         return json.JSONEncoder.default(self, obj)
+
+
+@click.command()
+@click.option('--text', '-t', help='Text to predict punctuation for')
+def main(text=None):
+
+    model = get_model(MODEL_PATH)
+    labels = predict(text, model)
+    print(labels)
 
 
 if __name__ == '__main__':
@@ -229,5 +237,3 @@ if __name__ == '__main__':
         os.makedirs("bert_annotations", exist_ok=True)
         with open(os.path.join("bert_annotations", "bert_" + filename), "w") as f:
             json.dump(bert_annotator, f, indent=4, cls=NpEncoder)
-
-    breakpoint()
