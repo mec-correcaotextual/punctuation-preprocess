@@ -134,7 +134,7 @@ def preprocess_text(text):
     """
     paragraphs = truncate_sentences(text)
 
-    return list(map(lambda x: remove_punctuation(x), paragraphs))
+    return list(map(lambda x: remove_punctuation(x).lower(), paragraphs))
 
 
 def predict(test_text: str, model):
