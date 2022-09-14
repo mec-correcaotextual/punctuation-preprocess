@@ -79,6 +79,14 @@ def get_model(model_path,
 
 
 def truncate_sentences(text, max_seq_length=512, overlap=20):
+
+    """
+    Truncate sentences to fit into BERT's max_seq_length
+    :param text:  text to truncate
+    :param max_seq_length:  max sequence length
+    :param overlap:  overlap between sentences
+    :return:    list of truncated sentences
+    """
     texts = []
     tokens = bert_tokenizer.tokenize(text)
 
@@ -124,10 +132,9 @@ def preprocess_text(text):
     :param text: text to preprocess
     :return:  list of preprocessed text
     """
-    text = remove_punctuation(text)
-    paragraphs = truncate_sentences(text, 256)
+    paragraphs = truncate_sentences(text)
 
-    return paragraphs
+    return list(map(lambda x: remove_punctuation(x), paragraphs))
 
 
 def predict(test_text: str, model):
@@ -197,8 +204,7 @@ if __name__ == '__main__':
             text_id = item["text_id"]
             print("Processing Text ID: ", text_id)
             ann_text = item["text"].lower()
-            if text_id != 156:
-                continue
+
             bert_label = predict(ann_text, model)
             true_label = text2labels(ann_text)
             true_labels.append(true_label)
