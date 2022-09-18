@@ -1,6 +1,5 @@
 import json
 import pathlib
-import string
 from collections import defaultdict
 from typing import Literal
 
@@ -34,17 +33,29 @@ def remove_extra_punctuation(ann_text_list, start_char):
     char = ann_text_list[start_char]
 
     while char in [' ', '\n', '\t', '.', ',', ';', ':', '!', '?']:
-
         ann_text_list.pop(i)
         shift -= 1
-        i += 1
+
         char = ann_text_list[i]
 
     return ann_text_list, shift
 
 
+def define_char_case(punct, text_list, i):
+    """Define se o caracter é maiúsculo ou minúsculo"""
+
+    if punct == '.':
+        text_list[i + 2] = text_list[i + 2].upper()
+        # Coloca aprimeira letra em maiúsculo
+    elif punct == ',':
+        text_list[i + 2] = text_list[i + 2].lower()
+        # Coloca a primeira letra em minúsculo
+    return text_list
+
+
 def fix_punctuation(ann_text_list, start_char, end_char, punct):
-    other_punctuations = string.punctuation.replace(punct, '')
+    other_punctuations = ['.', ',', ';', ':', '!', '?']
+    other_punctuations.remove(punct)
     shift = 0
     try:
         text_span = ann_text_list[start_char:end_char][0]
@@ -61,6 +72,7 @@ def fix_punctuation(ann_text_list, start_char, end_char, punct):
             for i in range(start_char, len(ann_text_list)):
                 if ann_text_list[i] in other_punctuations:
                     ann_text_list[i] = punct
+                    ann_text_list = define_char_case(punct, ann_text_list, i)
                     break
         else:
             try:
@@ -68,6 +80,7 @@ def fix_punctuation(ann_text_list, start_char, end_char, punct):
                     old_char = ann_text_list[i]
                     if old_char in other_punctuations:
                         ann_text_list[i] = punct
+                        ann_text_list = define_char_case(punct, ann_text_list, i)
                         break
                     if old_char in [' ', '\n', '\t']:
                         ann_text_list[i] = punct
@@ -75,16 +88,9 @@ def fix_punctuation(ann_text_list, start_char, end_char, punct):
                         ann_text_list.insert(i + 1, old_char)
                         shift += 1
                         ann_text_list, shift_removed = remove_extra_punctuation(ann_text_list, i + 2)
-                        if punct == '.':
-                            ann_text_list[i + 2] = ann_text_list[
-                                i + 2].upper()  # Coloca aprimeira letra em maiúsculo
-                        elif punct == ',':
-                            ann_text_list[i + 2] = ann_text_list[i + 2].lower()
-                            # Coloca a primeira letra em minúsculo
-
                         shift += shift_removed
+                        ann_text_list = define_char_case(punct, ann_text_list, i)
                         break
-
             except IndexError:
                 ann_text_list.append(punct)
                 shift += 1
@@ -148,21 +154,20 @@ def convert_annotations(
                 len_a = len(ann_text_list)
                 if len_a != len_b:
                     shifts = len_a - len_b
-                before = ann_text_list[0]
+
                 for s in annotation['label']:
                     shift = 0
 
                     start_char, end_char, label = s[1] - 1 + shifts, s[1] + shifts, s[2]
                     # Descobrir o porquê há multiplas pontuações no texto do aluno e corrigir isso 'esta podre.?,
                     if label == 'Erro de Pontuação':
-
-                        ann_text_list, shift = fix_punctuation(ann_text_list, start_char, end_char,
-                                                               punct='.')
+                        if text_id == 163 and annotator_id == 2 and start_char > 300:
+                            breakpoint()
+                        ann_text_list, shift = fix_punctuation(ann_text_list, start_char, end_char, punct='.')
 
                     elif label == 'Erro de vírgula':
 
-                        ann_text_list, shift = fix_punctuation(ann_text_list, start_char, end_char,
-                                                               punct=',')
+                        ann_text_list, shift = fix_punctuation(ann_text_list, start_char, end_char, punct=',')
                     shifts += shift
 
                 atitle, new_ann_textp = preprocess_text(''.join(ann_text_list))

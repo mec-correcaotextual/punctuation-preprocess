@@ -23,7 +23,7 @@ def fix_break_lines(text):
 
 
 def separate_punctuation(text):
-    text = re.sub(r'([.,?!;:])\w', r'\1 ', text)
+    text = re.sub(r'([.,?!;:])(\w)', r'\1 \2', text)
     return text
 
 
@@ -39,6 +39,7 @@ def clean_text(text):
     text = re.sub(r'<.*?>', '', text)
     text = re.sub(r'\.+', '.', text)
     text = re.sub(r'\"', '', text).strip()
+    text = re.sub(r'[*+]', '', text)
     return fix_break_lines(text)
 
 
@@ -84,17 +85,19 @@ def preprocess_text(text):
 
 
 def main():
-    json_list = open("../annotations/Semana2/Anotações/anotador1.jsonl", "r", encoding="utf-8").readlines()
+    json_list = open("../annotations/Semana1/Anotações/anotador1.jsonl", "r", encoding="utf-8").readlines()
     nlp = spacy.blank("pt")
     print("  oi  olá mundo".strip())
-    print(preprocess_text('chuva ta muito forte e não vai cabe nigem\" e começou a venta muito e '))
+    print(preprocess_text('Olá mundo!Temos um meio de sair daqui?Você* não pode +ouvir o que eu digo?'))
     breakpoint()
     for json_str in json_list:
 
         result = json.loads(json_str)
-        if result['id'] == 162:
+        if result['id'] == 36:
             text = result["text"]
-
+            print(text)
+            print(preprocess_text(text))
+            breakpoint()
             shifts = 0
             for s in result['label']:
                 start_char, end_char, label = s[0], s[1], s[2]
