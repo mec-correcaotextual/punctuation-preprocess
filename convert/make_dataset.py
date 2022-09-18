@@ -68,32 +68,26 @@ def fix_punctuation(ann_text_list, start_char, end_char, punct):
 
     if text_span != punct:
 
-        if text_span in other_punctuations:
-            for i in range(start_char, len(ann_text_list)):
-                if ann_text_list[i] in other_punctuations:
+        try:
+            for i in range(start_char - 3, end_char + 3):
+                old_char = ann_text_list[i]
+                if old_char in other_punctuations:
                     ann_text_list[i] = punct
                     ann_text_list = define_char_case(punct, ann_text_list, i)
                     break
-        else:
-            try:
-                for i in range(start_char - 3, end_char + 3):
-                    old_char = ann_text_list[i]
-                    if old_char in other_punctuations:
-                        ann_text_list[i] = punct
-                        ann_text_list = define_char_case(punct, ann_text_list, i)
-                        break
-                    if old_char in [' ', '\n', '\t']:
-                        ann_text_list[i] = punct
+                if old_char in [' ', '\n', '\t']:
+                    ann_text_list[i] = punct
 
-                        ann_text_list.insert(i + 1, old_char)
-                        shift += 1
-                        ann_text_list, shift_removed = remove_extra_punctuation(ann_text_list, i + 2)
-                        shift += shift_removed
-                        ann_text_list = define_char_case(punct, ann_text_list, i)
-                        break
-            except IndexError:
-                ann_text_list.append(punct)
-                shift += 1
+                    ann_text_list.insert(i + 1, old_char)
+                    shift += 1
+                    ann_text_list, shift_removed = remove_extra_punctuation(ann_text_list, i + 2)
+                    shift += shift_removed
+                    ann_text_list = define_char_case(punct, ann_text_list, i)
+                    break
+        except IndexError:
+            ann_text_list.append(punct)
+            shift += 1
+
 
     else:
 
@@ -161,8 +155,7 @@ def convert_annotations(
                     start_char, end_char, label = s[1] - 1 + shifts, s[1] + shifts, s[2]
                     # Descobrir o porquê há multiplas pontuações no texto do aluno e corrigir isso 'esta podre.?,
                     if label == 'Erro de Pontuação':
-                        if text_id == 163 and annotator_id == 2 and start_char > 300:
-                            breakpoint()
+
                         ann_text_list, shift = fix_punctuation(ann_text_list, start_char, end_char, punct='.')
 
                     elif label == 'Erro de vírgula':
