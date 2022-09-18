@@ -27,7 +27,8 @@ def main():
         with warnings.catch_warnings():
             warnings.filterwarnings('error')
             try:
-                kappa = cohen_kappa_score(text2labels(annot1["text"]), text2labels(annot2["text"]), labels=["I-PERIOD", "I-COMMA", "O"])
+                kappa = cohen_kappa_score(text2labels(annot1["text"]), text2labels(annot2["text"]),
+                                          labels=["I-PERIOD", "I-COMMA", "O"])
             except Warning:
                 print(set(annot1_label), set(annot2_label))
                 print(len(annot1_label), len(annot2_label))
@@ -42,8 +43,6 @@ def main():
     print("Max kappa: ", np.max(annot_kappa))
     print("Min kappa: ", np.min(annot_kappa))
     print("Median kappa: ", np.median(annot_kappa))
-
-
 
 
 if __name__ == '__main__':
