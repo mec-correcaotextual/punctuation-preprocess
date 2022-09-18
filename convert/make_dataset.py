@@ -139,7 +139,7 @@ def convert_annotations(
             student_entity["labels"] = text2labels(student_entity["text"])
 
             for annotator_id, annotation in enumerate(zipped_anot_data, start=1):
-                shifts = 0
+                global_shift = 0
                 text = annotation['text']
                 len_b = len(list(text))
                 text = fix_break_lines(text)
@@ -147,21 +147,22 @@ def convert_annotations(
                 ann_text_list = list(text)
                 len_a = len(ann_text_list)
                 if len_a != len_b:
-                    shifts = len_a - len_b
+                    global_shift = len_a - len_b
 
-                for s in annotation['label']:
-                    shift = 0
+                for ann_span in annotation['label']:
+                    local_shift = 0
 
-                    start_char, end_char, label = s[1] - 1 + shifts, s[1] + shifts, s[2]
+                    start_char, end_char, label = ann_span[1] - 1 + global_shift, ann_span[1] + global_shift, ann_span[
+                        2]
                     # Descobrir o porquê há multiplas pontuações no texto do aluno e corrigir isso 'esta podre.?,
-                    if label == 'Erro de Pontuação':
+                    if label not in ['Erro de Pontuação', 'Erro de vírgula']:
+                        continue
 
-                        ann_text_list, shift = fix_punctuation(ann_text_list, start_char, end_char, punct='.')
+                    symbol = '.' if label == 'Erro de Pontuação' else ','
 
-                    elif label == 'Erro de vírgula':
+                    ann_text_list, local_shift = fix_punctuation(ann_text_list, start_char, end_char, punct=symbol)
 
-                        ann_text_list, shift = fix_punctuation(ann_text_list, start_char, end_char, punct=',')
-                    shifts += shift
+                    global_shift += local_shift
 
                 atitle, new_ann_textp = preprocess_text(''.join(ann_text_list))
                 new_ann_text = '\n'.join(new_ann_textp)

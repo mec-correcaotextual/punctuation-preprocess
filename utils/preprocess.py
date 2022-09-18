@@ -27,6 +27,11 @@ def separate_punctuation(text):
     return text
 
 
+def join_punctuation_marks(text):
+    text = re.sub(r'(\w)\s([.,?!;:]+)', r'\1\2', text)
+    return text
+
+
 def clean_text(text):
     """
     Remove caracteres especiais e espaços em branco e as
@@ -77,6 +82,7 @@ def preprocess_text(text):
     text = remove_space_before_punctuation(text)
     text = remove_extra_punctuation(text)
     text = separate_punctuation(text)
+    text = join_punctuation_marks(text)
     title, lines = split_lines(text)
     lines = [clean_text(p) for p in lines]
     lines = list(filter(lambda x: x != '', lines))

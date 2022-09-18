@@ -43,7 +43,7 @@ def main():
     print("Min kappa: ", np.min(annot_kappa))
     print("Median kappa: ", np.median(annot_kappa))
 
-    breakpoint()
+
 
 
 if __name__ == '__main__':
