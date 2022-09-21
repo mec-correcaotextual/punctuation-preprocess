@@ -1,48 +1,139 @@
 import json
-import warnings
-from sklearn.metrics import cohen_kappa_score
+import string
+from collections import defaultdict, Counter
+from itertools import combinations
 
-from utils import text2labels
+import numpy as np
+import pandas as pd
+from nltk import wordpunct_tokenize
+from sklearn.metrics import cohen_kappa_score
+import spacy
+
+nlp = spacy.load("pt_core_news_lg")
+
+
+def get_word_label_dict(sentence, labels):
+    tokens = [token.lower() for token in wordpunct_tokenize(sentence) if token not in string.punctuation]
+    word_label_dict = defaultdict(list)
+    for word, label in zip(tokens, labels):
+        word_label_dict[label].append(word)
+    return word_label_dict
+
+
+def get_words_statistics(dataset):
+    word_stats = {}
+    for data_name in dataset:
+        data = dataset[data_name]
+        punkt_words = defaultdict(list)
+        word_stats[data_name] = punkt_words
+        for item in data:
+
+            word_dict = get_word_label_dict(item["text"], item["labels"])
+
+            for key in word_dict.keys():
+                word_stats[data_name][key].extend(word_dict[key])
+
+    return word_stats
+
+
+def get_cohen_statistics(annotator1, annotator2):
+    annot_kappa = []
+
+    dataset1_empty_labels = 0
+    dataset2_empty_labels = 0
+    skip = False
+
+    for ann1, ann2 in zip(annotator1, annotator2):
+        annot1_label = ann1["labels"]
+        annot2_label = ann2["labels"]
+
+        if len(list(set(annot1_label))) == 1 and list(set(annot1_label))[0] == "O":
+            dataset1_empty_labels += 1
+            skip = True
+        if len(list(set(annot2_label))) == 1 and list(set(annot2_label))[0] == "O":
+            dataset2_empty_labels += 1
+            skip = True
+        if skip:
+            skip = False
+            continue
+        kappa = cohen_kappa_score(annot1_label, annot2_label, labels=["I-PERIOD", "I-COMMA", "O"])
+        annot_kappa.append(kappa)
+
+    skipped = dataset2_empty_labels + dataset1_empty_labels
+    statistics = {
+        "skipped": skipped,
+        "dataset2_empty_labels": dataset2_empty_labels,
+        "dataset1_empty_labels": dataset1_empty_labels,
+        "kappa_mean": np.mean(annot_kappa),
+        "kappa_std": np.std(annot_kappa),
+        "kappa_min": np.min(annot_kappa),
+        "kappa_max": np.max(annot_kappa),
+        "kappa_median": np.median(annot_kappa),
+        "kappa_25": np.percentile(annot_kappa, 25),
+        "kappa_75": np.percentile(annot_kappa, 75),
+        "kappa_90": np.percentile(annot_kappa, 90),
+        "kappa_95": np.percentile(annot_kappa, 95),
+        "kappa_99": np.percentile(annot_kappa, 99),
+        "total_annotations": len(annotator1)
+    }
+    return statistics
+
+
+def dataset_comparasion(dataset):
+    statistics = {
+
+    }
+
+    data_names = list(dataset.keys())
+    comb = combinations(data_names, 2)
+
+    for i, (data_name1, data_name2) in enumerate(comb):
+        data1 = dataset[data_name1]
+        data2 = dataset[data_name2]
+
+        statistics[f"{data_name1}_{data_name2}"] = get_cohen_statistics(data1, data2)
+
+    return pd.DataFrame.from_dict(statistics, orient="index").T.round(3)
 
 
 def main():
-    import numpy as np
-    annot_kappa = []
-    skipped = 0
-    i = 0
-    dataset = {}
     annotator1 = json.load(open("../dataset/annotator1.json", "r"))
     annotator2 = json.load(open("../dataset/annotator2.json", "r"))
-    students = json.load(open("../dataset/student.json", "r"))
+    bertannotation = json.load(open("../dataset/annotator2.json", "r"))
 
-    for annot1, annot2 in zip(annotator1, annotator2):
-        annot1_label = annot1["labels"]
-        annot2_label = annot2["labels"]
+    dataset = {
+        "annotator1": annotator1,
+        "annotator2": annotator2,
+        "bertannotation": bertannotation
+    }
+    statistics = dataset_comparasion(dataset)
+    words_sts = get_words_statistics(dataset)
+    print(words_sts["annotator1"]["I-PERIOD"][:10])
+    print(words_sts["annotator2"]["I-PERIOD"][:10])
+    print(words_sts["annotator1"]["I-COMMA"][:10])
+    print(words_sts["annotator1"]["O"][:10])
 
-        if len(annot1_label) != len(annot2_label):
-            print("Skipping", annot1["text_id"])
-            print("Annotator 1:", annot1["text"])
-            print("Annotator 2:", annot2["text"])
-            breakpoint()
-        with warnings.catch_warnings():
-            warnings.filterwarnings('error')
-            try:
-                kappa = cohen_kappa_score(text2labels(annot1["text"]), text2labels(annot2["text"]),
-                                          labels=["I-PERIOD", "I-COMMA", "O"])
-            except Warning:
-                print(set(annot1_label), set(annot2_label))
-                print(len(annot1_label), len(annot2_label))
-                skipped += 1
-                continue
-        annot_kappa.append(kappa)
+    stats = {
+        "annotator1": {
+            "I-PERIOD": len(words_sts["annotator1"]["I-PERIOD"]),
+            "I-COMMA": len(words_sts["annotator1"]["I-COMMA"]),
 
-    print("Skipped: ", skipped)
-    print("Total anntoation: ", len(annotator1))
-    print("Mean kappa: ", np.mean(annot_kappa))
-    print("Std kappa: ", np.std(annot_kappa))
-    print("Max kappa: ", np.max(annot_kappa))
-    print("Min kappa: ", np.min(annot_kappa))
-    print("Median kappa: ", np.median(annot_kappa))
+        },
+        "annotator2": {
+            "I-PERIOD": len(words_sts["annotator2"]["I-PERIOD"]),
+            "I-COMMA": len(words_sts["annotator2"]["I-COMMA"]),
+        },
+    }
+
+    pd.DataFrame.from_dict(stats, orient="index").T.round(3).to_csv("stats.csv")
+    print()
+
+    doc = nlp("Ola, tudo bem?")
+    print([token.pos_ for token in doc])
+    print(Counter(words_sts["annotator1"]["I-PERIOD"]))
+    print(Counter(words_sts["annotator2"]["I-PERIOD"]))
+    print(len(words_sts["annotator2"]["I-PERIOD"]))
+    statistics.to_csv("annotator2_bertannotation.csv", index_label="metrics")
 
 
 if __name__ == '__main__':

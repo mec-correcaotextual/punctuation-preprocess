@@ -5,7 +5,7 @@ from typing import Literal
 
 import srsly
 
-from convert_text import nlp, get_gold_token
+from legacy_code.convert_text import nlp, get_gold_token
 from utils import find_token_span, check_mergebility
 
 
