@@ -41,23 +41,21 @@ def convert_annotations(
 
             student_entity = {'text': new_sts_text, "title": title, 'text_id': text_id, 'ents': []}
 
-            annotator_entity = defaultdict(lambda: {'text': text, "title": title, 'text_id': text_id, 'ents': []})
+            annotator_entity = {'text': text, "title": title, 'text_id': text_id, 'ents': []}
 
             # Procura pela pontuação do aluno no texto
 
             student_entity["ents"] = find_token_span(new_sts_text, token_alignment=token_alignment)
             student_entity["labels"] = text2labels(student_entity["text"])
-
+            text = student_entity['text']
+            len_b = len(list(text))
+            text = fix_break_lines(text)
+            global_shift = 0
+            ann_text_list = list(text)
+            len_a = len(ann_text_list)
+            if len_a != len_b:
+                global_shift = len_a - len_b
             for annotator_id, annotation in enumerate(zipped_anot_data, start=1):
-                global_shift = 0
-                text = annotation['text']
-                len_b = len(list(text))
-                text = fix_break_lines(text)
-
-                ann_text_list = list(text)
-                len_a = len(ann_text_list)
-                if len_a != len_b:
-                    global_shift = len_a - len_b
 
                 for ann_span in annotation['label']:
 
@@ -73,15 +71,15 @@ def convert_annotations(
 
                     global_shift += local_shift
 
-                atitle, new_ann_textp = preprocess_text(''.join(ann_text_list))
-                new_ann_text = '\n'.join(new_ann_textp)
-                after_labels = text2labels(new_ann_text)
+            atitle, new_ann_textp = preprocess_text(''.join(ann_text_list))
+            new_ann_text = '\n'.join(new_ann_textp)
+            after_labels = text2labels(new_ann_text)
 
-                annotator_entity[annotator_id]["text"] = new_ann_text
-                annotator_entity[annotator_id]["title"] = title
-                annotator_entity[annotator_id]["ents"] = find_token_span(new_ann_text, token_alignment=token_alignment)
-                annotator_entity[annotator_id]["labels"] = after_labels
-                student_entities.append(student_entity)
+            annotator_entity["text"] = new_ann_text
+            annotator_entity["title"] = title
+            annotator_entity["ents"] = find_token_span(new_ann_text, token_alignment=token_alignment)
+            annotator_entity["labels"] = after_labels
+            student_entities.append(student_entity)
             annotator_entities.append(annotator_entity)
 
     return student_entities, annotator_entities
@@ -89,9 +87,6 @@ def convert_annotations(
 
 if __name__ == '__main__':
     sts_entities, annot_entities = convert_annotations('../annotations/')
-    annotator1 = list(map(lambda dict_annot: dict_annot[1], annot_entities))
-    annotator2 = list(map(lambda dict_annot: dict_annot[2], annot_entities))
 
-    json.dump(obj=sts_entities, fp=open('../dataset/student.json', 'w'), indent=4)
-    json.dump(obj=annotator1, fp=open('../dataset/annotator1.json', 'w'), indent=4)
-    json.dump(obj=annotator2, fp=open('../dataset/annotator2.json', 'w'), indent=4)
+    json.dump(obj=sts_entities, fp=open('../dataset/merge/student.json', 'w'), indent=4)
+    json.dump(obj=annot_entities, fp=open('../dataset/merge/annot_entities.json', 'w'), indent=4)
