@@ -47,6 +47,7 @@ def convert_annotations(
 
             student_entity["ents"] = find_token_span(new_sts_text, token_alignment=token_alignment)
             student_entity["labels"] = text2labels(student_entity["text"])
+
             text = student_entity['text']
             len_b = len(list(text))
             text = fix_break_lines(text)
@@ -88,5 +89,5 @@ def convert_annotations(
 if __name__ == '__main__':
     sts_entities, annot_entities = convert_annotations('../annotations/')
 
-    json.dump(obj=sts_entities, fp=open('../dataset/merge/student.json', 'w'), indent=4)
+    json.dump(obj=sts_entities, fp=open('../dataset/student.json', 'w'), indent=4)
     json.dump(obj=annot_entities, fp=open('../dataset/both_anotators.json', 'w'), indent=4)

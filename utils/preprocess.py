@@ -3,8 +3,8 @@ import re
 
 import spacy
 
-special_pattern = r'\s+|\n+|/n|\t+|-'
-marks = r'\[\w{0,3}|\W{0,3}\]|\}'
+special_pattern = r'\s+|\n+|/n|\t+|-|—'
+marks = r'\[\w{0,3}|\W{0,3}\]|\(|\)'
 
 
 def join_split_words(text):
@@ -45,7 +45,7 @@ def clean_text(text):
     text = re.sub(r'\.+', '.', text)
     text = re.sub(r'\"', '', text).strip()
     text = re.sub(r'[*+]', '', text)
-    return fix_break_lines(text)
+    return ' '.join(text.split())
 
 
 def split_lines(text):
@@ -82,9 +82,11 @@ def preprocess_text(text):
     text = remove_space_before_punctuation(text)
     text = remove_extra_punctuation(text)
     text = separate_punctuation(text)
+
     text = join_punctuation_marks(text)
+
     title, lines = split_lines(text)
-    lines = [clean_text(p) for p in lines]
+    lines = [clean_text(line) for line in lines]
     lines = list(filter(lambda x: x != '', lines))
 
     return title, lines
@@ -94,7 +96,8 @@ def main():
     json_list = open("../annotations/Semana1/Anotações/anotador1.jsonl", "r", encoding="utf-8").readlines()
     nlp = spacy.blank("pt")
     print("  oi  olá mundo".strip())
-    print(preprocess_text('Olá mundo!Temos um meio de sair daqui?Você* não pode +ouvir o que eu digo?'))
+    print(preprocess_text('[T] ele ligou para um amigo\n — Álo — Eu achei uma coisa no meu quintal depois da chuva. — Como '
+                          'é essa (coisa).'))
     breakpoint()
     for json_str in json_list:
 

@@ -148,7 +148,13 @@ def predict(test_text: str, model):
 
     prediction_list, raw_outputs = model.predict(texts)
     pred_dict = merge_dicts(list(chain(*prediction_list)))
-
+    words = [word for word in wordpunct_tokenize(test_text) if word not in string.punctuation]
+    words = list(set(words))
+    if len(pred_dict) != len(words):
+        print("Number of tokens doesn't match")
+        print("Number of tokens in text: ", len(words))
+        print("Number of tokens in prediction: ", len(pred_dict))
+        breakpoint()
     return get_labels(test_text, pred_dict)
 
 
@@ -217,10 +223,16 @@ if __name__ == '__main__':
     for item in both_annotator:
         text_id = item["text_id"]
         print("Processing Text ID: ", text_id)
-        ann_text = item["text"].lower()
 
+        ann_text = item["text"].lower()
         bert_label = predict(ann_text, model)
 
+        if len(bert_label) != len(item["labels"]):
+            print("Error: ", len(bert_label), len(item["labels"]))
+            print(ann_text)
+            print(bert_label)
+            print(item["labels"])
+            breakpoint()
         bert_labels.append(bert_label)
 
         item.pop("ents")

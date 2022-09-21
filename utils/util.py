@@ -99,6 +99,8 @@ def text2labels(sentence):
                 labels[-1] = 'I-COMMA'
 
         except IndexError:
+            print(sentence)
+            print(tokens)
             raise ValueError(f"Sentence can't start with punctuation {token}")
     return labels
 
