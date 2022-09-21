@@ -89,4 +89,4 @@ if __name__ == '__main__':
     sts_entities, annot_entities = convert_annotations('../annotations/')
 
     json.dump(obj=sts_entities, fp=open('../dataset/merge/student.json', 'w'), indent=4)
-    json.dump(obj=annot_entities, fp=open('../dataset/merge/annot_entities.json', 'w'), indent=4)
+    json.dump(obj=annot_entities, fp=open('../dataset/both_anotators.json', 'w'), indent=4)

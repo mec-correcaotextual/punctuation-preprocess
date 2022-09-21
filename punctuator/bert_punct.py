@@ -6,6 +6,7 @@ import traceback
 from itertools import chain
 import click
 import numpy as np
+import pandas as pd
 import spacy
 import torch
 from nltk.tokenize import wordpunct_tokenize
@@ -191,7 +192,6 @@ class NpEncoder(json.JSONEncoder):
 @click.command()
 @click.option('--text', '-t', help='Text to predict punctuation for')
 def main(text=None):
-
     model = get_model(MODEL_PATH)
     labels = predict(text, model)
     print(labels)
@@ -202,38 +202,41 @@ if __name__ == '__main__':
     model = get_model(MODEL_PATH, model_type="bert", max_seq_length=512)
 
     DATA_PATH = "../dataset/"
-    for filename in os.listdir(DATA_PATH):
-        bert_labels = []
+
+    annotator1 = json.load(open("../dataset/annotator1.json", "r"))
+    annotator2 = json.load(open("../dataset/annotator2.json", "r"))
+    bert_annots = []
+    both_annotator = json.load(open("../dataset/both_anotators.json", "r"))
+    dataset = {
+        "annotator1": annotator1,
+        "annotator2": annotator2,
+        "both_annotator": both_annotator
+    }
+    bert_labels = []
+
+    for item in both_annotator:
+        text_id = item["text_id"]
+        print("Processing Text ID: ", text_id)
+        ann_text = item["text"].lower()
+
+        bert_label = predict(ann_text, model)
+
+        bert_labels.append(bert_label)
+
+        item.pop("ents")
+        item.pop("labels")
+        bert_annotation = item
+        bert_annotation["labels"] = bert_label
+        bert_annots.append(bert_annotation)
+    with open("../dataset/bert_annotations.json", "w") as f:
+        json.dump(bert_annots, f, cls=NpEncoder)
+
+    for data_label in dataset:
         true_labels = []
-        kappa = []
-        bert_annotator = []
-        annotator_entities = json.load(open(os.path.join(DATA_PATH, filename), "r"))
-        for item in annotator_entities:
-            text_id = item["text_id"]
-            print("Processing Text ID: ", text_id)
-            ann_text = item["text"].lower()
+        items = dataset[data_label]
 
-            bert_label = predict(ann_text, model)
-            true_label = text2labels(ann_text)
-            true_labels.append(true_label)
-            bert_labels.append(bert_label)
-            kappa_score = cohen_kappa_score(true_label, bert_label, labels=["O", "I-COMMA", "I-PERIOD"])
-            kappa.append(kappa_score)
-            print("Kappa score: ", kappa_score)
-            print("-" * 150)
+        for item in items:
+            true_labels.append(item["labels"])
 
-            item.pop("ents")
-            item.pop("labels")
-            bert_annotation = item
-            bert_annotation["labels"] = bert_label
-            bert_annotation["cohen_kappa"] = kappa_score
-            bert_annotator.append(bert_annotation)
-        bert_annotator.append({
-            "cohen_kappa": float(np.mean(kappa)),
-            "cohen_kappa_std": float(np.std(kappa)),
-            "report": classification_report(true_labels, bert_labels, output_dict=True)
-        })
-        print("Mean Kappa score: ", np.mean(kappa))
-        os.makedirs("bert_annotations", exist_ok=True)
-        with open(os.path.join("bert_annotations", "bert_" + filename), "w") as f:
-            json.dump(bert_annotator, f, indent=4, cls=NpEncoder)
+        report = classification_report(true_labels, bert_labels, output_dict=True)
+        pd.DataFrame(report).transpose().to_csv(f"../dataset/{data_label}_bert_report.csv")

@@ -5,7 +5,9 @@ from itertools import combinations
 
 import numpy as np
 import pandas as pd
+import seqeval
 from nltk import wordpunct_tokenize
+from seqeval.metrics import classification_report
 from sklearn.metrics import cohen_kappa_score
 import spacy
 
@@ -28,10 +30,13 @@ def get_words_statistics(dataset):
         word_stats[data_name] = punkt_words
         for item in data:
 
-            word_dict = get_word_label_dict(item["text"], item["labels"])
+            try:
+                word_dict = get_word_label_dict(item["text"], item["labels"])
 
-            for key in word_dict.keys():
-                word_stats[data_name][key].extend(word_dict[key])
+                for key in word_dict.keys():
+                    word_stats[data_name][key].extend(word_dict[key])
+            except KeyError:
+                print(item)
 
     return word_stats
 
@@ -42,7 +47,7 @@ def get_cohen_statistics(annotator1, annotator2):
     dataset1_empty_labels = 0
     dataset2_empty_labels = 0
     skip = False
-
+    value_erros = 0
     for ann1, ann2 in zip(annotator1, annotator2):
         annot1_label = ann1["labels"]
         annot2_label = ann2["labels"]
@@ -56,9 +61,13 @@ def get_cohen_statistics(annotator1, annotator2):
         if skip:
             skip = False
             continue
-        kappa = cohen_kappa_score(annot1_label, annot2_label, labels=["I-PERIOD", "I-COMMA", "O"])
-        annot_kappa.append(kappa)
+        try:
+            kappa = cohen_kappa_score(annot1_label, annot2_label, labels=["I-PERIOD", "I-COMMA", "O"])
+            annot_kappa.append(kappa)
+        except ValueError:
+            value_erros += 1
 
+    print("skipped to missmatch labels", value_erros)
     skipped = dataset2_empty_labels + dataset1_empty_labels
     statistics = {
         "skipped": skipped,
@@ -99,8 +108,8 @@ def dataset_comparasion(dataset):
 def main():
     annotator1 = json.load(open("../dataset/annotator1.json", "r"))
     annotator2 = json.load(open("../dataset/annotator2.json", "r"))
-    bertannotation = json.load(open("../dataset/annotator2.json", "r"))
-
+    bertannotation = json.load(open("../punctuator/bert_annotations/bert_annotator2.json", "r"))
+    both_annotator = json.load(open("../dataset/both_anotators.json", "r"))
     dataset = {
         "annotator1": annotator1,
         "annotator2": annotator2,
@@ -126,13 +135,26 @@ def main():
     }
 
     pd.DataFrame.from_dict(stats, orient="index").T.round(3).to_csv("stats.csv")
-    print()
 
-    doc = nlp("Ola, tudo bem?")
-    print([token.pos_ for token in doc])
     print(Counter(words_sts["annotator1"]["I-PERIOD"]))
     print(Counter(words_sts["annotator2"]["I-PERIOD"]))
     print(len(words_sts["annotator2"]["I-PERIOD"]))
+    true_labels = []
+    pred_labels = []
+    for i in range(len(both_annotator)):
+
+        if len(both_annotator[i]["labels"]) == len(bertannotation[i]["labels"]):
+            true_labels.extend(both_annotator[i]["labels"])
+            pred_labels.extend(bertannotation[i]["labels"])
+        else:
+            print("missmatch", i)
+
+    print(true_labels[:1])
+    print(pred_labels[:1])
+    report = classification_report(true_labels, pred_labels)
+    # report_df = pd.DataFrame(report).T.round(3)
+    # report_df.to_csv("report.csv")
+    print(report)
     statistics.to_csv("annotator2_bertannotation.csv", index_label="metrics")
 
 
