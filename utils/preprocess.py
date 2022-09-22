@@ -39,11 +39,13 @@ def clean_text(text):
     :param text:
     :return:
     """
+    text = re.sub(r'\[\?\}', '', text).strip()
     text = re.sub(special_pattern, ' ', text)
     text = re.sub(marks, '', text)
     text = re.sub(r'<.*?>', '', text)
     text = re.sub(r'\.+', '.', text)
     text = re.sub(r'\"', '', text).strip()
+    text = re.sub(r'\[\?\}', '', text).strip()
     text = re.sub(r'[*+]', '', text)
     return ' '.join(text.split())
 
@@ -63,7 +65,7 @@ def split_lines(text):
         title = ' '.join(title.split())
     else:
         title = ''
-
+    title = clean_text(title)
     return title, ' '.join(text.split()).strip().split('\n')
 
 
@@ -95,8 +97,8 @@ def preprocess_text(text):
 def main():
     json_list = open("../annotations/Semana1/Anotações/anotador1.jsonl", "r", encoding="utf-8").readlines()
     nlp = spacy.blank("pt")
-    print("  oi  olá mundo".strip())
-    print(preprocess_text('[T] ele ligou para um amigo\n — Álo — Eu achei uma coisa no meu quintal depois da chuva. — Como '
+    print(preprocess_text("[?} O que é o que é?"))
+    print(preprocess_text('[T] ele [?} ligou para um amigo\n — Álo — Eu achei uma coisa no meu quintal depois da chuva. — Como '
                           'é essa (coisa).'))
     breakpoint()
     for json_str in json_list:

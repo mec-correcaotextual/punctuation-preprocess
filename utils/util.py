@@ -1,6 +1,7 @@
 import re
 import string
 
+from nltk import wordpunct_tokenize
 from nltk.tokenize import word_tokenize
 import spacy
 
@@ -86,18 +87,17 @@ def get_gold_token(text, start_char, end_char, tokens_delimiters=None, token_ali
 
 
 def text2labels(sentence):
-    tokens = word_tokenize(sentence.lower())
+    tokens = wordpunct_tokenize(sentence.lower())
 
     labels = []
     for i, token in enumerate(tokens):
         try:
             if token not in string.punctuation:
                 labels.append('O')
-            elif token in ['.', '?', '!', ';']:
-                labels[-1] = 'I-PERIOD'
-            elif token == ',':
-                labels[-1] = 'I-COMMA'
-
+                if token in ['.', '?', '!', ';']:
+                    labels[-1] = 'I-PERIOD'
+                if token == ',':
+                    labels[-1] = 'I-COMMA'
         except IndexError:
             print(sentence)
             print(tokens)

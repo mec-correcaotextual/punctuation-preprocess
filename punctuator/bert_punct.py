@@ -164,6 +164,7 @@ def get_labels(text, pred_dict):
         # Tokenização do BERT tá diferente daque é feita aqui
 
         tokens = wordpunct_tokenize(text.lower())
+        breakpoint()
         for word in tokens:
             if word not in string.punctuation:
                 if pred_dict[word] == "QUESTION":
@@ -223,7 +224,8 @@ if __name__ == '__main__':
     for item in both_annotator:
         text_id = item["text_id"]
         print("Processing Text ID: ", text_id)
-
+        if text_id != 489:
+            continue
         ann_text = item["text"].lower()
         bert_label = predict(ann_text, model)
 
