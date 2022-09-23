@@ -43,7 +43,7 @@ def load_model(path: str, labels: list, max_length: int = 512, model_type: str =
 
 
 def get_predicted_labels(model, sentence: str):
-    predicted_labels = model.predict([sentence])[0]
+    predicted_labels = model.predict([sentence], )[0]
 
     y_pred = []
     for i, pred in predicted_labels:

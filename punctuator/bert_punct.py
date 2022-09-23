@@ -156,16 +156,16 @@ def preprocess_text(text):
     return list(map(lambda x: remove_punctuation(x).lower(), paragraphs))
 
 
-def predict(test_text: str, model):
+def predict(test_text: str, bert_model):
     """
     Predict punctuation for text
     :param test_text:   text to predict punctuation for
-    :param model:  model to use for prediction
+    :param bert_model:  model to use for prediction
     :return:  list of predicted labels
     """
     texts = preprocess_text(test_text)
 
-    prediction_list, raw_outputs = model.predict(texts)
+    prediction_list, raw_outputs = bert_model.predict(texts, )
     pred_dict = merge_dicts(list(chain(*prediction_list)))
     words = tokenize_words(test_text)
     words = sorted(set(words))
