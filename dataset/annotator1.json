@@ -2670,7 +2670,7 @@
         ]
     },
     {
-        "text": "Nesse dia eu estava com Meu primo, e quando nois estavamos No quintal de casa brincando Na chuva, jogando bola. Meu primo jogou a bola Na rua, e Nois formos pegar a bola quando Nois estava voltando para casa, ele encontrou uma pedra muito brilhante. Quando Nois fomos pegar a pedra era de diamante, nos pegamos a pedra e levamos para casa e mostramos para meu pai ele pegou gardou. E no outro dia ele levou para uma joalheria e viu que tinha muito valor e vendeu para mulher.",
+        "text": "Nesse dia eu estava com Meu primo, e quando nois estavamos No quintal de casa brincando Na chuva, jogando bola. Meu primo jogou a bola Na rua, e Nois formos pegar a bola quando Nois estava voltando para casa, ele encontrou uma pedra muito brilhante. Quando Nois fomos pegar a pedra era de diamante, nos pegamos a pedra, e levamos para casa e mostramos para meu pai ele pegou gardou. E no outro dia ele levou para uma joalheria e viu que tinha muito valor e vendeu para mulher.",
         "title": "",
         "text_id": 22,
         "ents": [
@@ -2710,13 +2710,18 @@
                 "COMMA"
             ],
             [
-                374,
-                380,
+                313,
+                318,
+                "COMMA"
+            ],
+            [
+                375,
+                381,
                 "PERIOD"
             ],
             [
-                468,
-                474,
+                469,
+                475,
                 "PERIOD"
             ]
         ],
@@ -2778,7 +2783,7 @@
             "O",
             "O",
             "O",
-            "O",
+            "I-COMMA",
             "O",
             "O",
             "O",
@@ -2925,7 +2930,7 @@
         ]
     },
     {
-        "text": "Oi. Eu sou Diego. Hoje vou conto sobre a hist\u00f3rio do av\u00f3 que ficou rico em um dia de chuva. Tudo isso aconteceu no quintal em um dia chuvoso ilo viu um brilho lindo vinda terra e por olho era um diamante que valio 2. 000. 000 milhoes de reais. Ent\u00e3o ela foi vender em umaloja de joias. Ent\u00e3o ela comprou uma fazendo de puder de vistar, e fez uma mas\u00e3o pra ela e at\u00e9 hoje morar l\u00e1 rico porque soube gastar dinheiro. Ela falo que foi o melhor dia do vido delo E voc\u00ea o que faria com esse dinheiro todo",
+        "text": "Oi. Eu sou Diego. Hoje vou conto sobre a hist\u00f3rio do av\u00f3 que ficou rico em um dia de chuva. Tudo isso aconteceu no quintal em um dia chuvoso ilo viu um brilho lindo vinda terra e por olho era um diamante que valio 2. 000. 000 milhoes de reais. Ent\u00e3o ela foi vender em umaloja de joias. Ent\u00e3o ela comprou uma fazendo de puder de vistar, e fez uma mas\u00e3o pra ela e at\u00e9 hoje morar l\u00e1 rico porque soube gastar dinheiro. Ela falo que foi o melhor dia do vido delo E voc\u00ea o que faria com esse dinheiro todo.",
         "title": "",
         "text_id": 24,
         "ents": [
@@ -2962,6 +2967,11 @@
             [
                 405,
                 413,
+                "PERIOD"
+            ],
+            [
+                495,
+                499,
                 "PERIOD"
             ]
         ],
@@ -3067,7 +3077,7 @@
             "O",
             "O",
             "O",
-            "O"
+            "I-PERIOD"
         ]
     },
     {
@@ -28534,7 +28544,7 @@
         ]
     },
     {
-        "text": "EU ENCONTREI CON TINTA ENT\u00c3O RESOLVI PINTAR. ENCONTREIA MINHA AMIGA E FUI PASIA PELO CON AMIGA EU ENCONTREI OMEU AMIGO SETAVA MUTO A CUPADA. EU RESOLVI FAZE CASANHA DO MEU AMIGO TINHA BOLA DE UVA TOMEI SOCO PELA A JUDA FUI NA CASANHA DA MIA AMIGA BRICA DE BONECA DE POSI SOCO UVA E BOLO DE POSI ELA QUERIA BRICA DE DE BOLA A MINHA AMIGA MEVOU PARA CASA E FUI",
+        "text": "EU ENCONTREI CON TINTA ENT\u00c3O RESOLVI PINTAR. ENCONTREI A MINHA AMIGA E FUI PASIA PELO CON AMIGA EU ENCONTREI OMEU AMIGO SETAVA MUTO A CUPADA. EU RESOLVI FAZE CASANHA DO MEU AMIGO TINHA BOLA DE UVA TOMEI SOCO PELA A JUDA FUI NA CASANHA DA MIA AMIGA BRICA DE BONECA DE POSI SOCO UVA E BOLO DE POSI ELA QUERIA BRICA DE DE BOLA A MINHA AMIGA MEVOU PARA CASA E FUI",
         "title": "O ARM\u00c1RIO E TINTA MAGICA",
         "text_id": 478,
         "ents": [
@@ -28544,8 +28554,8 @@
                 "PERIOD"
             ],
             [
-                133,
-                139,
+                134,
+                140,
                 "PERIOD"
             ]
         ],
@@ -28557,6 +28567,7 @@
             "O",
             "O",
             "I-PERIOD",
+            "O",
             "O",
             "O",
             "O",
@@ -42509,7 +42520,7 @@
         ]
     },
     {
-        "text": "um dia eu achei um pote de tinta em cima do meu guaRda Ropa e fui pintar meu quarto e fui brinca com meus amigos e voutei e fui jantar e ouvi um barulho do meu quarto e fui olhar e eu vi um vuto e fui olhar e n\u00e3o era nada ai fui doRmi e no dia seguinte acoRdei e vi meu quaRto sem as tintas ai fui perguntar para minha m\u00e3e se foi ela. ela respondeu \u2013 n\u00e3o foi eu. eu n\u00e3o entro no seu quarto a 1 dias. a filha falou \u2013 OK. e nt\u00e3o a filha foi investiQar cha mou as amigas no telefone e eles vinheram a Juli disse \u2013 eu acho que foi um fantasma. os outros falaram \u2013 talves possa ser. e viram que as tintas n\u00e3o estava la e no dia seQuinte o quarto de laula estava todo colorido e comanimais de senhado e ela vio um fantasma colorido ela disse \u2013 Oi, o fantasma respondeu \u2013 oi garotinha gostou do seu quarto. A menina disse \u2013 eu dorei. e a menina falou \u2013 obrigada e chamou os amigos para brincar \u2013 e fim",
+        "text": "um dia eu achei um pote de tinta em cima do meu guaRda Ropa e fui pintar meu quarto e fui brinca com meus amigos e voutei e fui jantar e ouvi um barulho do meu quarto e fui olhar e eu vi um vuto e fui olhar e n\u00e3o era nada ai fui doRmi e no dia seguinte acoRdei e vi meu quaRto sem as tintas ai fui perguntar para minha m\u00e3e se foi ela. ela respondeu \u2013 n\u00e3o foi eu. eu n\u00e3o entro no seu quarto a 1 dias. a filha falou \u2013 OK. e nt\u00e3o a filha foi investiQar cha mou as amigas no telefone e eles vinheram a Juli disse \u2013 eu acho que foi um fantasma. os outros falaram \u2013 talves possa ser. e viram que as tintas n\u00e3o estava la e no dia seQuinte o quarto de laula estava todo colorido e comanimais de senhado e ela vio um fantasma colorido ela disse \u2013 Oi, o fantasma respondeu \u2013 oi garotinha gostou do seu quarto. A menina disse \u2013 eu dorei. e a menina falou \u2013 obrigada e chamou os amigos para brincar \u2013 e fim.",
         "title": "O fantasma colorido",
         "text_id": 627,
         "ents": [
@@ -42556,6 +42567,11 @@
             [
                 820,
                 825,
+                "PERIOD"
+            ],
+            [
+                891,
+                894,
                 "PERIOD"
             ]
         ],
@@ -42751,7 +42767,7 @@
             "O",
             "O",
             "O",
-            "O"
+            "I-PERIOD"
         ]
     },
     {

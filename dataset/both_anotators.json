@@ -3276,7 +3276,7 @@
         ]
     },
     {
-        "text": "Oi. Eu sou Diego. Hoje vou conto sobre a hist\u00f3rio do av\u00f3 que ficou rico em um dia de chuva, tudo isso aconteceu no quintal em um dia chuvoso. Ilo viu um brilho lindo vinda terra e por olho era um diamante que valio 2. 000. 000 milhoes de reais. Ent\u00e3o ela foi vender em umaloja de joias. Ent\u00e3o ela comprou uma fazendo de puder de vistar, e fez uma mas\u00e3o pra ela e at\u00e9 hoje morar l\u00e1 rico porque soube gastar dinheiro. Ela falo que foi o melhor dia do vido delo E voc\u00ea o que faria com esse dinheiro todo.",
+        "text": "Oi. Eu sou Diego. Hoje vou conto sobre a hist\u00f3rio do av\u00f3 que ficou rico em um dia de chuva, tudo isso aconteceu no quintal em um dia chuvoso. Ilo viu um brilho lindo vinda terra e por olho era um diamante que valio 2. 000. 000 milhoes de reais Ent\u00e3o ela foi vender em umaloja de joias. Ent\u00e3o ela comprou uma fazendo de puder de vistar, e fez uma mas\u00e3o pra ela e at\u00e9 hoje morar l\u00e1 rico porque soube gastar dinheiro. Ela falo que foi o melhor dia do vido delo E voc\u00ea o que faria com esse dinheiro todo.",
         "title": "",
         "text_id": 24,
         "ents": [
@@ -3301,28 +3301,23 @@
                 "PERIOD"
             ],
             [
-                238,
-                243,
+                279,
+                284,
                 "PERIOD"
             ],
             [
-                280,
-                285,
-                "PERIOD"
-            ],
-            [
-                329,
-                335,
+                328,
+                334,
                 "COMMA"
             ],
             [
-                406,
-                414,
+                405,
+                413,
                 "PERIOD"
             ],
             [
-                496,
-                500,
+                495,
+                499,
                 "PERIOD"
             ]
         ],
@@ -3376,7 +3371,7 @@
             "O",
             "O",
             "O",
-            "I-PERIOD",
+            "O",
             "O",
             "O",
             "O",
@@ -17831,7 +17826,7 @@
         ]
     },
     {
-        "text": "erauma ves uma menina que gos tava de tinta ea m\u00e3e dela dechol os potes. De tinta emcima do armario ates de colocar encima ela dese filha voe decha os potes de tintaem sima doar mario ai dechol mais macisa dela tei o montede armario ela n\u00e3o sabia cal era armario queta a. Tinta ai ela casol casol mais n\u00e3o achol mais ela em sua mai dese prasua m\u00e3i que ia pra escola mais navedade ela tinta ai a mai dela de a tinta pra ela lai tava perto ela e deroboe toda a tinta nela ai ela dese mai core a qui m\u00e3i tenta pega a tinta em sima da mia reta nova la porque vose des cupa mai por que eu gosto de pinta mais mai n\u00e3o de cha eu pin ta poroso quel em ganei mai mais filha eso pidir mais mai eu pedir mais osior desse mae que pra escola eu em tai voe colpra mas tabol m\u00e3i iai, a mai dela vio e dese que lindo pintado bei queta desse que gosta muito de pinta ai ela anos fica pentado lai a filha teminoe e foi tama banho lai ela teminoe ifoi chanta lai quando ela foi pramesa lai a mai dela goto filha das tinta gostei mai pai a filha que dia vose vai mida as mias tintas nova em nas sei filha ai a menina foi dormi e quando acordo teve uma sur presa era sel anivesario aiquando ela foi escova osdete a mai e um pai dela o pai dela dese parabes filha de anai mai ese filha mai posso tizoto uma casa meu anivesario pode ser de tinta filha ta pai eufoi chamar bia. sofia biaca e mirele vivele calani e raeli.",
+        "text": "erauma ves uma menina que gos tava de tinta ea m\u00e3e dela dechol os potes. De tinta emcima do armario ates de colocar encima ela dese filha voe decha os potes de tintaem sima doar mario ai dechol mais macisa dela tei o montede armario ela n\u00e3o sabia cal era armario queta. A tinta ai ela casol casol mais n\u00e3o achol mais ela em sua mai dese prasua m\u00e3i que ia pra escola mais navedade ela tinta ai a mai dela de a tinta pra ela lai tava perto ela e deroboe toda a tinta nela ai ela dese mai core a qui m\u00e3i tenta pega a tinta em sima da mia reta nova la porque vose des cupa mai por que eu gosto de pinta mais mai n\u00e3o de cha eu pin ta poroso quel em ganei mai mais filha eso pidir mais mai eu pedir mais osior desse mae que pra escola eu em tai voe colpra mas tabol m\u00e3i iai, a mai dela vio e dese que lindo pintado bei queta desse que gosta muito de pinta ai ela anos fica pentado lai a filha teminoe e foi tama banho lai ela teminoe ifoi chanta lai quando ela foi pramesa lai a mai dela goto filha das tinta gostei mai pai a filha que dia vose vai mida as mias tintas nova em nas sei filha ai a menina foi dormi e quando acordo teve uma sur presa era sel anivesario aiquando ela foi escova osdete a mai e um pai dela o pai dela dese parabes filha de anai mai ese filha mai posso tizoto uma casa meu anivesario pode ser de tinta filha ta pai eufoi chamar bia. sofia biaca e mirele vivele calani e raeli.",
         "title": "Muitos pontes de tinta",
         "text_id": 182,
         "ents": [
@@ -17841,8 +17836,8 @@
                 "PERIOD"
             ],
             [
-                269,
-                270,
+                263,
+                268,
                 "PERIOD"
             ],
             [
@@ -17913,8 +17908,8 @@
             "O",
             "O",
             "O",
-            "O",
             "I-PERIOD",
+            "O",
             "O",
             "O",
             "O",
@@ -18898,7 +18893,7 @@
         ]
     },
     {
-        "text": "Um dia ensolarado. eu na praia junto com o meu. Pai. meu Pai Disse: Vamos centar na quele Banco. Eu disse: mas antes Vamos comprar sorvete. Meu Pa\u00ed Disse: T\u00e1. dai fomos chutar bola eu. Disse. Eu sou o goleiro e Voc\u00e9 chuta tabom. Dai. Come\u00e7amos a chutar. Meu Pai Disse: Chega J\u00e1 Estou cansado Vamos para casa. Chegamos em casa, la minha V\u00f3, esta. Na minha casa fazendo Bolo com. A minha M\u00e3e Dai fui tomar Banho Para Jantar. dai fui tomar Banho. Quando Estava Tomando, Meu Pai disse: anda eu quero. Tomar Banho. dai terminei de tomar Banho, e fui Jantar. comi mas eu queria Brincar mais dai Chamei minha m\u00e3e. minha m\u00e3e falou: taVamos eu falei. Vamos Brincar de Esconde Esconde. depois, minha m\u00e3e falo: Vamos Parar J\u00e1 chega Vamos dormir.",
+        "text": "Um dia ensolarado. eu na praia junto com o meu. Pai. meu Pai Disse: Vamos centar na quele Banco. Eu disse: mas antes Vamos comprar sorvete. Meu Pa\u00ed Disse: T\u00e1. dai fomos chutar bola. Eu Disse. Eu sou o goleiro e Voc\u00e9 chuta tabom dai. Come\u00e7amos a chutar. Meu Pai Disse: Chega J\u00e1 Estou cansado Vamos para casa. Chegamos em casa, la minha V\u00f3. Esta na minha casa fazendo Bolo com. A minha M\u00e3e Dai fui tomar Banho Para Jantar. dai fui tomar. Banho quando Estava Tomando, Meu Pai disse: anda eu quero. Tomar Banho. dai terminei de tomar Banho, e fui Jantar. comi mas eu queria Brincar mais dai Chamei minha m\u00e3e. minha m\u00e3e falou: taVamos eu falei. Vamos Brincar de Esconde Esconde. depois, minha m\u00e3e falo: Vamos Parar J\u00e1 chega Vamos dormir.",
         "title": "Brincando na Praia",
         "text_id": 188,
         "ents": [
@@ -18928,8 +18923,8 @@
                 "PERIOD"
             ],
             [
-                181,
-                183,
+                176,
+                180,
                 "PERIOD"
             ],
             [
@@ -18938,98 +18933,88 @@
                 "PERIOD"
             ],
             [
-                222,
-                227,
+                228,
+                231,
                 "PERIOD"
             ],
             [
-                229,
-                232,
+                245,
+                251,
                 "PERIOD"
             ],
             [
-                246,
-                252,
+                302,
+                306,
                 "PERIOD"
             ],
             [
-                303,
-                307,
-                "PERIOD"
-            ],
-            [
-                321,
-                325,
+                320,
+                324,
                 "COMMA"
             ],
             [
-                340,
-                344,
+                371,
+                374,
                 "PERIOD"
             ],
             [
-                373,
-                376,
+                413,
+                419,
                 "PERIOD"
             ],
             [
-                415,
-                421,
+                429,
+                434,
                 "PERIOD"
             ],
             [
-                437,
-                442,
-                "PERIOD"
-            ],
-            [
-                458,
-                465,
+                456,
+                463,
                 "COMMA"
             ],
             [
-                490,
-                495,
+                488,
+                493,
                 "PERIOD"
             ],
             [
-                503,
-                508,
+                501,
+                506,
                 "PERIOD"
             ],
             [
-                532,
-                537,
+                530,
+                535,
                 "COMMA"
             ],
             [
-                545,
-                551,
+                543,
+                549,
                 "PERIOD"
             ],
             [
-                602,
-                605,
+                600,
+                603,
                 "PERIOD"
             ],
             [
-                635,
-                640,
+                633,
+                638,
                 "PERIOD"
             ],
             [
-                667,
+                665,
+                672,
+                "PERIOD"
+            ],
+            [
                 674,
-                "PERIOD"
-            ],
-            [
-                676,
-                682,
+                680,
                 "COMMA"
             ],
             [
-                727,
-                733,
+                725,
+                731,
                 "PERIOD"
             ]
         ],
@@ -19067,17 +19052,17 @@
             "O",
             "O",
             "O",
-            "O",
-            "I-PERIOD",
             "I-PERIOD",
             "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
             "I-PERIOD",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
             "I-PERIOD",
             "O",
             "O",
@@ -19097,16 +19082,7 @@
             "I-COMMA",
             "O",
             "O",
-            "I-COMMA",
             "I-PERIOD",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "I-PERIOD",
-            "O",
-            "O",
             "O",
             "O",
             "O",
@@ -19117,7 +19093,16 @@
             "O",
             "O",
             "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
             "I-PERIOD",
+            "O",
+            "O",
+            "I-PERIOD",
+            "O",
             "O",
             "O",
             "I-COMMA",
@@ -27300,7 +27285,7 @@
         ]
     },
     {
-        "text": "tomar um Banho depois venha o que aconteceu Bom quando. Eu sai do Banho minha m\u00e3e meu quarto e Perguntou o que e isso. Minha filha no ch\u00e3o assim, eu achei. Encima do armario ai peguei para fazer umas pintura na parede so que ent\u00e3o esperei secar quando voltei no quarto. N\u00e3o estava mais la mas fiquei com uma",
+        "text": "tomar um Banho depois venha o que aconteceu Bom quando. Eu sai do Banho minha m\u00e3e meu quarto e Perguntou o que e isso. Minha filha no ch\u00e3o assim, eu achei encima. Do armario ai peguei para fazer umas pintura na parede so que ent\u00e3o esperei secar quando voltei no quarto. N\u00e3o estava mais la mas fiquei com uma.",
         "title": "",
         "text_id": 337,
         "ents": [
@@ -27320,13 +27305,18 @@
                 "COMMA"
             ],
             [
-                149,
-                154,
+                155,
+                161,
                 "PERIOD"
             ],
             [
                 262,
                 268,
+                "PERIOD"
+            ],
+            [
+                304,
+                307,
                 "PERIOD"
             ]
         ],
@@ -27361,25 +27351,6 @@
             "O",
             "I-COMMA",
             "O",
-            "I-PERIOD",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
             "O",
             "I-PERIOD",
             "O",
@@ -27389,7 +27360,26 @@
             "O",
             "O",
             "O",
-            "O"
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "I-PERIOD",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "I-PERIOD"
         ]
     },
     {
@@ -29899,7 +29889,7 @@
         ]
     },
     {
-        "text": "que pintar seu quarto todo junto um uma menina encontrou alguns potes de tintas enormes ela solveu chama. Sua amiga para ir na casa dela pintar dela todo, quando a amiga. Da menina chegou na casa dela, elas foram para o quarto da menina, chegando no qu menina, das duas comesaram a retirar as coisas, elas comesaram retirando as coisas e menores e menos pesadas depois pelas coisas mais grandes, pesadas, mas como elas n\u00e3o tinham muita for\u00e7a menina chamou o pai dela para ajudalas retirando as coisas grandes e pesadas, eles decidiram tirar primeiro o arm\u00e1rio, ai decidiram retirar depois cama e a estante, depois que eles retiraram arm\u00e1rio, eles foram desmonta a cama, depois que eles desmontaram a cama, eles pegaram, as pe\u00e7as da cama e levaram para a sala de estar, depois eles desmontaram a estante e levaram tudo, l\u00e1 para a sala, ai o pai da menina quis ajuda elas duas a pintar, o quarto, ent\u00e3o eles comesaram a pintar o quarto todo de, roxo e petro as cores favoritas da 17 menina",
+        "text": "que pintar seu quarto todo junto um uma menina encontrou alguns potes de tintas enormes ela solveu chama. Sua amiga para ir na casa dela pintar dela todo, quando a amiga. Da menina chegou na casa dela, elas foram para o quarto da menina, chegando no qu menina, das duas comesaram a retirar as coisas, elas comesaram retirando as coisas e menores e menos pesadas depois pelas coisas mais grandes, pesadas, mas como elas n\u00e3o tinham muita for\u00e7a menina chamou o pai dela para ajudalas retirando as coisas grandes e pesadas, eles decidiram tirar primeiro o arm\u00e1rio, ai decidiram retirar depois cama e a estante, depois que eles retiraram arm\u00e1rio, eles foram desmonta a cama, depois que eles desmontaram a cama, eles pegaram, as pe\u00e7as da cama e levaram para a sala de estar, depois eles desmontaram a estante e levaram tudo, l\u00e1 para a sala, ai o pai da menina quis ajuda elas duas a pintar, o quarto, ent\u00e3o eles comesaram a pintar o quarto todo de roxo, e petro as cores favoritas da 17 menina.",
         "title": "",
         "text_id": 348,
         "ents": [
@@ -30009,9 +29999,14 @@
                 "COMMA"
             ],
             [
-                939,
-                941,
+                942,
+                946,
                 "COMMA"
+            ],
+            [
+                981,
+                987,
+                "PERIOD"
             ]
         ],
         "labels": [
@@ -30182,6 +30177,7 @@
             "O",
             "O",
             "O",
+            "O",
             "I-COMMA",
             "O",
             "O",
@@ -30190,12 +30186,11 @@
             "O",
             "O",
             "O",
-            "O",
-            "O"
+            "I-PERIOD"
         ]
     },
     {
-        "text": "EU \u00c9 MINHA AMIGA ENCONTRAMOS ALGUNS POTES DE TINTA EM CIMA DO ARM\u00c1RIO DELA. ENT\u00c3O NOS RESOLVEMOS PINTAR A PAREDE DO QUARTO DELA E ALGUMAS. ELA FOI PARA MINHA CASA \u00c9 DECIDIMOS PINTAR O MEU BAGUN\u00c7A \u00c9 i i E GORA RESOLVEMOS PINTAR A CASA DE TODOS. AMIGOS \u00cd DOS NOSSOS AMIGOS. \u00c9 MINHA AMIGA \u00c9 EU TODOS OS SABEOS \u00c9 OS DOMINGO AQUELE PESSOAS \u00c9 A MINHA FAMILIA VOCE VAI PINTAR CO MIGO. \u00c9 EU PINTAR \u00c9 DESENHAR. \u00c9 MEUS PRIMOS MEU IRMAO \u00c9 MINHA AMIGOS. \u00c9 MINHA MAE MEU PAI. \u00c9 HOJE EU ADORO PINTAR \u00c9 MINHA. TODAS, TODOS OS DIAS EU A CORDO E VOU LOGO PINTAR \u00c9 MINHA ARTI",
+        "text": "EU \u00c9 MINHA AMIGA ENCONTRAMOS ALGUNS POTES DE TINTA EM CIMA DO ARM\u00c1RIO DELA. ENT\u00c3O NOS RESOLVEMOS PINTAR A PAREDE DO QUARTO DELA E ALGUMAS. ELA FOI PARA MINHA CASA \u00c9 DECIDIMOS PINTAR O MEU BAGUN\u00c7A \u00c9 i i E GORA RESOLVEMOS PINTAR A CASA DE TODOS. AMIGOS \u00cd DOS NOSSOS AMIGOS. \u00c9 MINHA AMIGA \u00c9 EU TODOS OS SABEOS \u00c9 OS DOMINGO AQUELE PESSOAS \u00c9 A MINHA FAMILIA VOCE VAI PINTAR CO MIGO. \u00c9 EU PINTAR \u00c9 DESENHAR. \u00c9 MEUS PRIMOS MEU IRMAO \u00c9 MINHA AMIGOS. \u00c9 MINHA MAE MEU PAI. \u00c9 HOJE EU ADORO PINTAR \u00c9 MINHA. TODAS, TODOS OS DIAS EU A CORDO E VOU LOGO PINTAR \u00c9 MINHA ARTI.",
         "title": "O dia De eu \u00e9 minha amiga pintamos o quarto dela",
         "text_id": 459,
         "ents": [
@@ -30248,6 +30243,11 @@
                 495,
                 500,
                 "COMMA"
+            ],
+            [
+                553,
+                557,
+                "PERIOD"
             ]
         ],
         "labels": [
@@ -30363,7 +30363,7 @@
             "O",
             "O",
             "O",
-            "O"
+            "I-PERIOD"
         ]
     },
     {

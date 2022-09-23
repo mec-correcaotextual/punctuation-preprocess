@@ -2805,7 +2805,7 @@
         ]
     },
     {
-        "text": "Nesse, dia eu estava com Meu primo e quando nois estavamos. No quintal de casa brincando Na chuva, jogando bola. Meu primo jogou a bola Na rua. E Nois formos pegar a bola. Quando Nois estava voltando para casa, ele encontrou uma pedra muito brilhante. Quando Nois fomos pegar. A pedra era de diamante nos pegamos a pedra e levamos para casa e mostramos para meu pai. Ele pegou gardou. E no outro, dia ele levou para uma joalheria e viu que tinha muito valor e vendeu para mulher.",
+        "text": "Nesse, dia eu estava com Meu primo e quando nois estavamos. No quintal de casa brincando Na chuva, jogando bola. Meu primo jogou a bola Na rua. E Nois formos pegar a bola. Quando Nois estava voltando para casa, ele encontrou uma pedra muito brilhante. Quando Nois fomos pegar. A pedra era de diamante, nos pegamos a pedra, e levamos para casa e mostramos para meu pai. Ele pegou gardou. E no outro dia, ele levou para uma joalheria e viu que tinha muito valor e vendeu para mulher.",
         "title": "",
         "text_id": 22,
         "ents": [
@@ -2855,23 +2855,33 @@
                 "PERIOD"
             ],
             [
-                362,
-                365,
-                "PERIOD"
-            ],
-            [
-                377,
-                383,
-                "PERIOD"
-            ],
-            [
-                390,
-                395,
+                292,
+                300,
                 "COMMA"
             ],
             [
-                472,
-                478,
+                316,
+                321,
+                "COMMA"
+            ],
+            [
+                364,
+                367,
+                "PERIOD"
+            ],
+            [
+                379,
+                385,
+                "PERIOD"
+            ],
+            [
+                398,
+                401,
+                "COMMA"
+            ],
+            [
+                474,
+                480,
                 "PERIOD"
             ]
         ],
@@ -2929,27 +2939,27 @@
             "O",
             "O",
             "O",
+            "I-COMMA",
             "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "O",
-            "I-PERIOD",
-            "O",
-            "O",
-            "I-PERIOD",
             "O",
             "O",
             "I-COMMA",
             "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "O",
+            "I-PERIOD",
+            "O",
+            "O",
+            "I-PERIOD",
+            "O",
+            "O",
+            "O",
+            "I-COMMA",
             "O",
             "O",
             "O",
@@ -10857,7 +10867,7 @@
         ]
     },
     {
-        "text": "Era uma vez uma escola muito legal e divertida mais uma aluna nova chegou na escola, mais nigu\u00e9m falava com ela ou muito menos brincava. ela era muito sozinha mais mal sabia que ia ganhar uma melhor amiga. Ela Tamb\u00e9m era uma nova aluna ela come\u00e7ou a falar com ela e brincar. At\u00e9 que um dia ela liguou para sua amiga falando o seguinte al\u00f3 amiga enfeslizmente n\u00e3o posso ir a escola, beijos. E se passou 3 anos e ainda elas era amigas Elas completaram 20 anos e tinha um filho ela envelheceram e ainda eram amigas elas tiveram netinhos e etc, depois de 6 anos os netinhos crecseram. E se passaram 30 anos, e eles crecseram tiveram filhos lindos. e assim formou a familia. maes chegou um dia gue elas se foram as pessoas choraram muito e muito. e assim fois. a filha dela tamb\u00e9m se foram, os filhos, parabens os familiares falou pois elas eram guerreiras e felizes e graciosas e mais familiares se foram e foi assim por diante. as pessoas das escotas foram no velorios dos familiares. Tiveram homenagens aos familiares depois de 5 anos eles foram ao cemiterio e logo ap\u00f3s eles foram fazer mais homenagens. Eles passaram horas l\u00e1 e depois de 4 horas eles foram embora.",
+        "text": "Era uma vez uma escola muito legal e divertida mais uma aluna nova chegou na escola, mais nigu\u00e9m falava com ela ou muito menos brincava. ela era muito sozinha mais mal sabia que ia ganhar uma melhor amiga. Ela Tamb\u00e9m era uma nova aluna ela come\u00e7ou a falar com ela e brincar. At\u00e9 que um dia ela liguou para sua amiga falando o seguinte al\u00f3 amiga enfeslizmente n\u00e3o posso ir a escola, beijos. E se passou 3 anos e ainda elas era amigas Elas completaram 20 anos e tinha um filho ela envelheceram e ainda eram amigas elas tiveram netinhos e etc, depois de 6 anos os netinhos crecseram. E se passaram 30 anos, e eles crecseram tiveram filhos lindos. e assim formou a familia. maes chegou um dia gue elas se foram, as pessoas choraram muito e muito. e assim fois. a filha dela tamb\u00e9m se foram, os filhos, parabens os familiares falou pois elas eram guerreiras e felizes e graciosas, e mais familiares se foram e foi assim por diante. as pessoas das escotas foram no velorios dos familiares. Tiveram homenagens aos familiares, depois de 5 anos eles foram ao cemiterio e logo ap\u00f3s eles foram fazer mais homenagens. Eles passaram horas l\u00e1 e depois de 4 horas eles foram embora.",
         "title": "A menina nova",
         "text_id": 156,
         "ents": [
@@ -10917,43 +10927,58 @@
                 "PERIOD"
             ],
             [
-                735,
-                740,
-                "PERIOD"
-            ],
-            [
-                750,
-                754,
-                "PERIOD"
-            ],
-            [
-                779,
-                784,
+                701,
+                706,
                 "COMMA"
             ],
             [
-                789,
-                795,
+                736,
+                741,
+                "PERIOD"
+            ],
+            [
+                751,
+                755,
+                "PERIOD"
+            ],
+            [
+                780,
+                785,
                 "COMMA"
             ],
             [
-                917,
-                923,
+                790,
+                796,
+                "COMMA"
+            ],
+            [
+                865,
+                874,
+                "COMMA"
+            ],
+            [
+                919,
+                925,
                 "PERIOD"
             ],
             [
-                970,
-                980,
+                972,
+                982,
                 "PERIOD"
             ],
             [
-                1091,
-                1101,
+                1007,
+                1017,
+                "COMMA"
+            ],
+            [
+                1094,
+                1104,
                 "PERIOD"
             ],
             [
-                1157,
-                1163,
+                1160,
+                1166,
                 "PERIOD"
             ]
         ],
@@ -11090,7 +11115,7 @@
             "O",
             "O",
             "O",
-            "O",
+            "I-COMMA",
             "O",
             "O",
             "O",
@@ -11119,7 +11144,7 @@
             "O",
             "O",
             "O",
-            "O",
+            "I-COMMA",
             "O",
             "O",
             "O",
@@ -11142,7 +11167,7 @@
             "O",
             "O",
             "O",
-            "O",
+            "I-COMMA",
             "O",
             "O",
             "O",
@@ -12864,7 +12889,7 @@
         ]
     },
     {
-        "text": "Umas ves eu fui em uma pra\u00e7a com a minha m\u00e3e e eu levei meu cachorro tot\u00f3 correu atras de um esquilo. La na pra\u00e7a tinham arvores, folhas, esquilos, bancos A minha m\u00e3e mandou eu pear a boussa dela. Depois disso eu subi em uma arvore. Minha m\u00e3e falou para eu desse para nois i, comer. Ela preparou um deli cioso sanbuixe e o tot\u00f3 tava comendo ra\u00e7\u00e3o. Tinha uma grande arvore na prassa e tinha um galho podre. Eu perguntei a minha m\u00e3e porque aquele galo esta podre. Ela respondeu porque esa arvore e muito antiga. E dai e fui andar de bicicleta so que a corente caiu! e eu pedi ajuda para minha m\u00e3e e ela arrumou para. Mim e eu fiquei passiando e eu vi folhas, carros, motos, passarihos e pegar uma forpara minha mae e o toto junto. E ele pegou uma que caiu da arvore e dai eu voutei A andar de bicicleta so que um tronco de arvore quase caiu na minha cabe\u00e7a e eu cai de bicicleta e depois eu fui pa casa e dormi",
+        "text": "Umas ves eu fui em uma pra\u00e7a com a minha m\u00e3e e eu levei meu cachorro tot\u00f3 correu atras de um esquilo. La na pra\u00e7a tinham arvores, folhas, esquilos, bancos A minha m\u00e3e mandou eu pear a boussa dela. Depois disso eu subi em uma arvore. Minha m\u00e3e falou para eu desse para nois i, comer. Ela preparou um deli cioso sanbuixe e o tot\u00f3 tava comendo ra\u00e7\u00e3o. Tinha uma grande arvore na prassa e tinha um galho podre. Eu perguntei a minha m\u00e3e porque aquele galo esta podre. Ela respondeu porque esa arvore e muito antiga. E dai e fui andar de bicicleta so que a corente caiu! e eu pedi ajuda para minha m\u00e3e e ela arrumou para mim. E eu fiquei passiando e eu vi folhas, carros, motos, passarihos e pegar uma forpara minha mae e o toto junto. E ele pegou uma que caiu da arvore e dai eu voutei A andar de bicicleta so que um tronco de arvore quase caiu na minha cabe\u00e7a e eu cai de bicicleta e depois eu fui pa casa e dormi",
         "title": "A Praca da arvore",
         "text_id": 164,
         "ents": [
@@ -12934,8 +12959,8 @@
                 "PERIOD"
             ],
             [
-                609,
-                613,
+                614,
+                617,
                 "PERIOD"
             ],
             [
@@ -13079,8 +13104,8 @@
             "O",
             "O",
             "O",
-            "I-PERIOD",
             "O",
+            "I-PERIOD",
             "O",
             "O",
             "O",
@@ -31264,7 +31289,7 @@
         ]
     },
     {
-        "text": "EU ENCONTREI CON TINTA ENT\u00c3O RESOLVI PINTAR. ENCONTREIA MINHA AMIGA E FUI PASIA PELO CON AMIGA EU ENCONTREI OMEU AMIGO SETAVA MUTO A CUPADA EU RESOLVI FAZE CASANHA DO MEU AMIGO TINHA BOLA DE UVA TOMEI SOCO PELA A JUDA FUI NA CASANHA DA MIA AMIGA BRICA DE BONECA DE POSI SOCO UVA E BOLO DE POSI ELA QUERIA BRICA DE DE BOLA A MINHA AMIGA MEVOU PARA CASA E FUI",
+        "text": "EU ENCONTREI CON TINTA ENT\u00c3O RESOLVI PINTAR. ENCONTREI A MINHA AMIGA E FUI PASIA PELO CON AMIGA EU ENCONTREI OMEU AMIGO SETAVA MUTO A CUPADA EU RESOLVI FAZE CASANHA DO MEU AMIGO TINHA BOLA DE UVA TOMEI SOCO PELA A JUDA FUI NA CASANHA DA MIA AMIGA BRICA DE BONECA DE POSI SOCO UVA E BOLO DE POSI ELA QUERIA BRICA DE DE BOLA A MINHA AMIGA MEVOU PARA CASA E FUI",
         "title": "O ARM\u00c1RIO E TINTA MAGICA",
         "text_id": 478,
         "ents": [
@@ -31282,6 +31307,7 @@
             "O",
             "O",
             "I-PERIOD",
+            "O",
             "O",
             "O",
             "O",
@@ -35310,7 +35336,7 @@
         ]
     },
     {
-        "text": "mes paaraaa minha familia fomos ao shoping quando nos fomos comer sorvete e pipoca ja quase no final da tarde nos ja estava indo embora as lampadas se apagaram nos pensamos que tinha faltado energia estava arnas caminha para saida mas. As portas estav am fechadas so ai nos perceb emos que estavamos presos o ch\u00e3o desabou e nas comas em sima de o monte de camas elasticas. Nos entramos em uma tumba onde tinha varias armadilhas mas conseguimos chegar do outro lado achamos 3 tuneis nos entramos um tuneu diferentes a da minha mae foi facil ent\u00e3o ela conseguiu passar j\u00e1 o meu e o do meu pai tinha varias aranhas mas conseguimos passar e fomos para casa",
+        "text": "mes paaraaa minha familia fomos ao shoping quando nos fomos comer sorvete e pipoca ja quase no final da tarde nos ja estava indo embora as lampadas se apagaram nos pensamos que tinha faltado energia estava arnas caminha para saida mas. As portas estav am fechadas so ai nos perceb emos que estavamos presos o ch\u00e3o desabou e nas comas em sima de o monte de camas elasticas. Nos entramos em uma tumba onde tinha varias armadilhas mas conseguimos chegar do outro lado achamos 3 tuneis nos entramos um tuneu diferentes a da minha mae foi facil ent\u00e3o ela conseguiu passar j\u00e1 o meu e o do meu pai tinha varias aranhas mas conseguimos passar e fomos para casa.",
         "title": "O shoping asombrado",
         "text_id": 505,
         "ents": [
@@ -35322,6 +35348,11 @@
             [
                 362,
                 371,
+                "PERIOD"
+            ],
+            [
+                648,
+                652,
                 "PERIOD"
             ]
         ],
@@ -35444,7 +35475,7 @@
             "O",
             "O",
             "O",
-            "O"
+            "I-PERIOD"
         ]
     },
     {

@@ -48,6 +48,7 @@ def convert_annotations(
             student_entity["labels"] = text2labels(student_entity["text"])
 
             text = student_entity['text']
+            ann_text_list = list(text)
             len_b = len(list(text))
             text = fix_break_lines(text)
             global_shift = 0

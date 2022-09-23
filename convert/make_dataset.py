@@ -68,7 +68,8 @@ def convert_annotations(
                         continue
 
                     symbol = '.' if label == 'Erro de Pontuação' else ','
-
+                    if symbol == ',' and text_id == 627:
+                        breakpoint()
                     ann_text_list, local_shift = fix_punctuation(ann_text_list, start_char, end_char, punct=symbol)
 
                     global_shift += local_shift

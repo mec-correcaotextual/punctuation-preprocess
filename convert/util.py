@@ -50,9 +50,11 @@ def fix_punctuation(ann_text_list, start_char, end_char, punct):
         text_span = ann_text_list[start_char:end_char][0]
     except IndexError:
         # Não há matches com o caracter do texto e então significa que o aluno esqueceu ponto final.
-        if punct == '.':
+        if ann_text_list[-1] not in ['.', ',', ';', ':', '!', '?']:
             ann_text_list.append('.')
             shift += 1
+        elif ann_text_list[-1] in other_punctuations:
+            ann_text_list[-1] = '.'
         return ann_text_list, shift
 
     if text_span != punct:
@@ -82,7 +84,17 @@ def fix_punctuation(ann_text_list, start_char, end_char, punct):
         for i in range(start_char - 1, end_char + 1):
             if ann_text_list[i] == punct:
                 ann_text_list.pop(i)  # Remove pontuação extra
+
+                # Adiciona espaço após a pontuação se necessário
+                if end_char + 1 >= len(ann_text_list):
+                    ann_text_list.append('.')  # Adiciona ponto final
+                    break
+                if ann_text_list[i] in [' ', '\n', '\t']:
+                    shift -= 1
+                else:
+                    ann_text_list.insert(i, ' ')
+
+                    shift += 1
                 break
-        shift -= 1
 
     return ann_text_list, shift
