@@ -245,11 +245,10 @@ if __name__ == '__main__':
     for annt1, annt2, item in zip(annotator1, annotator2, both_annotator):
         text_id = annt1["text_id"]
         print("Processing Text ID: ", text_id)
-        if text_id != 478:
-            continue
+
         ann_text = annt1["text"].lower()
         bert_label = predict(ann_text, model)
-        breakpoint()
+
         bert_labels.append(bert_label)
 
         item.pop("ents")
