@@ -79,7 +79,14 @@ def remove_extra_punctuation(text):
     return text
 
 
+def fix_date(text):
+    text = re.sub(r'(\d{2})/(\d{2})/(\d{4})', r'\1 \2 \3', text)
+    return text
+
+
 def preprocess_text(text):
+
+    text = fix_date(text)
     text = join_split_words(text)
     text = remove_space_before_punctuation(text)
     text = remove_extra_punctuation(text)
@@ -97,9 +104,10 @@ def preprocess_text(text):
 def main():
     json_list = open("../annotations/Semana1/Anotações/anotador1.jsonl", "r", encoding="utf-8").readlines()
     nlp = spacy.blank("pt")
-    print(preprocess_text("[?} O que é o que é?"))
-    print(preprocess_text('[T] ele [?} ligou para um amigo\n — Álo — Eu achei uma coisa no meu quintal depois da chuva. — Como '
-                          'é essa (coisa).'))
+    print(preprocess_text("[?} O que é o que é? 12/12/2022"))
+    print(preprocess_text(
+        '[T] ele [?} ligou para um amigo\n — Álo — Eu achei uma coisa no meu quintal depois da chuva. — Como '
+        'é essa (coisa).'))
     breakpoint()
     for json_str in json_list:
 

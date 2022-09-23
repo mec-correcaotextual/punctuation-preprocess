@@ -94,10 +94,10 @@ def text2labels(sentence):
         try:
             if token not in string.punctuation:
                 labels.append('O')
-                if token in ['.', '?', '!', ';']:
-                    labels[-1] = 'I-PERIOD'
-                if token == ',':
-                    labels[-1] = 'I-COMMA'
+            elif token in ['.', '?', '!', ';']:
+                labels[-1] = 'I-PERIOD'
+            elif token == ',':
+                labels[-1] = 'I-COMMA'
         except IndexError:
             print(sentence)
             print(tokens)

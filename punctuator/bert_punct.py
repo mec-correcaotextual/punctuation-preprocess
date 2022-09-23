@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 import spacy
 import torch
-from nltk.tokenize import wordpunct_tokenize
+from nltk.tokenize import wordpunct_tokenize, word_tokenize
 from seqeval.metrics import classification_report
 from silence_tensorflow import silence_tensorflow
 from sklearn.metrics import cohen_kappa_score
@@ -79,6 +79,21 @@ def get_model(model_path,
     )
 
 
+def tokenize_words(text, remove_punctuation=True):
+    """
+    Tokenize words in text
+    :param remove_punctuation:
+    :param text: text to tokenize
+    :param remove_punctuation:  remove punctuation from text
+    :return:  list of tokens
+    """
+    if remove_punctuation:
+        words = [word for word in wordpunct_tokenize(text) if word not in string.punctuation]
+    else:
+        words = wordpunct_tokenize(text)
+    return words
+
+
 def truncate_sentences(text, max_seq_length=512, overlap=20):
     """
     Truncate sentences to fit into BERT's max_seq_length
@@ -88,25 +103,29 @@ def truncate_sentences(text, max_seq_length=512, overlap=20):
     :return:    list of truncated sentences
     """
     texts = []
-    tokens = bert_tokenizer.tokenize(text)
 
-    if len(tokens) > max_seq_length:
+    tokens = tokenize_words(text)
+
+    bert_tokens = bert_tokenizer.tokenize(text)
+
+    len_text = ((max_seq_length * len(tokens)) // len(bert_tokens)) + 1
+
+    if len(bert_tokens) > max_seq_length:
         if len(tokens) % max_seq_length != 0:
             max_seq_length //= 2
 
-        for i in range(0, len(tokens), max_seq_length):
+        for i in range(0, len(tokens), len_text):
             slide = 0 if i == 0 else overlap
-            truncated_tokens = tokens[i - slide:i + max_seq_length]
-            new_text = bert_tokenizer.convert_tokens_to_string(truncated_tokens)
+            truncated_tokens = tokens[i - slide:i + len_text]
+            texts.append(' '.join(truncated_tokens))
 
-            texts.append(new_text)
-
-        if len(bert_tokenizer.tokenize(texts[-1])) + len(bert_tokenizer.tokenize(texts[-2])) < max_seq_length:
+        if len(tokenize_words(texts[-1])) + len(tokenize_words(texts[-2])) < len_text:
             texts[-2] = texts[-2] + texts[-1]
             texts.pop()
 
     else:
         texts.append(text)
+
     return texts
 
 
@@ -148,9 +167,11 @@ def predict(test_text: str, model):
 
     prediction_list, raw_outputs = model.predict(texts)
     pred_dict = merge_dicts(list(chain(*prediction_list)))
-    words = [word for word in wordpunct_tokenize(test_text) if word not in string.punctuation]
-    words = list(set(words))
-    if len(pred_dict) != len(words):
+    words = tokenize_words(test_text)
+    words = sorted(set(words))
+    pred_words = sorted(pred_dict.keys())
+
+    if len(pred_words) != len(words):
         print("Number of tokens doesn't match")
         print("Number of tokens in text: ", len(words))
         print("Number of tokens in prediction: ", len(pred_dict))
@@ -164,7 +185,7 @@ def get_labels(text, pred_dict):
         # Tokenização do BERT tá diferente daque é feita aqui
 
         tokens = wordpunct_tokenize(text.lower())
-        breakpoint()
+
         for word in tokens:
             if word not in string.punctuation:
                 if pred_dict[word] == "QUESTION":
@@ -224,17 +245,11 @@ if __name__ == '__main__':
     for item in both_annotator:
         text_id = item["text_id"]
         print("Processing Text ID: ", text_id)
-        if text_id != 489:
+        if text_id != 583:
             continue
         ann_text = item["text"].lower()
         bert_label = predict(ann_text, model)
 
-        if len(bert_label) != len(item["labels"]):
-            print("Error: ", len(bert_label), len(item["labels"]))
-            print(ann_text)
-            print(bert_label)
-            print(item["labels"])
-            breakpoint()
         bert_labels.append(bert_label)
 
         item.pop("ents")

@@ -41,22 +41,26 @@ def get_words_statistics(dataset):
     return word_stats
 
 
-def get_cohen_statistics(annotator1, annotator2):
+def get_cohen_statistics(data_dict):
     annot_kappa = []
 
-    dataset1_empty_labels = 0
-    dataset2_empty_labels = 0
+    data_names = list(data_dict.keys())
+    empty_labels = {
+        data_names[0]: 0,
+        data_names[1]: 0
+    }
+
     skip = False
     value_erros = 0
-    for ann1, ann2 in zip(annotator1, annotator2):
+    for ann1, ann2 in zip(data_dict[data_names[0]], data_dict[data_names[1]]):
         annot1_label = ann1["labels"]
         annot2_label = ann2["labels"]
 
         if len(list(set(annot1_label))) == 1 and list(set(annot1_label))[0] == "O":
-            dataset1_empty_labels += 1
+            empty_labels[data_names[0]] += 1
             skip = True
         if len(list(set(annot2_label))) == 1 and list(set(annot2_label))[0] == "O":
-            dataset2_empty_labels += 1
+            empty_labels[data_names[1]] += 1
             skip = True
         if skip:
             skip = False
@@ -68,11 +72,11 @@ def get_cohen_statistics(annotator1, annotator2):
             value_erros += 1
 
     print("skipped to missmatch labels", value_erros)
-    skipped = dataset2_empty_labels + dataset1_empty_labels
+    skipped = empty_labels[data_names[0]] + empty_labels[data_names[1]]
     statistics = {
         "skipped": skipped,
-        "dataset2_empty_labels": dataset2_empty_labels,
-        "dataset1_empty_labels": dataset1_empty_labels,
+        f"{data_names[1]}_empty_labels":  empty_labels[data_names[1]],
+        f"{data_names[0]}_empty_labels": empty_labels[data_names[0]],
         "kappa_mean": np.mean(annot_kappa),
         "kappa_std": np.std(annot_kappa),
         "kappa_min": np.min(annot_kappa),
@@ -83,7 +87,7 @@ def get_cohen_statistics(annotator1, annotator2):
         "kappa_90": np.percentile(annot_kappa, 90),
         "kappa_95": np.percentile(annot_kappa, 95),
         "kappa_99": np.percentile(annot_kappa, 99),
-        "total_annotations": len(annotator1)
+        "total_annotations": len(data_dict[data_names[0]])
     }
     return statistics
 
@@ -100,7 +104,10 @@ def dataset_comparasion(dataset):
         data1 = dataset[data_name1]
         data2 = dataset[data_name2]
 
-        statistics[f"{data_name1}_{data_name2}"] = get_cohen_statistics(data1, data2)
+        statistics[f"{data_name1}_{data_name2}"] = get_cohen_statistics({
+            data_name1: data1,
+            data_name2: data2
+        })
 
     return pd.DataFrame.from_dict(statistics, orient="index").T.round(3)
 
@@ -116,6 +123,7 @@ def main():
         "bertannotation": bertannotation
     }
     statistics = dataset_comparasion(dataset)
+    statistics.to_csv("statistics.csv", index_label="metrics")
     words_sts = get_words_statistics(dataset)
     print(words_sts["annotator1"]["I-PERIOD"][:10])
     print(words_sts["annotator2"]["I-PERIOD"][:10])
@@ -134,7 +142,7 @@ def main():
         },
     }
 
-    pd.DataFrame.from_dict(stats, orient="index").T.round(3).to_csv("stats.csv")
+    pd.DataFrame.from_dict(stats, orient="index").T.round(3).to_csv("punkt_stats.csv")
 
     print(Counter(words_sts["annotator1"]["I-PERIOD"]))
     print(Counter(words_sts["annotator2"]["I-PERIOD"]))
@@ -151,11 +159,11 @@ def main():
 
     print(true_labels[:1])
     print(pred_labels[:1])
-    report = classification_report(true_labels, pred_labels)
+    #report = classification_report(true_labels, pred_labels)
     # report_df = pd.DataFrame(report).T.round(3)
     # report_df.to_csv("report.csv")
-    print(report)
-    statistics.to_csv("annotator2_bertannotation.csv", index_label="metrics")
+    #print(report)
+
 
 
 if __name__ == '__main__':
