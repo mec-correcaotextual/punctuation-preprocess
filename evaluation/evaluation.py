@@ -70,16 +70,13 @@ def get_valid_dataset(dataset):
     valid_labels = defaultdict(list)
     datanames = list(dataset.keys())
 
-    for annot1, annot2, annot3 in zip(dataset[datanames[0]], dataset[datanames[1]], dataset[datanames[2]]):
+    for annts in zip(*dataset.values()):
 
-        if any([check_if_empty(annot1["labels"]), check_if_empty(annot2["labels"]),
-                check_if_empty(annot3["labels"])]):
+        if any([check_if_empty(annt["labels"]) for annt in annts]):
             continue
-        if len(annot1["labels"]) != len(annot2["labels"]) or len(annot1["labels"]) != len(annot3["labels"]):
-            breakpoint()
-        for data_label, item in [(datanames[0], annot1["labels"]), (datanames[1], annot2["labels"]),
-                                 (datanames[2], annot3["labels"])]:
-            valid_labels[data_label].append(item)
+
+        for j in range(len(annts)):
+            valid_labels[datanames[j]].append(annts[j]["labels"])
 
     return valid_labels
 
@@ -161,9 +158,12 @@ def main():
     annotator2 = json.load(open("../dataset/annotator2.json", "r"))
     bertannotation = json.load(open("../dataset/bert_annotations.json", "r"))
     both_annotator = json.load(open("../dataset/both_anotators.json", "r"))
+    print(len(both_annotator))
+    print(len(bertannotation))
     dataset = {
         "annotator1": annotator1,
         "annotator2": annotator2,
+        "both_annotator": both_annotator,
         "bertannotation": bertannotation
     }
     statistics = dataset_comparasion(dataset)
@@ -171,8 +171,8 @@ def main():
     words_sts = get_words_statistics(dataset)
 
     valid_dataset = get_valid_dataset(dataset)
-
-    report = classification_report(valid_dataset["annotator1"], valid_dataset["bertannotation"], output_dict=True)
+    print(valid_dataset["annotator1"][0])
+    report = classification_report(valid_dataset["both_annotator"], valid_dataset["bertannotation"], output_dict=True)
     print(report)
     stats = {
         "annotator1": {
