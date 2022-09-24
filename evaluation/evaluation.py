@@ -77,7 +77,8 @@ def get_valid_dataset(dataset):
             continue
         if len(annot1["labels"]) != len(annot2["labels"]) or len(annot1["labels"]) != len(annot3["labels"]):
             breakpoint()
-        for data_label, item in [(datanames[0], annot1["labels"]), (datanames[1], annot2["labels"]), (datanames[2], annot3["labels"])]:
+        for data_label, item in [(datanames[0], annot1["labels"]), (datanames[1], annot2["labels"]),
+                                 (datanames[2], annot3["labels"])]:
             valid_labels[data_label].append(item)
 
     return valid_labels
@@ -113,7 +114,7 @@ def get_cohen_statistics(data_dict):
             annot_kappa.append(kappa)
         except ValueError:
             value_erros += 1
-    breakpoint()
+
     print("skipped to missmatch labels", value_erros)
     skipped = empty_labels[data_names[0]] + empty_labels[data_names[1]]
     statistics = {
@@ -168,17 +169,9 @@ def main():
     statistics = dataset_comparasion(dataset)
     statistics.to_csv("statistics.csv", index_label="metrics")
     words_sts = get_words_statistics(dataset)
-    print(words_sts["annotator1"]["I-PERIOD"][:10])
-    print(words_sts["annotator2"]["I-PERIOD"][:10])
-    print(words_sts["annotator1"]["I-COMMA"][:10])
-    print(words_sts["annotator1"]["O"][:10])
-
 
     valid_dataset = get_valid_dataset(dataset)
 
-    print("valid_dataset", len(valid_dataset["annotator1"]))
-    print("valid_dataset", len(valid_dataset["annotator2"]))
-    print("valid_dataset", len(valid_dataset["bertannotation"]))
     report = classification_report(valid_dataset["annotator1"], valid_dataset["bertannotation"], output_dict=True)
     print(report)
     stats = {
@@ -192,6 +185,8 @@ def main():
             "I-COMMA": len(words_sts["annotator2"]["I-COMMA"]),
         },
     }
+
+    pd.DataFrame.from_dict(stats, orient="index").T.to_csv("stats.csv", index_label="metrics")
     dataset = {
         "annotator1": annotator1,
         "annotator2": annotator2, }

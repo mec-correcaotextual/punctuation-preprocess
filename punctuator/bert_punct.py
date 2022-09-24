@@ -257,7 +257,7 @@ if __name__ == '__main__':
         bert_annotation["labels"] = bert_label
         bert_annots.append(bert_annotation)
     with open("../dataset/bert_annotations.json", "w") as f:
-        json.dump(bert_annots, f, cls=NpEncoder)
+        json.dump(bert_annots, f, cls=NpEncoder, indent=4)
 
     for data_label in dataset:
         true_labels = []
