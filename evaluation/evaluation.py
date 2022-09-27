@@ -1,4 +1,5 @@
 import json
+import os
 import string
 from collections import defaultdict, Counter
 from itertools import combinations
@@ -153,13 +154,31 @@ def dataset_comparasion(dataset):
     return pd.DataFrame.from_dict(statistics, orient="index").T.round(3)
 
 
+def word_statistics(dataset_sts):
+    stats = {
+        "annotator1": {
+            "I-PERIOD": len(dataset_sts["annotator1"]["I-PERIOD"]),
+            "I-COMMA": len(dataset_sts["annotator1"]["I-COMMA"]),
+
+        },
+        "annotator2": {
+            "I-PERIOD": len(dataset_sts["annotator2"]["I-PERIOD"]),
+            "I-COMMA": len(dataset_sts["annotator2"]["I-COMMA"]),
+        },
+    }
+    return pd.DataFrame.from_dict(stats, orient="index").T
+
+
+BERT_ANNOTATIONS_PATH = "../bert_annotations/annotator1/"
+DATASET_DIR = "../datasets/"
+
+
 def main():
-    annotator1 = json.load(open("../dataset/annotator1.json", "r"))
-    annotator2 = json.load(open("../dataset/annotator2.json", "r"))
-    bertannotation = json.load(open("../dataset/bert_annotations.json", "r"))
-    both_annotator = json.load(open("../dataset/both_anotators.json", "r"))
-    print(len(both_annotator))
-    print(len(bertannotation))
+    annotator1 = json.load(open(os.path.join(DATASET_DIR, "annotator1.json"), "r"))
+    annotator2 = json.load(open(os.path.join(DATASET_DIR, "annotator2.json"), "r"))
+    both_annotator = json.load(open(os.path.join(DATASET_DIR, "both_anotators.json"), "r"))
+    bertannotation = json.load(open(os.path.join(BERT_ANNOTATIONS_PATH, "bert_annotations_sentences.json"), "r"))
+
     dataset = {
         "annotator1": annotator1,
         "annotator2": annotator2,
@@ -167,26 +186,20 @@ def main():
         "bertannotation": bertannotation
     }
     statistics = dataset_comparasion(dataset)
-    statistics.to_csv("statistics.csv", index_label="metrics")
+    statistics.to_csv(os.path.join(BERT_ANNOTATIONS_PATH, "statistics.csv"), index_label="metrics")
     words_sts = get_words_statistics(dataset)
 
     valid_dataset = get_valid_dataset(dataset)
-    print(valid_dataset["annotator1"][0])
-    report = classification_report(valid_dataset["both_annotator"], valid_dataset["bertannotation"], output_dict=True)
-    print(report)
-    stats = {
-        "annotator1": {
-            "I-PERIOD": len(words_sts["annotator1"]["I-PERIOD"]),
-            "I-COMMA": len(words_sts["annotator1"]["I-COMMA"]),
 
-        },
-        "annotator2": {
-            "I-PERIOD": len(words_sts["annotator2"]["I-PERIOD"]),
-            "I-COMMA": len(words_sts["annotator2"]["I-COMMA"]),
-        },
-    }
+    both_report = classification_report(valid_dataset["both_annotator"], valid_dataset["bertannotation"],
+                                        output_dict=True)
 
-    pd.DataFrame.from_dict(stats, orient="index").T.to_csv("stats.csv", index_label="metrics")
+    both_report = pd.DataFrame.from_dict(both_report, orient="index").T.round(3)
+    both_report.to_csv(os.path.join(BERT_ANNOTATIONS_PATH, "both_report.csv"), index_label="metrics")
+
+    word_sts = word_statistics(words_sts)
+    word_sts.to_csv(os.path.join(BERT_ANNOTATIONS_PATH, "word_statistics.csv"), index_label="metrics")
+
     dataset = {
         "annotator1": annotator1,
         "annotator2": annotator2, }
@@ -194,9 +207,16 @@ def main():
 
     for per in (0.6, 0.7, 0.8, 0.9, 0.95, 0.99):
         new_dataset = select_subsamples(dataset, minimum_cohen_kappa=per)
+        print(new_dataset)
+        breakpoint()
+        annt1_labels = [ann["annotator1"]["labels"] for ann in new_dataset]
+        annt2_labels = [ann["annotator2"]["labels"] for ann in new_dataset]
+        selected_ids = [ann["annotator1"]["text_id"] for ann in new_dataset]
+
         subsamples[per] = new_dataset
         print(len(new_dataset[0]["annotator1"]))
     json.dump(subsamples, open("subsamples.json", "w"), indent=4)
+
     # pd.DataFrame.from_dict(stats, orient="index").T.round(3).to_csv("punkt_stats.csv")
     #
     # print(Counter(words_sts["annotator1"]["I-PERIOD"]))

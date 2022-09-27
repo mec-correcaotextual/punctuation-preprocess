@@ -4,15 +4,15 @@ import re
 import string
 import traceback
 from itertools import chain
+
 import click
 import numpy as np
 import pandas as pd
 import spacy
 import torch
-from nltk.tokenize import wordpunct_tokenize, word_tokenize
+from nltk.tokenize import wordpunct_tokenize
 from seqeval.metrics import classification_report
 from silence_tensorflow import silence_tensorflow
-from sklearn.metrics import cohen_kappa_score
 from simpletransformers.ner import NERModel, NERArgs
 from transformers import BertTokenizer
 
@@ -94,7 +94,11 @@ def tokenize_words(text, remove_punctuation=True):
     return words
 
 
-def truncate_sentences(text, max_seq_length=512, overlap=20):
+def split_in_sentences(text):
+    return list(filter(lambda x: x != '', re.split(r' *[\.\?!][\'"\)\]]* *', text)))
+
+
+def truncate_texts(text, max_seq_length=512, overlap=20):
     """
     Truncate sentences to fit into BERT's max_seq_length
     :param text:  text to truncate
@@ -151,9 +155,9 @@ def preprocess_text(text):
     :param text: text to preprocess
     :return:  list of preprocessed text
     """
-    paragraphs = truncate_sentences(text)
+    sentences = split_in_sentences(text)
 
-    return list(map(lambda x: remove_punctuation(x).lower(), paragraphs))
+    return list(map(lambda x: remove_punctuation(x).lower(), sentences))
 
 
 def predict(test_text: str, bert_model):
@@ -243,10 +247,10 @@ if __name__ == '__main__':
     bert_labels = []
 
     for annt1, annt2, item in zip(annotator1, annotator2, both_annotator):
-        text_id = annt1["text_id"]
+        text_id = annt2["text_id"]
         print("Processing Text ID: ", text_id)
 
-        ann_text = annt1["text"].lower()
+        ann_text = annt2["text"].lower()
         bert_label = predict(ann_text, model)
 
         bert_labels.append(bert_label)
@@ -256,7 +260,7 @@ if __name__ == '__main__':
         bert_annotation = item
         bert_annotation["labels"] = bert_label
         bert_annots.append(bert_annotation)
-    with open("../dataset/bert_annotations.json", "w") as f:
+    with open("../bert_annotations/annotator2/bert_annotations_sentences.json", "w") as f:
         json.dump(bert_annots, f, cls=NpEncoder, indent=4)
 
     for data_label in dataset:
