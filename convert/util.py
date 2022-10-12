@@ -1,3 +1,8 @@
+import os
+
+import srsly
+
+
 def remove_repeated_punctuation(text_list, start_char, ref_punct):
     """Remove pontuação repetida"""
     shift = 0
@@ -42,6 +47,23 @@ def define_char_case(punct, text_list, i):
     return text_list
 
 
+def read_data(path):
+    jsonls = []
+    for root, dirs, files in os.walk(path, topdown=True):
+        for dir_name in dirs:
+
+            if dir_name == 'Anotações':
+                print(dir_name, dir_name == 'Anotações')
+                for filename in os.listdir(os.path.join(root, dir_name)):
+                    jsonls.append(os.path.join(root, dir_name, filename))
+
+    jsonls.sort()
+
+    annotated_jsonl = [tuple(srsly.read_jsonl(path)) for path in jsonls]
+    annotated_pairs = tuple(zip(*annotated_jsonl))
+    return annotated_pairs
+
+
 def fix_punctuation(ann_text_list, start_char, end_char, punct):
     other_punctuations = ['.', ',', ';', ':', '!', '?']
     other_punctuations.remove(punct)
@@ -50,14 +72,14 @@ def fix_punctuation(ann_text_list, start_char, end_char, punct):
         text_span = ann_text_list[start_char:end_char][0]
     except IndexError:
         # Não há matches com o caracter do texto e então significa que o aluno esqueceu ponto final.
-        if ann_text_list[-1] not in ['.', ',', ';', ':', '!', '?']:
+        if ann_text_list[-1] not in other_punctuations + ['.']:
             ann_text_list.append('.')
             shift += 1
         elif ann_text_list[-1] in other_punctuations:
             ann_text_list[-1] = '.'
         return ann_text_list, shift
-
-    if text_span != punct:
+    other_symbols = ['-']
+    if text_span != punct and text_span not in other_symbols:
 
         try:
             for i in range(start_char - 3, end_char + 3):
@@ -82,7 +104,7 @@ def fix_punctuation(ann_text_list, start_char, end_char, punct):
     else:
 
         for i in range(start_char - 1, end_char + 1):
-            if ann_text_list[i] == punct:
+            if ann_text_list[i] in other_symbols + [punct]:
                 ann_text_list.pop(i)  # Remove pontuação extra
 
                 # Adiciona espaço após a pontuação se necessário
