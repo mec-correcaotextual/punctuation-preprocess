@@ -1,22 +1,15 @@
 import json
+import os
+import pathlib
+from collections import defaultdict
 from typing import Literal
 
+import srsly
+
 from convert.util import fix_punctuation, read_data
-from utils import text2labels, find_token_span, get_gold_token, remove_punctuation
+from utils import text2labels, find_token_span
 from utils.preprocess import preprocess_text, fix_break_lines
-import spacy
-
-nlp = spacy.blank("pt")
-
-
-def get_error_labels(text, labels, token_alignment='expand'):
-    """Retorna as labels de erro de pontuação e vírgula"""
-
-    new_span = get_gold_token(text, labels[0], labels[1])
-    doc = nlp.make_doc(text)
-    new_span = doc.char_span(*new_span, alignment_mode=token_alignment)
-
-    return new_span
+import pandas as pd
 
 
 def convert_annotations(
@@ -24,11 +17,13 @@ def convert_annotations(
         token_alignment: Literal['contract', 'expand'] = 'expand'
 ):
     """Converte jsonl do doccano para o estilo de anotação do SpaCy e retorna um docbin com todos dos docs"""
-
     annotator_entities = []
     student_entities = []
-
     annotated_pairs = read_data(path)
+
+    print(pd.__version__)
+    print(annotated_pairs.columns)
+    print(annotated_pairs['text_id'])
 
     for i, annotation in annotated_pairs.iterrows():
 
@@ -40,23 +35,21 @@ def convert_annotations(
 
         student_entity = {'text': new_sts_text, "title": title, 'text_id': text_id, 'ents': []}
 
-        annotator_entity = {'text': text, "title": title, 'text_id': text_id, 'ents': []}
-
-        # Procura pela pontuação do aluno no texto
+        annotator_entity = defaultdict(lambda: {'text': text, "title": title, 'text_id': text_id, 'ents': []})
 
         student_entity["ents"] = find_token_span(new_sts_text, token_alignment=token_alignment)
         student_entity["labels"] = text2labels(student_entity["text"])
+        annotator_id = annotation['annotator_id']
 
+        global_shift = 0
+        text = annotation['text']
+        len_b = len(list(text))
         text = fix_break_lines(text)
 
-        len_b = len(list(text))
-        global_shift = 0
         ann_text_list = list(text)
         len_a = len(ann_text_list)
         if len_a != len_b:
             global_shift = len_a - len_b
-
-        erros_labels = []
 
         for ann_span in annotation['label']:
 
@@ -70,26 +63,14 @@ def convert_annotations(
             ann_text_list, local_shift = fix_punctuation(ann_text_list, start_char, end_char, punct=symbol)
             global_shift += local_shift
 
-            erros_labels.append((ann_span[0] - 1 + global_shift, ann_span[1] + global_shift, label))
-
         atitle, new_ann_textp = preprocess_text(''.join(ann_text_list))
         new_ann_text = '\n'.join(new_ann_textp)
         after_labels = text2labels(new_ann_text)
 
-        diff = len(new_ann_text) - len(''.join(ann_text_list))
-        e_labels = []
-        for start_char, end_char, label in erros_labels:
-
-            start_char, end_char = start_char - diff, end_char - diff
-
-            e_labels.append((start_char, end_char, label))
-
-        annotator_entity["text"] = new_ann_text
-        annotator_entity["title"] = title
-        annotator_entity["ents"] = find_token_span(new_ann_text, token_alignment=token_alignment)
-        annotator_entity["labels"] = after_labels
-        annotator_entity["error_labels"] = e_labels
-
+        annotator_entity[annotator_id]["text"] = new_ann_text
+        annotator_entity[annotator_id]["title"] = title
+        annotator_entity[annotator_id]["ents"] = find_token_span(new_ann_text, token_alignment=token_alignment)
+        annotator_entity[annotator_id]["labels"] = after_labels
         student_entities.append(student_entity)
         annotator_entities.append(annotator_entity)
 
@@ -98,6 +79,9 @@ def convert_annotations(
 
 if __name__ == '__main__':
     sts_entities, annot_entities = convert_annotations('../annotations/')
+    annotator1 = list(map(lambda dict_annot: dict_annot[1], annot_entities))
+    annotator2 = list(map(lambda dict_annot: dict_annot[2], annot_entities))
 
-    json.dump(obj=sts_entities, fp=open('../datasets/full/student.json', 'w'), indent=4)
-    json.dump(obj=annot_entities, fp=open('../datasets/full/both_anotators.json', 'w'), indent=4)
+    json.dump(obj=sts_entities, fp=open('../datasets/test/student.json', 'w'), indent=4)
+    json.dump(obj=annotator1, fp=open('../datasets/test/annotator1.json', 'w'), indent=4)
+    json.dump(obj=annotator2, fp=open('../datasets/test/annotator2.json', 'w'), indent=4)

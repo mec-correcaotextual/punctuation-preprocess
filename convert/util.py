@@ -1,5 +1,7 @@
 import os
+import re
 
+import pandas as pd
 import srsly
 
 
@@ -48,20 +50,21 @@ def define_char_case(punct, text_list, i):
 
 
 def read_data(path):
-    jsonls = []
+    """Lê os dados do arquivo"""
+    data = []
+    print(path)
     for root, dirs, files in os.walk(path, topdown=True):
+
         for dir_name in dirs:
 
-            if dir_name == 'Anotações':
-                print(dir_name, dir_name == 'Anotações')
+            if dir_name == 'Anotações':
+                print(root, dirs, files)
                 for filename in os.listdir(os.path.join(root, dir_name)):
-                    jsonls.append(os.path.join(root, dir_name, filename))
+                    df = pd.read_json(os.path.join(root, dir_name, filename), lines=True)
+                    df['annotator_id'] = int(re.findall(r'\d', filename)[0])
+                    data.append(df)
 
-    jsonls.sort()
-
-    annotated_jsonl = [tuple(srsly.read_jsonl(path)) for path in jsonls]
-    annotated_pairs = tuple(zip(*annotated_jsonl))
-    return annotated_pairs
+    return pd.concat(data).rename(columns={'id': 'text_id'})
 
 
 def fix_punctuation(ann_text_list, start_char, end_char, punct):

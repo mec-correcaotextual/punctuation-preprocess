@@ -1,6 +1,7 @@
 import re
 import string
-
+from nltk.tokenize import wordpunct_tokenize
+import string
 from nltk import wordpunct_tokenize
 from nltk.tokenize import word_tokenize
 import spacy
@@ -41,6 +42,17 @@ def drop_duplicates(annotation):
     return new_annotation
 
 
+def remove_punctuation(text):
+    """
+    Remove punctuation from text
+    :param text: text to remove punctuation from
+    :return:  text without punctuation
+    """
+    text = [word.lower() for word in wordpunct_tokenize(text)
+            if word not in string.punctuation]
+    return text
+
+
 def find_token_span(text, token_alignment='expand'):
     ents = []
     matches = re.finditer(pattern, text)
@@ -51,9 +63,9 @@ def find_token_span(text, token_alignment='expand'):
         start_char, end_char = get_gold_token(non_puncted_text, span_start, span_end,
                                               tokens_delimiters=None, token_alignment=token_alignment)
         if text[span_start:span_end] in ['.', '?', '!']:
-            ents.append((start_char, end_char, "PERIOD"))
+            ents.append((start_char, end_char, "I-PERIOD"))
         elif text[span_start:span_end] in [',']:
-            ents.append((start_char, end_char, "COMMA"))
+            ents.append((start_char, end_char, "I-COMMA"))
 
     return ents
 
@@ -78,8 +90,12 @@ def get_gold_token(text, start_char, end_char, tokens_delimiters=None, token_ali
                 start_char -= 1
                 gold_token.append(char)
 
-        new_span = doc.char_span(*(start_char, end_char), alignment_mode=token_alignment)
-        start_char, end_char = new_span.start_char, new_span.end_char
+        try:
+            new_span = doc.char_span(*(start_char, end_char), alignment_mode=token_alignment)
+            start_char, end_char = new_span.start_char, new_span.end_char
+        except AttributeError:
+            raise ValueError(f"Can't find token for {start_char}:{end_char}, the start end char exceded the text")
+
     else:
         start_char, end_char = new_span.start_char, new_span.end_char
 
