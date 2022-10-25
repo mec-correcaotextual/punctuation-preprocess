@@ -7,7 +7,7 @@ from typing import Literal
 import srsly
 
 from convert.util import fix_punctuation, read_data
-from utils import text2labels, find_token_span
+from utils import text2labels, find_token_span, get_gold_token, NpEncoder
 from utils.preprocess import preprocess_text, fix_break_lines
 import pandas as pd
 
@@ -21,67 +21,39 @@ def convert_annotations(
     student_entities = []
     annotated_pairs = read_data(path)
 
-    print(pd.__version__)
-    print(annotated_pairs.columns)
-    print(annotated_pairs['text_id'])
+    for i, group_annottion in annotated_pairs.groupby('text_id'):
 
-    for i, annotation in annotated_pairs.iterrows():
-
-        text = annotation['text']
-        text_id = annotation['text_id']
+        text = group_annottion['text'].values[0]
+        text_id = group_annottion['text_id'].values[0]
 
         title, new_sts_text = preprocess_text(text)
-        new_sts_text = '\n'.join(new_sts_text)
+        new_text = '\n'.join(new_sts_text)
 
-        student_entity = {'text': new_sts_text, "title": title, 'text_id': text_id, 'ents': []}
+        entity = {'text': new_sts_text, "title": title, 'text_id': text_id}
 
-        annotator_entity = defaultdict(lambda: {'text': text, "title": title, 'text_id': text_id, 'ents': []})
+        annots = []
+        for annotation in group_annottion['label'].values:
 
-        student_entity["ents"] = find_token_span(new_sts_text, token_alignment=token_alignment)
-        student_entity["labels"] = text2labels(student_entity["text"])
-        annotator_id = annotation['annotator_id']
+            for k, ann_span in enumerate(annotation):
+                start_char, end_char = ann_span[1], ann_span[1] + 2
+                # Descobrir o porquê há multiplas pontuações no texto do aluno e corrigir isso 'esta podre.?,
+                start_char, end_char = get_gold_token(text, start_char, end_char)
+                ann_span[0] = start_char
+                ann_span[1] = end_char
+                annotation[k] = ann_span
+                annots.append(ann_span)
 
-        global_shift = 0
-        text = annotation['text']
-        len_b = len(list(text))
-        text = fix_break_lines(text)
+        entity['raw_text'] = text
+        entity['raw_text_id'] = text_id
+        entity['text'] = new_text
+        entity['annotations'] = annots
 
-        ann_text_list = list(text)
-        len_a = len(ann_text_list)
-        if len_a != len_b:
-            global_shift = len_a - len_b
+        annotator_entities.append(entity)
 
-        for ann_span in annotation['label']:
-
-            start_char, end_char, label = ann_span[1] - 1 + global_shift, ann_span[1] + global_shift, ann_span[
-                2]
-            # Descobrir o porquê há multiplas pontuações no texto do aluno e corrigir isso 'esta podre.?,
-            if label not in ['Erro de Pontuação', 'Erro de vírgula']:
-                continue
-
-            symbol = '.' if label == 'Erro de Pontuação' else ','
-            ann_text_list, local_shift = fix_punctuation(ann_text_list, start_char, end_char, punct=symbol)
-            global_shift += local_shift
-
-        atitle, new_ann_textp = preprocess_text(''.join(ann_text_list))
-        new_ann_text = '\n'.join(new_ann_textp)
-        after_labels = text2labels(new_ann_text)
-
-        annotator_entity[annotator_id]["text"] = new_ann_text
-        annotator_entity[annotator_id]["title"] = title
-        annotator_entity[annotator_id]["ents"] = find_token_span(new_ann_text, token_alignment=token_alignment)
-        annotator_entity[annotator_id]["labels"] = after_labels
-        student_entities.append(student_entity)
-        annotator_entities.append(annotator_entity)
-
-    return student_entities, annotator_entities
+    return annotator_entities
 
 
 if __name__ == '__main__':
-    sts_entities, annot_entities = convert_annotations('../annotations/')
-    annotator1 = list(map(lambda dict_annot: dict_annot[1], annot_entities))
-    annotator2 = list(map(lambda dict_annot: dict_annot[2], annot_entities))
+    annot_entities = convert_annotations('../annotations/')
 
-    json.dump(obj=sts_entities, fp=open('../datasets/test/student.json', 'w'), indent=4)
-    json.dump(obj=annotator1, fp=open('../datasets/test/annotator1.json', 'w'), indent=4)
-    json.dump(obj=annotator2, fp=open('../datasets/test/annotator2.json', 'w'), indent=4)
+    json.dump(obj=annot_entities, fp=open('../datasets/annotator.json', 'w'), indent=4, cls=NpEncoder)

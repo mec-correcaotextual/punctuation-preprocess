@@ -1,6 +1,6 @@
 import json
 from typing import Literal
-
+import numpy as np
 from convert.util import fix_punctuation, read_data
 from utils import text2labels, find_token_span, get_gold_token, remove_punctuation
 from utils.preprocess import preprocess_text, fix_break_lines
@@ -19,6 +19,9 @@ def get_error_labels(text, labels, token_alignment='expand'):
     return new_span
 
 
+
+
+
 def convert_annotations(
         path: str = 'data',
         token_alignment: Literal['contract', 'expand'] = 'expand'
@@ -30,10 +33,9 @@ def convert_annotations(
 
     annotated_pairs = read_data(path)
 
-    for i, annotation in annotated_pairs.iterrows():
-
-        text = annotation['text']
-        text_id = annotation['text_id']
+    for i, group_annottion in annotated_pairs.groupby('text_id'):
+        text = group_annottion['text'].values[0]
+        text_id = group_annottion['text_id'].values[0]
 
         title, new_sts_text = preprocess_text(text)
         new_sts_text = '\n'.join(new_sts_text)
@@ -58,35 +60,34 @@ def convert_annotations(
 
         erros_labels = []
 
-        for ann_span in annotation['label']:
+        for annotation in group_annottion['label'].values:
 
-            start_char, end_char, label = ann_span[1] - 1 + global_shift, ann_span[1] + global_shift, ann_span[
-                2]
-            # Descobrir o porquê há multiplas pontuações no texto do aluno e corrigir isso 'esta podre.?,
-            if label not in ['Erro de Pontuação', 'Erro de vírgula']:
-                continue
+            for ann_span in annotation:
 
-            symbol = '.' if label == 'Erro de Pontuação' else ','
-            ann_text_list, local_shift = fix_punctuation(ann_text_list, start_char, end_char, punct=symbol)
-            global_shift += local_shift
+                start_char, end_char, label = ann_span[1] - 1 + global_shift, ann_span[1] + global_shift, ann_span[
+                    2]
+                # Descobrir o porquê há multiplas pontuações no texto do aluno e corrigir isso 'esta podre.?,
+                if label not in ['Erro de Pontuação', 'Erro de vírgula']:
+                    continue
 
-            erros_labels.append((ann_span[0] - 1 + global_shift, ann_span[1] + global_shift, label))
+                symbol = '.' if label == 'Erro de Pontuação' else ','
+                ann_text_list, local_shift = fix_punctuation(ann_text_list, start_char, end_char, punct=symbol)
+                global_shift += local_shift
+
+                erros_labels.append((ann_span[0] - 1 + global_shift, ann_span[1] + global_shift, label))
 
         atitle, new_ann_textp = preprocess_text(''.join(ann_text_list))
         new_ann_text = '\n'.join(new_ann_textp)
         after_labels = text2labels(new_ann_text)
 
-        diff = len(new_ann_text) - len(''.join(ann_text_list))
         e_labels = []
         for start_char, end_char, label in erros_labels:
-
-            start_char, end_char = start_char - diff, end_char - diff
-
+            start_char, end_char = get_gold_token(''.join(ann_text_list), start_char, end_char)
             e_labels.append((start_char, end_char, label))
 
+        annotator_entity["raw_text"] = ''.join(ann_text_list)
         annotator_entity["text"] = new_ann_text
         annotator_entity["title"] = title
-        annotator_entity["ents"] = find_token_span(new_ann_text, token_alignment=token_alignment)
         annotator_entity["labels"] = after_labels
         annotator_entity["error_labels"] = e_labels
 
@@ -99,5 +100,5 @@ def convert_annotations(
 if __name__ == '__main__':
     sts_entities, annot_entities = convert_annotations('../annotations/')
 
-    json.dump(obj=sts_entities, fp=open('../datasets/full/student.json', 'w'), indent=4)
-    json.dump(obj=annot_entities, fp=open('../datasets/full/both_anotators.json', 'w'), indent=4)
+    json.dump(obj=sts_entities, fp=open('../datasets/full/student.json', 'w'), indent=4, cls=NpEncoder)
+    json.dump(obj=annot_entities, fp=open('../datasets/full/both_anotators.json', 'w'), indent=4, cls=NpEncoder)

@@ -1,10 +1,10 @@
 import re
 import string
-from nltk.tokenize import wordpunct_tokenize
-import string
+import json
+import numpy as np
+import spacy
 from nltk import wordpunct_tokenize
 from nltk.tokenize import word_tokenize
-import spacy
 
 nlp = spacy.blank('pt')
 pattern = re.compile(r'(?<=[a-z|A-z])[.,!?]')
@@ -71,10 +71,21 @@ def find_token_span(text, token_alignment='expand'):
 
 
 def get_gold_token(text, start_char, end_char, tokens_delimiters=None, token_alignment='expand'):
+    """
+    Get the token that corresponds to the gold annotation
+    :param text:  text to get the token from
+    :param start_char:  start character of the gold annotation
+    :param end_char:    end character of the gold annotation
+    :param tokens_delimiters:  delimiters of the tokens
+    :param token_alignment:  alignment of the token
+    :return:  start and end character of the token
+    """
+    print(start_char, end_char)
     if tokens_delimiters is None:
         tokens_delimiters = [' ', '\n', '\t']
     doc = nlp.make_doc(text)
     new_span = doc.char_span(*(start_char, end_char), alignment_mode=token_alignment)
+    assert start_char <= len(text), f"End char {start_char} is bigger than text length {len(text)}"
 
     if new_span is None or new_span.start_char == new_span.end_char:
 
@@ -87,7 +98,10 @@ def get_gold_token(text, start_char, end_char, tokens_delimiters=None, token_ali
             if char in tokens_delimiters and start_char != end_char:
                 break
             else:
-                start_char -= 1
+                if start_char > 0:
+                    start_char -= 1
+                else:
+                    break
                 gold_token.append(char)
 
         try:
@@ -120,7 +134,15 @@ def text2labels(sentence):
             raise ValueError(f"Sentence can't start with punctuation {token}")
     return labels
 
-
+class NpEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        if isinstance(obj, np.floating):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super(NpEncoder, self).default(obj)
 def main():
     text = "Olá, Mundo! Irei compra-los a dinheiro!"
     print(word_tokenize(text))
